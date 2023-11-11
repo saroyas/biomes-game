@@ -356,7 +356,7 @@ const DEFAULT_CONFIG = deepFreeze({
   // Bob the builder
   //
   bobBaseDirectory: "biomes",
-  bobHaltBuilds: true,
+  bobHaltBuilds: false,
   bobBuildIntervalMs: 15_000,
   bobNotifyPrIntervalMs: 60_000,
   bobFluxCheckIntervalMs: 60_000,

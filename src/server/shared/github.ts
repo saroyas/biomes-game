@@ -2,8 +2,8 @@ import { getSecret } from "@/server/shared/secrets";
 import { log } from "@/shared/logging";
 import { Octokit } from "octokit";
 
-export const GITHUB_THIS_REPO = "biomes";
-export const GITHUB_THIS_OWNER = "ill-inc";
+export const GITHUB_THIS_REPO = "biomes-game";
+export const GITHUB_THIS_OWNER = "xerebz";
 export const GITHUB_MAIN_BRANCH = "main";
 
 const PERSONAL_ACCESS_TOKEN_ENV = "GH_PAT";

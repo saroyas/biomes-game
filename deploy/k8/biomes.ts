@@ -4,9 +4,9 @@ import { writeFile } from "fs/promises";
 import path from "path";
 
 // ===== Buffer to avoid git conflicts =====
-const LAST_BOB_BUILD = "bob-354da53d0a";
+const LAST_BOB_BUILD = "bob-8947039203";
 // ===== Buffer to avoid git conflicts =====
-const LAST_BOB_IMAGE = "bob-354da53d0a";
+const LAST_BOB_IMAGE = "bob-8947039203";
 // ===== Buffer to avoid git conflicts =====
 
 // Fix deploy.

@@ -1651,9 +1651,6 @@ export class BobTheBuilder {
         log.warn("Could not announce Bob start", { error });
       }
     }
-    this.controller.runInBackground("checkFluxStatus", (signal) =>
-      this.checkFluxStatusPeriodically(signal)
-    );
     this.controller.runInBackground("continuousBuild", (signal) =>
       this.continuousBuild(signal)
     );

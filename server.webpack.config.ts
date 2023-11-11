@@ -62,7 +62,7 @@ async function getBuildId() {
 
 async function createWebpackConfig() {
   return <webpack.Configuration>{
-    mode: "production",
+    mode: "development",
     // Configure NodeJS environment settings.
     externalsPresets: { node: true },
     node: {
