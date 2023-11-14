@@ -31,6 +31,14 @@ from ts_deps import (TsDep, ensure_ts_deps_up_to_date, run_bazel,
 
 from galois import galois as galois_commands
 
+"""
+This is the meat and potatoes for the bootstrapping of the local development environment.
+It's a giant Python file that spawns each Node server as a subprocess.
+It uses the Python Click library to set up a CLI for running the game servers. See `./b --help` for more info.
+It also defines classes for GameConfig, ServerSpec, etc.
+TODO: It's a gigantic file that does many different things. It should be cleaned up and split into multiple files.
+"""
+
 ERROR_COLOR = "bright_red"
 WARNING_COLOR = "bright_yellow"
 GOOD_COLOR = "bright_green"
@@ -1058,6 +1066,16 @@ def always_up_to_date_bazel(f):
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"], show_default=True)
 
+"""
+The CLI definition is below. It runs specified TARGET services.
+It takes in several options such as:
+    '--only/--closure' to specify whether to run only the specified services or the dependency closure,
+    '--inspect/--no-inspect' to run services with the inspect flag, so you can attach a debugger,
+    '--exclude' to exclude specific services,
+    '--keep-players/--no-keep-players' to disable player icing, letting them stay around,
+    '--reset-players/--no-reset-players' to reset players to their initial state, but preserve positions
+    , and many more.
+"""
 
 @click.group(
     cls=DefaultGroup,
