@@ -14,19 +14,8 @@ from functools import update_wrapper
 from pathlib import Path
 from queue import SimpleQueue
 from threading import Thread
-from typing import (
-    IO,
-    Any,
-    Callable,
-    Dict,
-    Iterable,
-    List,
-    Literal,
-    Optional,
-    Protocol,
-    Set,
-    Union,
-)
+from typing import (IO, Any, Callable, Dict, Iterable, List, Literal, Optional,
+                    Protocol, Set, Union)
 
 import click
 import psutil
@@ -34,13 +23,8 @@ import requests
 from click_default_group import DefaultGroup
 from data_snapshot import data_snapshot as data_snapshot_commands
 from dotenv import load_dotenv
-from ts_deps import (
-    TsDep,
-    ensure_ts_deps_up_to_date,
-    run_bazel,
-    run_with_hidden_output,
-    watch_ts_deps,
-)
+from ts_deps import (TsDep, ensure_ts_deps_up_to_date, run_bazel,
+                     run_with_hidden_output, watch_ts_deps)
 
 from galois import galois as galois_commands
 
@@ -56,6 +40,7 @@ TODO: It's a gigantic file that does many different things. It should be cleaned
 ---
 
 ChatGPT explanation:
+
 The `b.py` script from the "biomes-game" repository is a complex and comprehensive command-line tool that serves multiple purposes in setting up, managing, and
 interacting with a game server environment. Here's a detailed breakdown of its functionalities:
 

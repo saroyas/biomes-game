@@ -15,6 +15,23 @@ import { log } from "@/shared/logging";
 import { Timer, TimerNeverSet } from "@/shared/metrics/timer";
 import { chunk } from "lodash";
 
+/*
+
+This script is a utility for initializing a Redis database with data from a backup file,
+particularly handling specific data types and structures related to a system using the Entity Component System pattern.
+It's designed to be run from the command line, expecting a backup file as an argument.
+
+bootstrapRedis function: The main function of the script. It's an asynchronous function that takes an optional `backupFile` argument. It performs several tasks:
+  Initialization: It starts with a check for the `backupFile`. If not present, it logs a fatal error and returns.
+  Script Initialization: Calls `scriptInit()` for any required setup.
+  Redis Storage Setup: Creates a `RedisBikkieStorage` instance by connecting to Redis.
+  Loading Data from Production: If `SKIP_PROD_LOAD` is not set to "false", it loads tray definitions and baked trays from production into the storage.
+  Loading Backup Data: The script iterates over entries from the backup file using `iterBackupEntriesFromFile`. It distinguishes between 'bikkie' type entries (which involve saving definitions and baked data) and other types, which are treated as changes to be applied.
+  Redis World Initialization: It initializes `RedisWorld` for handling ECS (Entity Component System) data.
+  Applying Changes: The script batches changes and applies them to the Redis world. It keeps track of the number of processed changes and prints the status periodically.
+
+*/
+
 export async function bootstrapRedis(backupFile?: string) {
   if (!backupFile) {
     log.fatal(`Usage: node bootstrap_redis.js <backup_file>`);

@@ -46,6 +46,40 @@ import type { RegistryLoader } from "@/shared/registry";
 import { zChatVoice, zTranslation } from "@/shared/voices/types";
 import { z } from "zod";
 
+/*
+
+This code handles server data storage and management. Here's a detailed breakdown:
+
+1. **Database and Storage Schema Definitions**:
+   - Uses Firestore (a NoSQL database from Firebase) for data storage.
+   - Defines various Firestore document schemas (`zFirestore...`) for different data entities like feed posts, comments, likes, and more.
+   - Utilizes `zod` for schema validation, ensuring data integrity.
+
+2. **Storage Functions and Types**:
+   - `createBdb`: Creates a database schema store with collections and documents defined.
+   - `createStorageBackend`: Depending on the storage mode (`copy-on-write`, `firestore`, `memory`, `snapshot`, `shim`), it sets up the appropriate storage backend.
+
+3. **Registry and Context Management**:
+   - The `registerBiomesStorage` function uses a loader to retrieve configuration and set up the appropriate storage based on the context.
+
+4. **Server Tasks Schema**:
+   - Functions for defining schemas for server tasks, indicating a system for managing and logging server-side operations.
+
+5. **Remote Storage with RPC and Retries**:
+   - Demonstrates advanced usage of remote procedure calls (RPC) and implementing retries for unavailable services, increasing the resilience of the system.
+
+6. **Firestore Collections and Documents**:
+   - The code defines various Firestore collections and documents, mapping them to the previously defined schemas.
+
+7. **Logging and Configuration Management**:
+   - Uses a logging mechanism (`log.info`, `log.warn`, `log.error`) for monitoring and debugging.
+   - Manages configuration settings for different storage modes, indicating a flexible and configurable system.
+
+8. **Integration with Kubernetes**:
+    - The `isRunningOnKubernetes` check suggests that the application is designed to run in a Kubernetes environment, indicating cloud-native deployment.
+
+*/
+
 // Social
 
 export const zFirestoreFeedPostDoc = doc(

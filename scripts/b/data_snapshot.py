@@ -13,6 +13,36 @@ import click
 from pip_install_voxeloo import (run_pip_install_requirements,
                                  run_pip_install_voxeloo)
 
+'''
+This Python file is a script designed to manage data snapshots, specifically for a system or application involving biomes data.
+It is organized using the `click` library, a package for creating command-line interfaces (CLI) in Python.
+The script is structured as a collection of commands under the `data_snapshot` group, each performing specific operations related to
+managing data snapshots. Here's a detailed breakdown of its functionality:
+
+Commands:
+   `create_to_file`: Creates a data snapshot and saves it as a tar.gz file. It involves downloading backup files and static assets, and then packaging them into a tarball.
+   `upload_from_file`: Uploads a specified tar.gz file to Google Cloud Storage (GCS) as the new data snapshot.
+   `hash_file`: Generates an MD5 hash of a specified file, used for verification purposes.
+   `push`: A combination of creating a data snapshot and then uploading it to GCS.
+   `install_from_file`: Installs a data snapshot from a specified file by extracting its contents and moving them to appropriate locations.
+   `uninstall`: Removes installed data snapshot files from the local repository.
+   `is_installed`: Checks if the snapshot data is already installed.
+   `download_to_file`: Downloads the latest data snapshot to a specified path.
+   `pull`: Downloads and installs the latest snapshot data if the local version is outdated.
+   `populate_redis`: Populates a running Redis server with installed snapshot data.
+   `ensure_redis_populated`: Ensures that Redis server is populated with the latest snapshot data.
+   `run`: A comprehensive command that ensures all dependencies are installed, the data snapshot is up-to-date, and then runs a local server with the data snapshot.
+   `redis_cli` and `redis_server_started`: Helper functions for interacting with a Redis server.
+   `RedisServer`: A context manager class for handling the starting and stopping of a Redis server.
+
+Asset Management:
+   `fetch_asset_versions`: Fetches asset version details from a JSON file.
+   `check_for_missing_assets`: Checks if any assets referenced in the asset_versions.json are missing.
+
+Overall, this script is a comprehensive tool for managing data snapshots, including creation, uploading, downloading, installation, and
+integration with a Redis server. It also handles asset management for the biomes data, ensuring that all required assets are present and up-to-date.
+'''
+
 SCRIPT_DIR = Path(os.path.dirname(os.path.realpath(__file__)))
 REPO_DIR = SCRIPT_DIR / ".." / ".."
 
