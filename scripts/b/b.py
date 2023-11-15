@@ -4,10 +4,13 @@ import json
 import math
 import os
 import re
+import shutil
 import socket
 import subprocess
 import sys
 import time
+import urllib.request
+from curses import ERR
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from functools import update_wrapper
@@ -40,7 +43,6 @@ TODO: It's a gigantic file that does many different things. It should be cleaned
 ---
 
 ChatGPT explanation:
-
 The `b.py` script from the "biomes-game" repository is a complex and comprehensive command-line tool that serves multiple purposes in setting up, managing, and
 interacting with a game server environment. Here's a detailed breakdown of its functionalities:
 
@@ -90,7 +92,9 @@ ERROR_COLOR = "bright_red"
 WARNING_COLOR = "bright_yellow"
 GOOD_COLOR = "bright_green"
 
-AssetMode = Union[Literal["none"], Literal["lazy"], Literal["local"], Literal["proxy"]]
+AssetMode = Union[
+    Literal["none"], Literal["lazy"], Literal["local"], Literal["proxy"]
+]
 BootstrapMethod = Union[Literal["sync"], Literal["empty"]]
 FirehoseMode = Union[Literal["memory"], Literal["shim"], Literal["redis"]]
 BiscuitsMode = Union[Literal["memory"], Literal["shim"], Literal["redis"]]
@@ -126,8 +130,7 @@ class GameConfig:
     galois_static_prefix: Optional[str] = None
     local_gcs: bool = False
 
-
-def create_args(config: GameConfig, ext: Dict[str, str] = None):
+def create_args(config: GameConfig, ext: Dict[str, str] = {}):
     base = {
         "--biscuitMode": config.biscuits,
         "--storageMode": "shim",
@@ -203,7 +206,7 @@ def active_pid(name: str):
     try:
         with open(f".b/{name}.pid", "r") as f:
             pid = int(f.readline().strip())
-    except FileNotFoundError:
+    except:
         # No pid recorded
         return 0
     if not psutil.pid_exists(pid):
@@ -255,7 +258,7 @@ def default_node_options():
 
 
 def run_yarn_env(
-    args, node_options=None, env=None, use_common_node_options=True, **kwargs
+    args, node_options=[], env={}, use_common_node_options=True, **kwargs
 ):
     node_options = (
         default_node_options() + " " if use_common_node_options else ""
@@ -287,7 +290,7 @@ def run_node(
     entrypoint: str,
     args: Optional[List[str]] = None,
     extra_node_args: Optional[List[str]] = None,
-    extra_env: Dict[str, str] = None,
+    extra_env: Dict[str, str] = {},
     ram: Optional[int] = None,
     **kwargs,
 ):
@@ -383,7 +386,9 @@ class LogSink:
         time = click.style(now.strftime("%H:%M:%S"), fg="bright_black")
         sys.stdout.write(f"[{self.server_names.get(name, name)}] {time} {line}")
         sys.stdout.flush()
-        log_file.write(f"{now.strftime('%d-%m-%YT%H:%M:%S')} {escape_ansi(line)}")
+        log_file.write(
+            f"{now.strftime('%d-%m-%YT%H:%M:%S')} {escape_ansi(line)}"
+        )
         log_file.flush()
 
 
@@ -614,8 +619,12 @@ class Server:
             },
             # Ports for dependencies
             **{
-                f"{dep.name.upper()}_PORT": str(dep.port + (2 if not dep.http else 0))
-                for dep in self.spec.deps + self.spec.implies + self.spec.can_use
+                f"{dep.name.upper()}_PORT": str(
+                    dep.port + (2 if not dep.http else 0)
+                )
+                for dep in self.spec.deps
+                + self.spec.implies
+                + self.spec.can_use
             },
         }
         if self.config.production_secrets:
@@ -717,7 +726,9 @@ class Server:
                         fg=WARNING_COLOR,
                     )
                 last_notified = now
-            ok = self.is_alive and (self.is_ready or not self.spec.wait_for_ready)
+            ok = self.is_alive and (
+                self.is_ready or not self.spec.wait_for_ready
+            )
         if self.spec.warmup is not None:
             self.spec.warmup()
         click.secho(f"Ready: {color_name(self.spec)}", fg=GOOD_COLOR)
@@ -912,7 +923,9 @@ WEB = ServerSpec(
     can_use=[CAMERA, SYNC],
     entrypoint="web",
     warmup=lambda: request_fetch(3000),
-    args=lambda config: create_args(config, {"--assetServerMode": config.assets}),
+    args=lambda config: create_args(
+        config, {"--assetServerMode": config.assets}
+    ),
     auto_restart=True,
     wait_for_ready=True,
     http=True,
@@ -1064,7 +1077,9 @@ def check_ports_available(closure: List[ServerSpec]):
 
 
 def print_startup_banner(closure: List[ServerSpec]):
-    print_banner("All servers are ready! You should be good to go! <3", GOOD_COLOR)
+    print_banner(
+        "All servers are ready! You should be good to go! <3", GOOD_COLOR
+    )
     for spec in closure:
         click.secho(f"Running: {color_name(spec)}:", fg=WARNING_COLOR)
         for name, port in spec.ports.items():
@@ -1110,7 +1125,6 @@ It takes in several options such as:
     '--reset-players/--no-reset-players' to reset players to their initial state, but preserve positions
     , and many more.
 """
-
 
 @click.group(
     cls=DefaultGroup,
@@ -1400,13 +1414,19 @@ def run(
     for kv in config:
         parts = [x.strip() for x in kv.split("=")]
         if len(parts) != 2:
-            click.secho(f"Could not understand --config override: {kv}", fg=ERROR_COLOR)
+            click.secho(
+                f"Could not understand --config override: {kv}", fg=ERROR_COLOR
+            )
             return
         try:
             extra_config_overrides[parts[0]] = json.loads(parts[1])
-            click.secho(f"Config override: {parts[0]}={parts[1]}", fg=WARNING_COLOR)
+            click.secho(
+                f"Config override: {parts[0]}={parts[1]}", fg=WARNING_COLOR
+            )
         except:
-            click.secho(f"Could not understand --config override: {kv}", fg=ERROR_COLOR)
+            click.secho(
+                f"Could not understand --config override: {kv}", fg=ERROR_COLOR
+            )
             return
 
     # Determine the environment for the game.
@@ -1497,9 +1517,9 @@ def run(
                 for i, e in enumerate(server_processes):
                     click.secho(f"\t({i+1}) {e.spec.name}")
                 click.secho()
-                click.secho("\t(a) all but shim")
-                click.secho("\t(n) none")
-                click.secho("\t(q) quit")
+                click.secho(f"\t(a) all but shim")
+                click.secho(f"\t(n) none")
+                click.secho(f"\t(q) quit")
                 choice = click.prompt("Your choice").strip().lower()
                 if choice == "q":
                     raise DesireQuitException
@@ -1521,7 +1541,9 @@ def run(
                         click.secho(f"Rebooting {process.spec.name}")
                         server_processes[i - 1].reboot()
                     except ValueError:
-                        click.secho("Invalid choice, ignoring.", fg=WARNING_COLOR)
+                        click.secho(
+                            "Invalid choice, ignoring.", fg=WARNING_COLOR
+                        )
                         return
 
         # Wait for sigint
@@ -1549,7 +1571,9 @@ def run(
 )
 def firehose(local):
     """Tail the Firehose"""
-    wait_or_die(run_node("scripts/node/firehose.ts", ["local"] if local else ["prod"]))
+    wait_or_die(
+        run_node("scripts/node/firehose.ts", ["local"] if local else ["prod"])
+    )
 
 
 @cli.command()
@@ -1611,7 +1635,7 @@ def filter(file, id):
 @click.argument("message", nargs=-1)
 def halp(message: List[str]):
     """Create a linear task for help with local development"""
-    click.secho("Seeking halp...")
+    click.secho(f"Seeking halp...")
 
     wait_or_die(
         run_node(
@@ -1629,13 +1653,17 @@ def halp(message: List[str]):
     default=False,
 )
 @click.argument("name")
-@click.option("--prod/--local", help="Run the script on production ECS.", default=False)
+@click.option(
+    "--prod/--local", help="Run the script on production ECS.", default=False
+)
 @click.argument("args", nargs=-1)
 def script(inspect_brk, name, prod, args):
     """Run a script"""
     script_env = {"NODE_NO_WARNINGS": "1"}
     if not prod:
-        script_env["BIOMES_OVERRIDE_SYNC"] = f"http://localhost:{SYNC.port}/sync"
+        script_env[
+            "BIOMES_OVERRIDE_SYNC"
+        ] = f"http://localhost:{SYNC.port}/sync"
         click.secho(
             "Running script locally (must have local dev started). To run against prod, run './b script --prod ...'"
         )
@@ -1814,7 +1842,6 @@ def backup():
 
 PREVIOUS_DAYS_TO_CHECK_FOR_BACKUP = 30
 
-
 def latest_backup_path():
     for i in range(PREVIOUS_DAYS_TO_CHECK_FOR_BACKUP):
         try:
@@ -1823,7 +1850,7 @@ def latest_backup_path():
             output = subprocess.check_output(
                 ["gcloud", "storage", "ls", path],
                 text=True,
-                stderr=subprocess.DEVNULL,  # ignore errors
+                stderr=subprocess.DEVNULL # ignore errors
             )
             path = output.strip().split("\n")[-1]
             click.secho(f"Latest backup path: {path}", fg=GOOD_COLOR)
@@ -1831,10 +1858,7 @@ def latest_backup_path():
         except:
             pass
 
-    raise Exception(
-        f"Could not find a valid backup path from the last {PREVIOUS_DAYS_TO_CHECK_FOR_BACKUP}."
-    )
-
+    raise Exception(f"Could not find a valid backup path from the last {PREVIOUS_DAYS_TO_CHECK_FOR_BACKUP}.")
 
 @backup.command()
 def latest():
