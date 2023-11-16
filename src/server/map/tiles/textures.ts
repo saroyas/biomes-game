@@ -6,8 +6,9 @@ import type {
   TextureData,
 } from "@/galois/interface/types/data";
 import type { Vec3 } from "@/shared/math/types";
-import { jsonFetch } from "@/shared/util/fetch_helpers";
+// import { jsonFetch } from "@/shared/util/fetch_helpers";
 import assert from "assert";
+import { promises as fsPromises } from "fs";
 
 export interface SampleSet {
   white: Array3<"U8">[];
@@ -20,9 +21,14 @@ export const TEXTURE_SHAPE: Vec3 = [16, 16, 4];
 
 export async function genTextures() {
   // Fetch the index of all of the map textures.
-  const textureIndex = await jsonFetch<MapTextureIndexData>(
-    resolveAssetUrl("mapping/index")
-  );
+  const filePath = "public" + resolveAssetUrl("mapping/index");
+  const fileContents = await fsPromises.readFile(filePath, "utf-8");
+  // Parse the JSON
+  const jsonData = JSON.parse(fileContents);
+  const textureIndex = jsonData as MapTextureIndexData;
+  //const textureIndex = await jsonFetch<MapTextureIndexData>(
+  //  resolveAssetUrl("mapping/index")
+  //);
 
   // Generate a map of all texture samples.
   const ret = new Map<string, SampleSet>();
