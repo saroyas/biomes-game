@@ -192,32 +192,6 @@ const DEFAULT_CONFIG = deepFreeze({
   serviceDiscoveryTtlMs: 3_000,
   serviceDiscoveryServiceExpirySeconds: 24 * 60 * 60, // 24 hours
 
-  //
-  // Discord
-  //
-  discordHooksEnabled: true,
-  discordHookConfig: <DiscordHookConfig>{
-    badge: [],
-    deploy: ["discord-deploy-webhook-url"],
-    environment_group: [
-      "discord-social-webhook-url",
-      "discord-biomes-alpha-webhook",
-    ],
-    new_users: ["discord-new-users-webhook-url"],
-    photo: ["discord-camera-webhook-url", "discord-biomes-alpha-webhook"],
-    review: ["discord-review-webhook-url"],
-    social: ["discord-social-webhook-url", "discord-biomes-alpha-webhook"],
-    user_report: ["discord-user-report-webhook-url"],
-  },
-  discordGatingServerId: "1040638050700640296",
-  discordEarlyAccessGeneralChannelId: "1040638051182989313",
-  discordPlaytesterRoleId: "1116503866712789042",
-  discordPlaytesterRoleTimeThresholdMs: 1000 * 60 * 10, // 10 minutes.
-  discordRefreshMemberIntervalMs: 10 * 60 * 1000,
-  discordBotWelcomeMessage: `Beep! Boop! Welcome to The Collective!
-
-  I'm **B-42**, a friendly Biomes Robot here to transmit messages to you when players around the world visit your home, tag you in photos, or use any of the useful things you've built.`,
-
   // Asset server jitter interval
   assetServerJitterIntervalMs: 1000,
   assetServerPlayerMeshRecomputeIntervalMs: 1000 * 60 * 60 * 24, // 1 day

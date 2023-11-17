@@ -5,7 +5,6 @@ import {
   getGitHubOctokitApi,
 } from "@/server/shared/github";
 import { connectToCustomK8 } from "@/server/shared/k8";
-import { getSecret } from "@/server/shared/secrets";
 import type { BDB } from "@/server/shared/storage";
 import type { DiscordHookType } from "@/server/web/util/discord";
 import { postToDiscord } from "@/server/web/util/discord";
@@ -49,7 +48,7 @@ const BACKOFF_CONFIG: BackoffConfig = {
   baseMs: 250,
   exponent: 3,
 };
-const IMAGE_NAME = "us-central1-docker.pkg.dev/zones-cloud/b/biomes";
+const IMAGE_NAME = "xerebz/biomes";
 
 type RunOptions = {
   signal: AbortSignal;
@@ -190,15 +189,16 @@ function octokitOrDie() {
   return octokit;
 }
 
+// TODO: delete this
 function appOcotkitOrDie() {
   return new Octokit({
     authStrategy: createAppAuth,
     auth: {
       appId: 262950,
       installationId: 31331448,
-      privateKey: getSecret("biomesbob-private-key"),
+      privateKey: "biomesbob-private-key",
       clientId: "Iv1.5d797f6fb3d6b0e7",
-      clientSecret: getSecret("biomesbob-client-secret"),
+      clientSecret: "biomesbob-client-secret",
     },
   });
 }
@@ -455,7 +455,7 @@ export class BobTheBuilder {
           GIT_CREDENTIAL_HELPER:
             '!f() { sleep 1; echo "username=${GIT_USER}"; echo "password=${GIT_PASSWORD}"; }; f',
           GIT_USER: "mossymucker",
-          GIT_PASSWORD: getSecret("github-mossy-mucker-personal-access-token"),
+          GIT_PASSWORD: "github-mossy-mucker-personal-access-token",
         },
       }
     );
@@ -716,7 +716,7 @@ export class BobTheBuilder {
   private async buildImage(signal: AbortSignal, headSha: string) {
     await Promise.all([
       buildStep("create-image-dir", async () => this.setupImageDir(signal)),
-      buildStep("setup-docker-auth", async () => this.setupDockerAuth(signal)),
+      // buildStep("setup-docker-auth", async () => this.setupDockerAuth(signal)),
     ]);
 
     // Build Docker image.
@@ -876,12 +876,8 @@ export class BobTheBuilder {
     changes: GitChange[],
     headSha: string
   ): Promise<boolean> {
-    await this.notifyDiscord(
-      headSha,
-      `\u2692\uFE0F Building \`${headSha}\` with ${changeCount(changes)}`,
-      {
-        changes,
-      }
+    log.info(
+      `\u2692\uFE0F Building \`${headSha}\` with ${changeCount(changes)}`
     );
     try {
       await buildStep(`build-${headSha}`, async () => {
@@ -918,8 +914,11 @@ export class BobTheBuilder {
     await asyncBackoffOnRecoverableError(
       () =>
         this.run(
-          "gsutil",
-          ["-m", "rsync", "-c", "-r", origin, `gs://${dest}`],
+	  // just want to see what's going on
+          "mkdir",
+          ["-p", origin, `/tmp/${dest}`],
+          //"gsutil",
+          //["-m", "rsync", "-c", "-r", origin, `gs://${dest}`],
           {
             signal,
           }
@@ -987,7 +986,7 @@ export class BobTheBuilder {
     sha: string,
     changeImage: boolean
   ): Promise<boolean> {
-    await this.git({ signal }, "checkout", "-b", deployBranchName(sha));
+    // await this.git({ signal }, "checkout", "-b", deployBranchName(sha));
     await this.setProdBuild(sha);
     if (changeImage) {
       await this.setProdImage(sha);
@@ -996,12 +995,12 @@ export class BobTheBuilder {
     if (!(await this.gitAnyFilesChanged(signal))) {
       return false;
     }
-    await this.git(
-      { signal },
-      "commit",
-      "-am",
-      changesToCommitMessage(changes, sha)
-    );
+    // await this.git(
+    //  { signal },
+    //   "commit",
+    //   "-am",
+    //   changesToCommitMessage(changes, sha)
+    // );
     return true;
   }
 
@@ -1086,15 +1085,12 @@ export class BobTheBuilder {
     fn: () => Promise<boolean>
   ) {
     try {
-      await this.markStarted(signal, linkSha, changes, checkName);
       if (await fn()) {
-        await this.markCompleted(changes, checkName, "success");
         return true;
       }
     } catch (error: any) {
       log.error("Uncaught error in check", { error });
     }
-    await this.markCompleted(changes, checkName, "failure");
     return false;
   }
 
@@ -1241,13 +1237,14 @@ export class BobTheBuilder {
             log.warn("No changes to deploy", { sha });
             return true;
           }
-          await buildStep("deploy-commit-push", () =>
-            this.pushDeployCommit(signal, sha)
-          );
+          // await buildStep("deploy-commit-push", () =>
+          //   this.pushDeployCommit(signal, sha)
+          // );
         } finally {
           await this.cleanGit(signal);
         }
 
+	/*
         const pr = await buildStep("create-pr", () =>
           this.createPr(signal, changes, sha)
         );
@@ -1261,10 +1258,11 @@ export class BobTheBuilder {
           return true;
         }
         return false;
+        */
       });
     } catch (error: any) {
       log.error("Error Deploying", { error });
-      await this.discordNotifyError(sha, "Deploy failed", error);
+      // await this.discordNotifyError(sha, "Deploy failed", error);
     }
     return false;
   }
@@ -1324,11 +1322,6 @@ export class BobTheBuilder {
     lastSha: string,
     headSha: string
   ): Promise<["deploy" | "code" | "skip", GitChange[]]> {
-    if (lastSha === headSha && !process.env.BOB_ALWAYS_BUILD) {
-      log.info("No commits since last production build", { headSha });
-      return ["skip", []];
-    }
-
     const [files, changes] = await Promise.all([
       this.filedChangedSince(signal, lastSha),
       this.changesSince(signal, lastSha),
@@ -1412,7 +1405,7 @@ export class BobTheBuilder {
         continue;
       }
 
-      printChanges(changes);
+      // printChanges(changes);
 
       if (myLastBuiltSha === headSha) {
         if (lastBuildFailed) {
@@ -1422,10 +1415,10 @@ export class BobTheBuilder {
           await sleep(CONFIG.bobStuckOnBuildWaitMs, signal);
         } else {
           log.warn(
-            "Bob already attempted this commit, will delay until proceeding..."
+            "Bob already attempted this commit, will exit..."
           );
-          await sleep(CONFIG.bobStuckOnCommitWaitMs, signal);
           myLastBuiltSha = undefined; // Don't wait again.
+	  process.exit();
         }
         continue;
       }
@@ -1447,7 +1440,6 @@ export class BobTheBuilder {
       await withLogContext(
         {
           extra: {
-            changes,
             headSha,
           },
         },
@@ -1466,6 +1458,8 @@ export class BobTheBuilder {
           }
         }
       );
+      // jank but w/e, need to switch this to non-continuous building for now
+      process.exit();
     }
   }
 
@@ -1653,9 +1647,6 @@ export class BobTheBuilder {
     }
     this.controller.runInBackground("continuousBuild", (signal) =>
       this.continuousBuild(signal)
-    );
-    this.controller.runInBackground("notifyReviews", (signal) =>
-      this.notifyPrs(signal)
     );
   }
 

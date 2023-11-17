@@ -146,7 +146,7 @@ export function listenWithDevFallback(
       });
       return;
     }
-    log.fatal(`> ${name} Server: could not find port to listen on!`);
+    // log.fatal(`> ${name} Server: could not find port to listen on!`);
   });
   server.listen(port, "0.0.0.0", () => {
     if (!attemptedFallback) {

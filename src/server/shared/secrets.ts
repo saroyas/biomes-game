@@ -133,7 +133,9 @@ export async function bootstrapGlobalSecrets(
   (global as any)._global_secrets =
     process.env.NODE_ENV === "production" ||
     process.env.USE_PRODUCTION_SECRETS === "1"
-      ? await loadSecretsFromGoogle()
+      // remove production secrets, we don't have access to them anyway
+      ? []
+      // ? await loadSecretsFromGoogle()
       : await prepareLocalDevSecrets(...additionalSecretsNeeded);
 }
 

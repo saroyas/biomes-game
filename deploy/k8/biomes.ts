@@ -10,10 +10,14 @@ const LAST_BOB_IMAGE = "bob-8947039203";
 // ===== Buffer to avoid git conflicts =====
 
 // Fix deploy.
-const PROD_IMAGE_OVERRIDE = "devin-deploy-2";
+const PROD_IMAGE_OVERRIDE = "latest";
 
 const PROD_IMAGE_TAG = PROD_IMAGE_OVERRIDE || LAST_BOB_IMAGE || LAST_BOB_BUILD;
-const PROD_IMAGE_NAME = "us-central1-docker.pkg.dev/zones-cloud/b/biomes";
+
+// I would use an organization here but Docker Hub Organizations cost money.
+const DOCKER_HUB_USERNAME = "xerebz"
+
+const PROD_IMAGE_NAME = `${DOCKER_HUB_USERNAME}/biomes`;
 
 const SERVICE_DEFAULTS = {
   image: `${PROD_IMAGE_NAME}:${PROD_IMAGE_TAG}`,

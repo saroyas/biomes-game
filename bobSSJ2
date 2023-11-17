@@ -1,0 +1,14 @@
+# In the heart of Sunflower Valley, Bob the Builder unearthed a shimmering rock that, upon touch, made him go Super Saiyan 2, endowing him with incredible strength and speed.
+# Amazed by his newfound powers, Bob used them to swiftly construct buildings and aid the townsfolk, becoming a local legend as 'bobSSJ2.'
+# However, he soon realized that his true strength lay in teamwork and friendship, not just in his extraordinary abilities.
+# Choosing to place the glowing rock at the center of the new playground as a symbol of inspiration, Bob returned to his normal life,
+# cherishing the memories of his brief yet remarkable transformation, a story that would echo through Sunflower Valley for generations.
+
+./b build server
+
+export DO_NOT_WAIT_FOR_GCE=1
+export BOB_ALWAYS_BUILD=1
+export BOB_DEPLOY=1
+export BOB_SKIP_LINT_AND_TEST=1
+
+node dist/bob.js --workspace ${HOME}/my_test_workspace
