@@ -1,7 +1,5 @@
 resources:
-  - monitoring
   - misc
-  - service-profiles
   - services
   - biomes.yaml
 

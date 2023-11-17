@@ -416,16 +416,6 @@ function biomesService({
   };
 }
 
-const workloadIdentityInitContainer = <k8s.V1Container>{
-  image: "gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine",
-  name: "workload-identity-initcontainer",
-  command: [
-    "/bin/bash",
-    "-c",
-    "curl -s -H 'Metadata-Flavor: Google' 'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token' --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null || exit 1",
-  ],
-};
-
 const redisReadyInitContainer = <k8s.V1Container>{
   image: "redis:7.0.5-alpine",
   name: "redis-ready-initcontainer",
@@ -546,9 +536,6 @@ function biomesPodTemplate({
     },
     spec: {
       serviceAccountName: "zones-backend",
-      nodeSelector: {
-        "iam.gke.io/gke-metadata-server-enabled": "true",
-      },
       terminationGracePeriodSeconds: 65,
       volumes: [
         {
@@ -584,7 +571,6 @@ function biomesPodTemplate({
         },
       ],
       initContainers: [
-        workloadIdentityInitContainer,
         ...(USE_NODE_LOCAL_REDIS ? [redisReadyInitContainer] : []),
       ],
       containers: [

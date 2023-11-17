@@ -1,11 +1,6 @@
 import { startConfigWatchers } from "@/server/shared/config_watchers";
 import { EventLoopUtilizationPoller } from "@/server/shared/event_loop_utilization_poller";
 import { waitForAuthReady } from "@/server/shared/gce";
-import {
-  shutdownLinkerd,
-  startLinkerdWatchman,
-  waitForLinkerdReady,
-} from "@/server/shared/linkerd";
 import { exposeMetrics } from "@/server/shared/metrics";
 import { handleProcessIssues } from "@/server/shared/process";
 import { bootstrapGlobalSecrets } from "@/server/shared/secrets";
@@ -103,11 +98,7 @@ export async function runServer<
   });
   log.info(`Server Commit Hash: ${process.env.BUILD_ID}`);
 
-  await waitForLinkerdReady();
   await waitForAuthReady();
-
-  // Gracefully kill linkerd when we exit.
-  startLinkerdWatchman();
 
   // Refresh the server config every 30 seconds.
   const configWatchers = await startConfigWatchers();
@@ -172,7 +163,6 @@ export async function runServer<
       lifecycle: true,
       gracefulEnd: true,
     });
-    await shutdownLinkerd();
     process.exit(0);
   };
 

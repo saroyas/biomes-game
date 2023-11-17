@@ -71,8 +71,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -91,17 +89,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -244,8 +232,6 @@ spec:
             kubectl.kubernetes.io/default-container: biomes
         spec:
           serviceAccountName: zones-backend
-          nodeSelector:
-            iam.gke.io/gke-metadata-server-enabled: 'true'
           terminationGracePeriodSeconds: 65
           volumes:
             - name: biomes-config
@@ -264,17 +250,7 @@ spec:
                 items:
                   - key: config
                     path: nginx.conf
-          initContainers:
-            - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-              name: workload-identity-initcontainer
-              command:
-                - /bin/bash
-                - '-c'
-                - >-
-                  curl -s -H 'Metadata-Flavor: Google'
-                  'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-                  --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null
-                  || exit 1
+          initContainers: []
           containers:
             - image: xerebz/biomes:latest
               name: biomes
@@ -370,8 +346,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -390,17 +364,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -518,8 +482,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -538,17 +500,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -698,8 +650,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -718,17 +668,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -878,8 +818,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -898,17 +836,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -1026,8 +954,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -1046,17 +972,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -1208,8 +1124,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -1228,17 +1142,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -1390,8 +1294,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -1410,17 +1312,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -1557,8 +1449,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -1577,17 +1467,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -1734,8 +1614,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -1754,17 +1632,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -1908,8 +1776,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -1928,17 +1794,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -2082,8 +1938,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -2102,17 +1956,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -2257,8 +2101,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -2277,17 +2119,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -2413,8 +2245,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -2433,17 +2263,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -2561,8 +2381,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -2581,17 +2399,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -2711,8 +2519,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -2731,17 +2537,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -2875,8 +2671,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -2895,17 +2689,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -3066,8 +2850,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -3086,17 +2868,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -3249,8 +3021,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -3269,17 +3039,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -3463,8 +3223,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -3483,17 +3241,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -3650,8 +3398,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -3670,17 +3416,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
@@ -3839,8 +3575,6 @@ spec:
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
-      nodeSelector:
-        iam.gke.io/gke-metadata-server-enabled: 'true'
       terminationGracePeriodSeconds: 65
       volumes:
         - name: biomes-config
@@ -3859,17 +3593,7 @@ spec:
             items:
               - key: config
                 path: nginx.conf
-      initContainers:
-        - image: gcr.io/google.com/cloudsdktool/cloud-sdk:326.0.0-alpine
-          name: workload-identity-initcontainer
-          command:
-            - /bin/bash
-            - '-c'
-            - >-
-              curl -s -H 'Metadata-Flavor: Google'
-              'http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token'
-              --retry 30 --retry-connrefused --retry-max-time 30 > /dev/null ||
-              exit 1
+      initContainers: []
       containers:
         - image: xerebz/biomes:latest
           name: biomes
