@@ -5,7 +5,7 @@ import type { drive_v3 } from "googleapis";
 import { google } from "googleapis";
 import type { Readable } from "stream";
 
-const ART_SHARED_DRIVE_ID = "0ADfpoYYSclwwUk9PVA";
+const ART_SHARED_DRIVE_ID = process.env.ART_SHARED_DRIVE_ID;
 
 async function readableToBuffer(stream: Readable): Promise<Buffer> {
   return new Promise<Buffer>((resolve, reject) => {
