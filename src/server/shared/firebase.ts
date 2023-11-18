@@ -6,8 +6,8 @@ export function getFirebaseAdminApp(): admin.app.App {
       admin.apps.length === 0
         ? admin.initializeApp({
             serviceAccountId:
-              "zones-backend@zones-cloud.iam.gserviceaccount.com",
-            projectId: "zones-cloud",
+              process.env.FIREBASE_SERVICE_ACCOUNT_EMAIL || undefined,
+            projectId: process.env.FIREBASE_PROJECT_ID || undefined,
           })
         : admin.apps[0];
     (global as any).firebaseAdminApp = appInstance;
