@@ -111,7 +111,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
             - '-a'
@@ -296,7 +296,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -450,7 +450,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -636,7 +636,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -822,7 +822,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -976,7 +976,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -1164,7 +1164,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -1352,7 +1352,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -1525,7 +1525,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -1696,7 +1696,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -1864,7 +1864,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -2032,7 +2032,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -2201,7 +2201,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -2351,7 +2351,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2505,7 +2505,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2649,7 +2649,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2819,7 +2819,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3004,7 +3004,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3193,7 +3193,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3401,7 +3401,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3594,7 +3594,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3789,7 +3789,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - redis2
+            - firestore
             - '--worldApiMode'
             - hfc-hybrid
           env:

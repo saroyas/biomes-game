@@ -56,7 +56,7 @@ const BASE_CONFIG_ARGS = Object.entries({
   chatApiMode: "redis",
   firehoseMode: "redis",
   serverCacheMode: "redis",
-  storageMode: "redis2",
+  storageMode: "firestore",
   worldApiMode: "hfc-hybrid",
 }).flatMap(([k, v]) => [`--${k}`, String(v)]);
 
