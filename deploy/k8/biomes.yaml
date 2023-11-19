@@ -83,6 +83,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -108,7 +111,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
             - '-a'
@@ -136,11 +139,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -202,114 +220,6 @@ spec:
             periodSeconds: 1
             timeoutSeconds: 1
 ---
-apiVersion: batch/v1
-kind: CronJob
-metadata:
-  labels:
-    app.kubernetes.io/component: biomes
-    app.kubernetes.io/name: backup
-    name: backup
-  namespace: default
-  name: backup
-spec:
-  schedule: 0 * * * *
-  concurrencyPolicy: Forbid
-  jobTemplate:
-    spec:
-      template:
-        metadata:
-          labels:
-            app.kubernetes.io/component: biomes
-            app.kubernetes.io/name: backup
-            name: backup
-          namespace: default
-          annotations:
-            linkerd.io/inject: enabled
-            config.linkerd.io/proxy-await: enabled
-            config.linkerd.io/skip-outbound-ports: 6379,2379
-            config.linkerd.io/skip-subnets: 169.254.169.254/32
-            config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
-            kubectl.kubernetes.io/default-container: biomes
-        spec:
-          serviceAccountName: zones-backend
-          terminationGracePeriodSeconds: 65
-          volumes:
-            - name: biomes-config
-              configMap:
-                name: biomes-config
-                items:
-                  - key: config
-                    path: biomes.config.yaml
-            - name: redis-replica-io
-              hostPath:
-                path: /tmp/redis-replica-io
-                type: DirectoryOrCreate
-            - name: nginx-config
-              configMap:
-                name: nginx-config
-                items:
-                  - key: config
-                    path: nginx.conf
-          initContainers: []
-          containers:
-            - image: xerebz/biomes:latest
-              name: biomes
-              args:
-                - '-r'
-                - ts-node/register
-                - src/server/backup/main.ts
-                - '--bikkieCacheMode'
-                - redis
-                - '--biscuitMode'
-                - redis2
-                - '--chatApiMode'
-                - redis
-                - '--firehoseMode'
-                - redis
-                - '--serverCacheMode'
-                - redis
-                - '--storageMode'
-                - firestore
-                - '--worldApiMode'
-                - hfc-hybrid
-              env:
-                - name: POD_IP
-                  valueFrom:
-                    fieldRef:
-                      fieldPath: status.podIP
-                - name: CPU_COUNT
-                  value: '1'
-                - name: NODE_OPTIONS
-                  value: '--openssl-legacy-provider --max-old-space-size=4096'
-                - name: GOOGLE_CLOUD_PROJECT
-                  value: zones-cloud
-                - name: IS_SERVER
-                  value: 'true'
-                - name: NEXT_TELEMETRY_DISABLED
-                  value: '1'
-                - name: DETECT_GCP_RETRIES
-                  value: '3'
-                - name: USE_REDIS_REPLICAS
-                  value: '0'
-                - name: LD_PRELOAD
-                  value: /usr/local/lib/libjemalloc.so.2
-                - name: USE_K8_REDIS
-                  value: '1'
-              volumeMounts:
-                - name: biomes-config
-                  mountPath: /biomes
-                - name: redis-replica-io
-                  mountPath: /redis-replica-io
-              ports:
-                - name: metrics
-                  containerPort: 3001
-              resources:
-                requests:
-                  memory: 4096Mi
-                  cpu: '1'
-          restartPolicy: Never
-      activeDeadlineSeconds: 600
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -358,6 +268,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -383,7 +296,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -409,11 +322,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -494,6 +422,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -519,7 +450,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -545,11 +476,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -662,6 +608,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -687,7 +636,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -713,11 +662,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -830,6 +794,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -855,7 +822,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -881,11 +848,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -966,6 +948,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -991,7 +976,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -1017,6 +1002,18 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
             - name: STATEFUL_SET_REPLICAS
               value: '1'
           volumeMounts:
@@ -1024,6 +1021,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -1136,6 +1136,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1161,7 +1164,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -1187,11 +1190,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -1306,6 +1324,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1331,7 +1352,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -1357,11 +1378,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -1461,6 +1497,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1486,7 +1525,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -1529,6 +1568,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -1626,6 +1668,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1651,7 +1696,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -1691,6 +1736,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -1788,6 +1836,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1813,7 +1864,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -1853,6 +1904,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -1950,6 +2004,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1975,7 +2032,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -2016,6 +2073,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -2113,6 +2173,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2138,7 +2201,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
             - '--simulations'
@@ -2177,6 +2240,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -2257,6 +2323,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2282,7 +2351,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2308,11 +2377,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -2393,6 +2477,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2418,7 +2505,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2451,6 +2538,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -2531,6 +2621,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2556,7 +2649,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2582,11 +2675,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -2683,6 +2791,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2708,7 +2819,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2741,6 +2852,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -2862,6 +2976,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2887,7 +3004,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -2913,11 +3030,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -3033,6 +3165,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3058,7 +3193,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3091,6 +3226,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -3235,6 +3373,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3260,7 +3401,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3286,11 +3427,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -3410,6 +3566,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3435,7 +3594,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3461,6 +3620,18 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
             - name: RO_SYNC
               value: '1'
           volumeMounts:
@@ -3468,6 +3639,9 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001
@@ -3587,6 +3761,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
+        - name: firestore-secret
+          secret:
+            secretName: firestore-secret
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3612,7 +3789,7 @@ spec:
             - '--serverCacheMode'
             - redis
             - '--storageMode'
-            - firestore
+            - redis2
             - '--worldApiMode'
             - hfc-hybrid
           env:
@@ -3638,11 +3815,26 @@ spec:
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
+            - name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /etc/firestore-secret/key
+            - name: MIRROR_ASSETS
+              value: '0'
+            - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
+              value: service-account@biomes42.iam.gserviceaccount.com
+            - name: FIREBASE_PROJECT_ID
+              value: biomes42
+            - name: DOMAIN
+              value: http://biomes.ddns.net:3000
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
+            - name: firestore-secret
+              mountPath: /etc/firestore-secret
+              readOnly: true
           ports:
             - name: metrics
               containerPort: 3001

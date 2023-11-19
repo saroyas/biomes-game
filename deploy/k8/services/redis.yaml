@@ -53,14 +53,13 @@ spec:
         - name: redis
           image: redis:7.0.8-alpine
           command: ["redis-server"]
-          args: ["/data/redis.conf"]
           ports:
             - containerPort: 6379
               name: redis
           resources:
             requests:
-              cpu: 2.0
-              memory: 10Gi
+              cpu: 1.0
+              memory: 4Gi
           volumeMounts:
             - name: data
               mountPath: /data
@@ -83,3 +82,15 @@ spec:
         - name: data
           persistentVolumeClaim:
             claimName: data-redis-0
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: data-redis-0
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Gi
+  storageClassName: gp2

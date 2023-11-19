@@ -22,6 +22,32 @@ const PROD_IMAGE_NAME = `${DOCKER_HUB_USERNAME}/biomes`;
 const SERVICE_DEFAULTS = {
   image: `${PROD_IMAGE_NAME}:${PROD_IMAGE_TAG}`,
   cpu: 1.0,
+  additionalEnv: [
+    {
+      name: "DO_NOT_WAIT_FOR_GCE",
+      value: "1",
+    },
+    {
+      name: "GOOGLE_APPLICATION_CREDENTIALS",
+      value: "/etc/firestore-secret/key",
+    },
+    {
+      name: "MIRROR_ASSETS",
+      value: "0",
+    },
+    {
+      name: "FIREBASE_SERVICE_ACCOUNT_EMAIL",
+      value: "service-account@biomes42.iam.gserviceaccount.com",
+    },
+    {
+      name: "FIREBASE_PROJECT_ID",
+      value: "biomes42",
+    },
+    {
+      name: "DOMAIN",
+      value: "http://biomes.ddns.net:3000",
+    },
+  ]
 } as const;
 
 const BASE_CONFIG_ARGS = Object.entries({
@@ -30,7 +56,7 @@ const BASE_CONFIG_ARGS = Object.entries({
   chatApiMode: "redis",
   firehoseMode: "redis",
   serverCacheMode: "redis",
-  storageMode: "firestore",
+  storageMode: "redis2",
   worldApiMode: "hfc-hybrid",
 }).flatMap(([k, v]) => [`--${k}`, String(v)]);
 
@@ -46,7 +72,6 @@ const SYNC_DEFAULTS = {
   zrpc: true,
   cpu: 2.0,
   memory: 2 * 1024,
-  additionalEnv: [],
 };
 
 class Autoscale {
@@ -76,13 +101,13 @@ function createBiomes() {
       memory: 4 * 1024,
     }),
     // Periodic backup job.
-    biomesCron("0 * * * *", {
-      ...SERVICE_DEFAULTS,
-      name: "backup",
-      args: BASE_CONFIG_ARGS,
-      replicas: 1,
-      memory: 4 * 1024,
-    }),
+    // biomesCron("0 * * * *", {
+    //   ...SERVICE_DEFAULTS,
+    //   name: "backup",
+    //   args: BASE_CONFIG_ARGS,
+    //   replicas: 1,
+    //   memory: 4 * 1024,
+    // }),
     // Notifications server.
     ...biomesDeployment({
       ...SERVICE_DEFAULTS,
@@ -558,6 +583,12 @@ function biomesPodTemplate({
           },
         },
         {
+          name: "firestore-secret",
+          secret: {
+            secretName: "firestore-secret",
+          },
+        },
+        {
           name: "nginx-config",
           configMap: {
             name: "nginx-config",
@@ -641,6 +672,11 @@ function biomesPodTemplate({
             {
               name: "redis-replica-io",
               mountPath: "/redis-replica-io",
+            },
+            {
+              name: "firestore-secret",
+              mountPath: "/etc/firestore-secret",
+	      readOnly: true
             },
           ],
           ports: [
@@ -861,7 +897,7 @@ function cameraDeployment(config: BiomesServiceConfig) {
         },
         spec: {
           accessModes: ["ReadWriteOnce"],
-          storageClassName: "premium-rwo",
+          storageClassName: "gp2",
           resources: {
             requests: {
               storage: "1Gi",

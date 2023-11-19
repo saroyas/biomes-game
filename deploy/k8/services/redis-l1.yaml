@@ -108,7 +108,7 @@ spec:
                   type: redis-hfc-l1-data
               spec:
                 accessModes: ["ReadWriteOnce"]
-                storageClassName: "premium-rwo"
+                storageClassName: "gp2"
                 resources:
                   requests:
                     storage: 20Gi

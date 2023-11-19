@@ -43,7 +43,7 @@ spec:
                   type: bob-volume
               spec:
                 accessModes: ["ReadWriteOnce"]
-                storageClassName: "premium-rwo"
+                storageClassName: "gp2"
                 resources:
                   requests:
                     storage: 1Ti

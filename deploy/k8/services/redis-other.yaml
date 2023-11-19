@@ -53,14 +53,13 @@ spec:
         - name: redis-other
           image: redis:7.0.8-alpine
           command: ["redis-server"]
-          args: ["/data/redis.conf"]
           ports:
             - containerPort: 6379
               name: redis
           resources:
             requests:
-              cpu: 2.0
-              memory: 10Gi
+              cpu: 1.0
+              memory: 4Gi
           volumeMounts:
             - name: data
               mountPath: /data
@@ -94,4 +93,4 @@ spec:
   resources:
     requests:
       storage: 100Gi
-  storageClassName: premium-rwo
+  storageClassName: gp2
