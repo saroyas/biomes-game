@@ -16,23 +16,26 @@ import { typesafeJSONStringify } from "@/shared/util/helpers";
 import { zrpcWebDeserialize, zrpcWebSerialize } from "@/shared/zrpc/serde";
 import { ok } from "assert";
 
+const DOMAIN = process.env.DOMAIN;
+
 export async function loadTrayDefinitionFromProd(
   bikkieStorage: BikkieStorage,
   id?: BiomesId
 ): Promise<BiscuitTray> {
-  const userId = await determineEmployeeUserId();
-  const authSessionId = SessionStore.createInternalSyncSession(userId).id;
+  // everyone is admin lol
+  // const userId = await determineEmployeeUserId();
+  // const authSessionId = SessionStore.createInternalSyncSession(userId).id;
 
   const response = await fetch(
-    `https://www.biomes.gg/api/admin/bikkie/export_definition?id=${id ?? 0}`,
+    `${DOMAIN}/api/admin/bikkie/export_definition?id=${id ?? 0}`,
     {
       method: "POST",
-      headers: {
-        Cookie: serializeAuthCookies({
-          userId,
-          id: authSessionId,
-        }),
-      },
+      //    headers: {
+      //      Cookie: serializeAuthCookies({
+      //        userId,
+      //        id: authSessionId,
+      //      }),
+      //    },
     }
   );
   const data = (await response.json()).z;
@@ -54,18 +57,15 @@ export async function loadBakedTrayFromProd(): Promise<BakedBiscuitTray> {
   const userId = await determineEmployeeUserId();
   const authSessionId = SessionStore.createInternalSyncSession(userId).id;
 
-  const response = await fetch(
-    "https://www.biomes.gg/api/admin/bikkie/export",
-    {
-      method: "POST",
-      headers: {
-        Cookie: serializeAuthCookies({
-          userId,
-          id: authSessionId,
-        }),
-      },
-    }
-  );
+  const response = await fetch(`${DOMAIN}/api/admin/bikkie/export`, {
+    method: "POST",
+    headers: {
+      Cookie: serializeAuthCookies({
+        userId,
+        id: authSessionId,
+      }),
+    },
+  });
   const data = (await response.json()).z;
   const tray = fromStoredBakedTray(zrpcWebDeserialize(data, zStoredBakedTray));
 
