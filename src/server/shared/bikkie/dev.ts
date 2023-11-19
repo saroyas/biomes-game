@@ -1,4 +1,3 @@
-import { serializeAuthCookies } from "@/server/shared/auth/cookies";
 import type { BakedBiscuitTray } from "@/server/shared/bikkie/registry";
 import type { BikkieStorage } from "@/server/shared/bikkie/storage/api";
 import {
@@ -6,8 +5,6 @@ import {
   zStoredBakedTray,
 } from "@/server/shared/bikkie/storage/baked";
 import { parseEncodedTrayDefinition } from "@/server/shared/bikkie/storage/definition";
-import { determineEmployeeUserId } from "@/server/shared/bootstrap/sync";
-import { SessionStore } from "@/server/web/db/sessions";
 import type { BiscuitTray } from "@/shared/bikkie/tray";
 import type { BiomesId } from "@/shared/ids";
 import { INVALID_BIOMES_ID } from "@/shared/ids";
@@ -54,17 +51,17 @@ export async function loadTrayDefinitionFromProd(
 }
 
 export async function loadBakedTrayFromProd(): Promise<BakedBiscuitTray> {
-  const userId = await determineEmployeeUserId();
-  const authSessionId = SessionStore.createInternalSyncSession(userId).id;
+  // const userId = await determineEmployeeUserId();
+  // const authSessionId = SessionStore.createInternalSyncSession(userId).id;
 
   const response = await fetch(`${DOMAIN}/api/admin/bikkie/export`, {
     method: "POST",
-    headers: {
-      Cookie: serializeAuthCookies({
-        userId,
-        id: authSessionId,
-      }),
-    },
+    //    headers: {
+    //      Cookie: serializeAuthCookies({
+    //        userId,
+    //        id: authSessionId,
+    //      }),
+    //    },
   });
   const data = (await response.json()).z;
   const tray = fromStoredBakedTray(zrpcWebDeserialize(data, zStoredBakedTray));
@@ -77,16 +74,16 @@ export async function loadBakedTrayFromProd(): Promise<BakedBiscuitTray> {
 }
 
 export async function triggerProdBake(notes: string): Promise<void> {
-  const userId = await determineEmployeeUserId();
-  const authSessionId = SessionStore.createInternalSyncSession(userId).id;
-  const response = await fetch("https://www.biomes.gg/api/admin/bikkie/save", {
+  // const userId = await determineEmployeeUserId();
+  // const authSessionId = SessionStore.createInternalSyncSession(userId).id;
+  const response = await fetch(`${DOMAIN}/api/admin/bikkie/save`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Cookie: serializeAuthCookies({
-        userId,
-        id: authSessionId,
-      }),
+      //  Cookie: serializeAuthCookies({
+      //    userId,
+      //    id: authSessionId,
+      //  }),
     },
     body: typesafeJSONStringify({
       z: zrpcWebSerialize({
