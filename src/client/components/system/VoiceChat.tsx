@@ -29,6 +29,7 @@ export const VoiceChat: React.FunctionComponent<{
       return;
     }
 
+    return;
     const res = await jsonPost<ChatVoiceResponse, ChatVoiceRequest>(
       "/api/voices/text_to_speech",
       {

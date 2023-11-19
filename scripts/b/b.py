@@ -43,6 +43,7 @@ TODO: It's a gigantic file that does many different things. It should be cleaned
 ---
 
 ChatGPT explanation:
+
 The `b.py` script from the "biomes-game" repository is a complex and comprehensive command-line tool that serves multiple purposes in setting up, managing, and
 interacting with a game server environment. Here's a detailed breakdown of its functionalities:
 
