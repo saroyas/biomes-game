@@ -207,7 +207,10 @@ export class WebSocketZrpcServer implements WebSocketZrpcServerLike {
         }
       },
     };
-    this.app = App().get("/", (res) => res.send("OK"));
+    this.app = App().get("/", (res) => {
+      res.writeHeader("Content-Type", "text/plain");
+      res.end("OK");
+    });
     for (const path of paths) {
       this.app.ws(path, behaviour);
     }
