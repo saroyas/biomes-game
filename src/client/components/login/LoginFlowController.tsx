@@ -340,10 +340,7 @@ export const LoginFlowController: React.FunctionComponent<{
 
   const LOGIN_METHODS: LoginMethod[] = [
     ...PROD_LOGIN_METHODS,
-    ...((process.env.NODE_ENV === "development" ||
-    process.env.ALLOW_DEV_LOGIN_IN_PROD === "1")
-      ? DEV_LOGIN_METHODS
-      : []),
+    ...DEV_LOGIN_METHODS,
   ];
 
   switch (stage.kind) {
