@@ -13,7 +13,7 @@ export class DiscordProvider extends OAuth2Provider {
   constructor() {
     super({
       client: {
-        id: "1040832298788069449",
+        id: getSecret("discord-oauth-client-id"),
         secret: getSecret("discord-oauth-client-secret"),
       },
       auth: {
