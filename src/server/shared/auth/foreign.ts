@@ -76,9 +76,11 @@ class AuthFlowContextImpl<TState extends AuthFlowState>
   }
 
   getCallbackUri(additionalArgs?: Record<string, string>): string {
+    const callbackHost =
+      getSecret("callback-host") || this.request.headers.host;
     const url = new URL(
       `/auth/${this.provider}/callback`,
-      `http://${this.request.headers.host}`
+      `http://${callbackHost}`
     );
     if (additionalArgs) {
       for (const [key, value] of Object.entries(additionalArgs)) {
