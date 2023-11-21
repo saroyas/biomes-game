@@ -21,7 +21,7 @@ import type {
   WebServerContextSubset,
   WebServerRequest,
 } from "@/server/web/context";
-import { validateInviteCode } from "@/server/web/db/invite_codes";
+// import { validateInviteCode } from "@/server/web/db/invite_codes";
 import { getUserOrCreateIfNotExists } from "@/server/web/db/users";
 import { findByUID } from "@/server/web/db/users_fetch";
 import { okOrAPIError } from "@/server/web/errors";
@@ -111,19 +111,19 @@ export async function getServerSideProps(
       userId = token.auth.userId;
     } else {
       // No user ID, validate they're permitted to create a new user.
-      if (
-        !CONFIG.instantAccessAuthProviders.includes(provider) &&
-        !(await validateInviteCode(db, foreignAccountProfile.inviteCode))
-      ) {
-        // No legacy user, no invite code - not permitted.
-        log.warn(
-          "User cannot be created without a valid invite code or discord presence.",
-          {
-            profile: foreignAccountProfile,
-          }
-        );
-        return finish("not_found");
-      }
+      // if (
+      //  !CONFIG.instantAccessAuthProviders.includes(provider) &&
+      //  !(await validateInviteCode(db, foreignAccountProfile.inviteCode))
+      //) {
+      //  // No legacy user, no invite code - not permitted.
+      //  log.warn(
+      //    "User cannot be created without a valid invite code or discord presence.",
+      //    {
+      //      profile: foreignAccountProfile,
+      //    }
+      //  );
+      //  return finish("not_found");
+      //}
       // New user, generate an ID.
       userId = await idGenerator.next();
     }
