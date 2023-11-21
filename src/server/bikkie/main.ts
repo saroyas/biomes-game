@@ -38,8 +38,10 @@ export interface BikkieServerContext extends SharedServerContext {
 async function registerMirror<C extends BikkieServerContext>(
   loader: RegistryLoader<C>
 ) {
-  if ((process.env.NODE_ENV === "production" && process.env.MIRROR_ASSETS !== '0') ||
-      process.env.MIRROR_ASSETS === '1') {
+  if (
+    process.env.MIRROR_ASSETS === "1" ||
+    (process.env.NODE_ENV === "production" && process.env.MIRROR_ASSETS !== "0")
+  ) {
     // Google Drive access is not configured by default for local dev, only
     // run the mirror service in production.
     return AssetMirror.create(
