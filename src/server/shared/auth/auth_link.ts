@@ -103,7 +103,7 @@ export async function findLinkForForeignAuth(
 ) {
   if (
     provider === "dev" &&
-    (process.env.ALLOW_DEV_LOGIN_IN_PROD ||
+    (process.env.ALLOW_DEV_LOGIN_IN_PROD === "1" ||
       process.env.NODE_ENV !== "production")
   ) {
     return devLink(parseBiomesId(key));
@@ -119,7 +119,7 @@ export async function connectForeignAuth(
 ) {
   if (
     provider === "dev" &&
-    (process.env.ALLOW_DEV_LOGIN_IN_PROD ||
+    (process.env.ALLOW_DEV_LOGIN_IN_PROD === "1" ||
       process.env.NODE_ENV !== "production")
   ) {
     ok(profile.id === String(userId));
