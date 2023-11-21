@@ -34,6 +34,8 @@ import { DefaultMap, mapMap, someMap } from "@/shared/util/collections";
 import { removeFalsyInPlace } from "@/shared/util/object";
 import { assertNever } from "@/shared/util/type_helpers";
 import { isEqual, keys, mapKeys } from "lodash";
+import { connectToRedis } from "@/server/shared/redis/connection";
+import { RedisBikkieStorage } from "@/server/shared/bikkie/storage/redis";
 
 const LEGACY_HANDCRAFT = 1534621126189502 as BiomesId;
 
@@ -182,12 +184,12 @@ function migrateTrigger(
 }
 
 async function fixItems(backupFile: string) {
-  await bootstrapGlobalSecrets("untrusted-apply-token");
+  // await bootstrapGlobalSecrets("untrusted-apply-token");
   await loadBikkieForScript();
 
   const storage = await createStorageBackend("firestore");
   const db = createBdb(storage);
-  const bikkieStorage = new EmptyBikkieStorage(); // TODO: Ability to modify prod tray from script.
+  const bikkieStorage = new RedisBikkieStorage(await connectToRedis("bikkie"));
   const idGenerator = new DbIdGenerator(db);
   const bakery = createBiomesBakery(db, bikkieStorage, [], idGenerator);
 
@@ -290,7 +292,7 @@ async function fixItems(backupFile: string) {
       {
         meta: createTrayMetadata(
           "Updated item IDs",
-          await determineEmployeeUserId()
+          420,// await determineEmployeeUserId()
         ),
         forceCompaction: true,
       },

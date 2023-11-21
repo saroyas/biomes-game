@@ -5,7 +5,7 @@ import { loadBikkieForScript } from "./helpers/bikkie";
 
 
 async function dumpBikkie() {
-  await bootstrapGlobalSecrets("untrusted-apply-token");
+  // await bootstrapGlobalSecrets("untrusted-apply-token");
   await loadBikkieForScript();
 
   for (const biscuit of getBiscuits()) {

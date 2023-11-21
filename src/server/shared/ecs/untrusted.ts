@@ -70,7 +70,7 @@ export function createSignedApplyRequest(
         v: crc32(zrpcSerialize(wrapped)),
         ts: Date.now(),
       },
-      getSecret("untrusted-apply-token"),
+      "untrusted-apply-token",
       {
         algorithm: "HS512",
       }

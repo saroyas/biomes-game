@@ -101,13 +101,13 @@ function createBiomes() {
       memory: 4 * 1024,
     }),
     // Periodic backup job.
-    // biomesCron("0 * * * *", {
-    //   ...SERVICE_DEFAULTS,
-    //   name: "backup",
-    //   args: BASE_CONFIG_ARGS,
-    //   replicas: 1,
-    //   memory: 4 * 1024,
-    // }),
+    biomesCron("0 * * * *", {
+      ...SERVICE_DEFAULTS,
+      name: "backup",
+      args: BASE_CONFIG_ARGS,
+      replicas: 1,
+      memory: 4 * 1024,
+    }),
     // Notifications server.
     ...biomesDeployment({
       ...SERVICE_DEFAULTS,
