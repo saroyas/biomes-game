@@ -83,9 +83,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -142,7 +142,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -156,8 +156,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -262,9 +262,9 @@ spec:
               hostPath:
                 path: /tmp/redis-replica-io
                 type: DirectoryOrCreate
-            - name: firestore-secret
+            - name: secrets
               secret:
-                secretName: firestore-secret
+                secretName: secrets
             - name: nginx-config
               configMap:
                 name: nginx-config
@@ -319,7 +319,7 @@ spec:
                 - name: DO_NOT_WAIT_FOR_GCE
                   value: '1'
                 - name: GOOGLE_APPLICATION_CREDENTIALS
-                  value: /etc/firestore-secret/key
+                  value: /etc/secrets/gac
                 - name: MIRROR_ASSETS
                   value: '0'
                 - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -333,8 +333,8 @@ spec:
                   mountPath: /biomes
                 - name: redis-replica-io
                   mountPath: /redis-replica-io
-                - name: firestore-secret
-                  mountPath: /etc/firestore-secret
+                - name: secrets
+                  mountPath: /etc/secrets
                   readOnly: true
               ports:
                 - name: metrics
@@ -394,9 +394,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -451,7 +451,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -465,8 +465,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -548,9 +548,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -605,7 +605,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -619,8 +619,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -734,9 +734,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -791,7 +791,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -805,8 +805,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -920,9 +920,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -977,7 +977,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -991,8 +991,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -1074,9 +1074,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1131,7 +1131,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -1147,8 +1147,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -1262,9 +1262,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1319,7 +1319,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -1333,8 +1333,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -1450,9 +1450,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1507,7 +1507,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -1521,8 +1521,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -1623,9 +1623,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1686,7 +1686,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
@@ -1704,8 +1704,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -1804,9 +1804,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -1864,7 +1864,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
@@ -1882,8 +1882,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -1982,9 +1982,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2042,7 +2042,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
@@ -2060,8 +2060,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -2160,9 +2160,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2221,7 +2221,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
@@ -2239,8 +2239,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -2339,9 +2339,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2398,7 +2398,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
@@ -2416,8 +2416,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -2499,9 +2499,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2556,7 +2556,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -2570,8 +2570,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -2653,9 +2653,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2716,8 +2716,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -2799,9 +2799,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -2856,7 +2856,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -2870,8 +2870,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -2969,9 +2969,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3032,8 +3032,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -3156,9 +3156,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3213,7 +3213,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -3227,8 +3227,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -3345,9 +3345,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3408,8 +3408,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -3555,9 +3555,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3612,7 +3612,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -3626,8 +3626,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -3748,9 +3748,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -3805,7 +3805,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -3821,8 +3821,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics
@@ -3943,9 +3943,9 @@ spec:
           hostPath:
             path: /tmp/redis-replica-io
             type: DirectoryOrCreate
-        - name: firestore-secret
+        - name: secrets
           secret:
-            secretName: firestore-secret
+            secretName: secrets
         - name: nginx-config
           configMap:
             name: nginx-config
@@ -4000,7 +4000,7 @@ spec:
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: GOOGLE_APPLICATION_CREDENTIALS
-              value: /etc/firestore-secret/key
+              value: /etc/secrets/gac
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -4014,8 +4014,8 @@ spec:
               mountPath: /biomes
             - name: redis-replica-io
               mountPath: /redis-replica-io
-            - name: firestore-secret
-              mountPath: /etc/firestore-secret
+            - name: secrets
+              mountPath: /etc/secrets
               readOnly: true
           ports:
             - name: metrics

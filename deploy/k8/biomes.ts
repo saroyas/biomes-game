@@ -25,7 +25,7 @@ const SERVICE_DEFAULTS = {
   additionalEnv: [
     {
       name: "GOOGLE_APPLICATION_CREDENTIALS",
-      value: "/etc/firestore-secret/key",
+      value: "/etc/secrets/gac",
     },
     {
       name: "MIRROR_ASSETS",
@@ -579,9 +579,9 @@ function biomesPodTemplate({
           },
         },
         {
-          name: "firestore-secret",
+          name: "secrets",
           secret: {
-            secretName: "firestore-secret",
+            secretName: "secrets",
           },
         },
         {
@@ -674,8 +674,8 @@ function biomesPodTemplate({
               mountPath: "/redis-replica-io",
             },
             {
-              name: "firestore-secret",
-              mountPath: "/etc/firestore-secret",
+              name: "secrets",
+              mountPath: "/etc/secrets",
 	      readOnly: true
             },
           ],
@@ -1001,7 +1001,7 @@ function gaiaDeployment({
       additionalEnv: [
         {
           name: "GOOGLE_APPLICATION_CREDENTIALS",
-          value: "/etc/firestore-secret/key",
+          value: "/etc/secrets/gac",
         },
         {
           name: "FIREBASE_SERVICE_ACCOUNT_EMAIL",
