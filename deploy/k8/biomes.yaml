@@ -1685,6 +1685,8 @@ spec:
               value: '1'
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
             - name: WASM_MEMORY
               value: '4096'
             - name: GAIA_SHARD_DOMAIN
@@ -1855,6 +1857,8 @@ spec:
               value: '1'
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
             - name: WASM_MEMORY
               value: '4096'
             - name: GAIA_SHARD_DOMAIN
@@ -2022,6 +2026,8 @@ spec:
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
+              value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
@@ -2196,6 +2202,8 @@ spec:
               value: '1'
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
+              value: '1'
             - name: WASM_MEMORY
               value: '4096'
             - name: GAIA_SHARD_DOMAIN
@@ -2362,6 +2370,8 @@ spec:
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
+              value: '1'
+            - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'

@@ -999,6 +999,7 @@ function gaiaDeployment({
       cpu: 1.5,
       memory: 6 * 1024,
       additionalEnv: [
+        { name: "DO_NOT_WAIT_FOR_GCE", value: "1" },
         { name: "WASM_MEMORY", value: "4096" },
         { name: "GAIA_SHARD_DOMAIN", value: name },
         {
