@@ -172,7 +172,7 @@ export class MapPipeline {
     })();
     timer.record("dequeue");
 
-    // Schedule the generation of tiles from the priority queue.
+    // Schedule the generationg of tiles from the priority queue.
     const updates = new Map<TileKey, ImageBox>();
     for (const flavor of TILE_FLAVORS) {
       for (const [pos, level] of tileAncestors(tile, ZOOM_LEVELS)) {
