@@ -3,7 +3,9 @@ import { predictableId } from "@/shared/util/auto_id";
 import type { JSONable } from "@/shared/util/type_helpers";
 import { SecretManagerServiceClient } from "@google-cloud/secret-manager";
 import { ok } from "assert";
+import fs from "fs";
 import { entries, keys, zip } from "lodash";
+import path from "path";
 
 function Secret<T>() {
   return null as unknown as T;
@@ -99,6 +101,31 @@ async function loadSecretsFromGoogle() {
   return new Secrets(secretMap as SecretMap);
 }
 
+async function loadSecretsFromDisk() {
+  const secretMap: Record<string, any> = {};
+  try {
+    const secretPath = "/etc/secrets/";
+    fs.readdirSync(secretPath).forEach((file: string) => {
+      if (file.startsWith(".")) {
+        return;
+      }
+
+      const fullPath = path.join(secretPath, file);
+
+      // Check if the path is a file
+      if (fs.statSync(fullPath).isFile()) {
+        const content = fs.readFileSync(fullPath, "utf8");
+        secretMap[file] = content;
+      }
+    });
+  } catch (error) {
+    log.error("Could not read secrets from disk.", { error });
+    throw error; // Fatal in production.
+  }
+
+  return new Secrets(secretMap as SecretMap);
+}
+
 async function prepareLocalDevSecrets(...additionalSecretsNeeded: SecretKey[]) {
   const secretMap = createRandomSecretMap("local-dev");
   if (additionalSecretsNeeded.length > 0) {
@@ -133,9 +160,7 @@ export async function bootstrapGlobalSecrets(
   (global as any)._global_secrets =
     process.env.NODE_ENV === "production" ||
     process.env.USE_PRODUCTION_SECRETS === "1"
-      // remove production secrets, we don't have access to them anyway
-      ? []
-      // ? await loadSecretsFromGoogle()
+      ? await loadSecretsFromDisk() // ? await loadSecretsFromGoogle()
       : await prepareLocalDevSecrets(...additionalSecretsNeeded);
 }
 
