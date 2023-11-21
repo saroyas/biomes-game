@@ -24,10 +24,6 @@ const SERVICE_DEFAULTS = {
   cpu: 1.0,
   additionalEnv: [
     {
-      name: "DO_NOT_WAIT_FOR_GCE",
-      value: "1",
-    },
-    {
       name: "GOOGLE_APPLICATION_CREDENTIALS",
       value: "/etc/firestore-secret/key",
     },
@@ -660,6 +656,10 @@ function biomesPodTemplate({
             },
             {
               name: "USE_K8_REDIS",
+              value: "1",
+            },
+            {
+              name: "DO_NOT_WAIT_FOR_GCE",
               value: "1",
             },
             ...(additionalEnv ?? []),
