@@ -30,6 +30,7 @@ const ALL_SECRETS = {
   "foreign-auth-state": Secret<string>(),
   "game-action-permission-token-secret": Secret<string>(),
   "github-mossy-mucker-personal-access-token": Secret<string>(),
+  "google-oauth-client-id": Secret<string>(),
   "google-oauth-client-secret": Secret<string>(),
   "ill-alchemy-api-key": Secret<string>(),
   "internal-auth-token": Secret<string>(),
@@ -38,6 +39,7 @@ const ALL_SECRETS = {
   "postmark-auth-transactional": Secret<string>(),
   "splash-recaptcha-server-secret": Secret<string>(),
   "twitter-oauth-client-secret": Secret<string>(),
+  "twitch-oauth-client-id": Secret<string>(),
   "twitch-oauth-client-secret": Secret<string>(),
   "untrusted-apply-token": Secret<string>(),
 } as const;
@@ -213,6 +215,7 @@ function createRandomSecretMap(seed?: string): SecretMap {
     "foreign-auth-state": createRandomKey(seed),
     "game-action-permission-token-secret": createRandomKey(seed),
     "github-mossy-mucker-personal-access-token": createRandomSymmetricKey(seed),
+    "google-oauth-client-id": createRandomKey(seed),
     "google-oauth-client-secret": createRandomKey(seed),
     "ill-alchemy-api-key": createRandomKey(seed),
     "internal-auth-token": createRandomKey(seed),
@@ -221,6 +224,7 @@ function createRandomSecretMap(seed?: string): SecretMap {
     "postmark-auth-transactional": createRandomKey(seed),
     "splash-recaptcha-server-secret": createRandomKey(seed),
     "twitter-oauth-client-secret": createRandomKey(seed),
+    "twitch-oauth-client-id": createRandomKey(seed),
     "twitch-oauth-client-secret": createRandomKey(seed),
     "untrusted-apply-token": createRandomKey(seed),
   };

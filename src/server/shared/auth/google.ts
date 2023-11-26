@@ -12,7 +12,7 @@ export class GoogleProvider extends OAuth2Provider {
   constructor() {
     super({
       client: {
-        id: "336371362626-0mia4nshvoco9rqqib2dt22k329p55sr.apps.googleusercontent.com",
+        id: getSecret("google-oauth-client-id"),
         secret: getSecret("google-oauth-client-secret"),
       },
       auth: {

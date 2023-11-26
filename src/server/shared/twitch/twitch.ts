@@ -37,7 +37,7 @@ export class TwitchBotImpl implements TwitchBot {
     const response = await fetch(`https://api.twitch.tv/${url}`, {
       method: method ?? "GET",
       headers: {
-        "Client-Id": TwitchProvider.CLIENT_ID,
+        "Client-Id": getSecret("twitch-oauth-client-id"),
         Authorization: `Bearer ${this.accessToken}`,
       },
       body,
@@ -76,7 +76,7 @@ export class TwitchBotImpl implements TwitchBot {
     }
     try {
       const params = new URLSearchParams();
-      params.set("client_id", TwitchProvider.CLIENT_ID);
+      params.set("client_id", getSecret("twitch-oauth-client-id"));
       params.set("client_secret", getSecret("twitch-oauth-client-secret"));
       params.set("grant_type", "client_credentials");
       const response = await fetch(

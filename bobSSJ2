@@ -4,7 +4,7 @@
 # Choosing to place the glowing rock at the center of the new playground as a symbol of inspiration, Bob returned to his normal life,
 # cherishing the memories of his brief yet remarkable transformation, a story that would echo through Sunflower Valley for generations.
 
-./b build server
+# ./b build server
 
 export DO_NOT_WAIT_FOR_GCE=1
 export BOB_ALWAYS_BUILD=1

@@ -10,12 +10,12 @@ interface TwitchUserInfo {
 }
 
 export class TwitchProvider extends OAuth2Provider {
-  static CLIENT_ID = "7wshxfxjwcoq3i2mpm3p4dup4yum7d";
   constructor() {
+    const id = getSecret("twitch-oauth-client-id");
     const secret = getSecret("twitch-oauth-client-secret");
     super({
       client: {
-        id: TwitchProvider.CLIENT_ID,
+        id,
         secret,
       },
       auth: {
@@ -23,7 +23,7 @@ export class TwitchProvider extends OAuth2Provider {
         tokenURL: "https://id.twitch.tv/oauth2/token",
         scope: "user:read:email",
         extraTokenParams: {
-          client_id: TwitchProvider.CLIENT_ID,
+          client_id: id,
           client_secret: secret,
         },
       },
@@ -38,7 +38,7 @@ export class TwitchProvider extends OAuth2Provider {
       token,
       {
         headers: {
-          "Client-ID": TwitchProvider.CLIENT_ID,
+          "Client-ID": this.id,
         },
       }
     );

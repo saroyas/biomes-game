@@ -4,10 +4,13 @@ metadata:
   namespace: default
   name: biomes-primary
   annotations:
-    networking.gke.io/v1beta1.FrontendConfig: biomes
-    networking.gke.io/managed-certificates: "biomes-v3,biomes-v4"
+    alb.ingress.kubernetes.io/scheme: internet-facing
+    alb.ingress.kubernetes.io/target-type: 'ip'
+    # networking.gke.io/v1beta1.FrontendConfig: biomes
+    # networking.gke.io/managed-certificates: "biomes-v3,biomes-v4"
     kubernetes.io/ingress.global-static-ip-name: biomes-primary
 spec:
+  ingressClassName: alb
   rules:
     - http:
         paths:
