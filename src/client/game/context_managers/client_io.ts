@@ -737,10 +737,7 @@ export async function loadClientIo(
     ]);
   const ioConfig: ClientIoConfig = {
     url: (target: SyncTarget) => {
-      const base =
-        config.syncBaseUrl === "api"
-          ? `https://api${random(6)}.biomes.gg/`
-          : config.syncBaseUrl;
+      const base = config.syncBaseUrl
       const suffix =
         target.kind === "localUser"
           ? config.useProdSync
