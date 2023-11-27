@@ -152,7 +152,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -331,7 +331,7 @@ spec:
                 - name: FIREBASE_PROJECT_ID
                   value: biomes42
                 - name: DOMAIN
-                  value: http://biomes.ddns.net:3000
+                  value: d3g8c5gmju0rws.cloudfront.net
               volumeMounts:
                 - name: biomes-config
                   mountPath: /biomes
@@ -465,7 +465,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -621,7 +621,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -809,7 +809,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -997,7 +997,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1153,7 +1153,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
             - name: STATEFUL_SET_REPLICAS
               value: '1'
           volumeMounts:
@@ -1343,7 +1343,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1533,7 +1533,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -2584,7 +2584,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -2886,7 +2886,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3245,7 +3245,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3646,7 +3646,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3841,7 +3841,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
             - name: RO_SYNC
               value: '1'
           volumeMounts:
@@ -4038,7 +4038,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
-              value: http://biomes.ddns.net:3000
+              value: d3g8c5gmju0rws.cloudfront.net
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes

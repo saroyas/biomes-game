@@ -45,7 +45,7 @@ const SERVICE_DEFAULTS = {
     },
     {
       name: "DOMAIN",
-      value: "http://biomes.ddns.net:3000",
+      value: "d3g8c5gmju0rws.cloudfront.net",
     },
   ]
 } as const;

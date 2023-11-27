@@ -56,7 +56,7 @@ async function internalReportFunnelStage(
   await asyncBackoffOnAllErrors(
     async () =>
       jsonPost<void, FunnelRequest>(
-        `https://${process.env.DOMAIN}/api/f`,
+        `https://d3g8c5gmju0rws.cloudfront.net/api/f`,
         removeFalsyInPlace({
           stage,
           bdid,
