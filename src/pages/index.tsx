@@ -33,7 +33,7 @@ export const BiomesHeadTag: React.FunctionComponent<BiomesHeadTagProps> = (
       {/* Boilerplate */}
       <meta charSet="utf-8" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="manifest" href="https://static.biomes.gg/pwa/manifest.json" />
+      <link rel="manifest" href="https://d3g8c5gmju0rws.cloudfront.net/pwa/manifest.json" />
       {/* General */}
       <title>{title}</title>
       <meta name="description" content={desc} />
