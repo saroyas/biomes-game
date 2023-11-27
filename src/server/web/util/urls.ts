@@ -22,7 +22,7 @@ export interface GameURLAction {
 }
 
 export function absoluteWebServerURL(relativeUrl: string) {
-  return `https://www.biomes.gg/${stripLeadingSlash(relativeUrl)}`;
+  return `https://${process.env.DOMAIN}/${stripLeadingSlash(relativeUrl)}`;
 }
 
 export function dynamicBaseURL(relativeUrl: string) {
@@ -82,7 +82,7 @@ export function userPublicPermalink(id: BiomesId, username?: string) {
 }
 
 export function avatarPlaceholderURL() {
-  return "https://static.biomes.gg/public/hud/avatar-placeholder.png";
+  return `https://${process.env.DOMAIN}/hud/avatar-placeholder.png`;
 }
 
 export function extractIdFromEnvironmentGroupURL(

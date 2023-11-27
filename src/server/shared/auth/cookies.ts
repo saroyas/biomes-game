@@ -93,7 +93,7 @@ function cookieOptions(httpOnly: boolean) {
     httpOnly,
   };
   if (process.env.NODE_ENV === "production") {
-    base.domain = "biomes.gg";
+    base.domain = process.env.DOMAIN;
     base.secure = true;
   }
   return base;
@@ -144,11 +144,11 @@ export function clearAuthCookies(res: ServerResponse) {
   if (process.env.NODE_ENV === "production") {
     nookies.destroy({ res }, USER_ID_COOKIE, {
       ...cookieOptions(false),
-      domain: "wwww.biomes.gg",
+      domain: process.env.DOMAIN,
     });
     nookies.destroy({ res }, SESSION_ID_COOKIE, {
       ...cookieOptions(false),
-      domain: "wwww.biomes.gg",
+      domain: process.env.DOMAIN,
     });
   }
   nookies.destroy({ res }, USER_ID_COOKIE, cookieOptions(false));

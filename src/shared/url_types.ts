@@ -16,7 +16,7 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
     cdnDomain: "social.biomes.gg",
   },
   "biomes-static": {
-    cdnDomain: "static.biomes.gg",
+    cdnDomain: process.env.DOMAIN,
   },
   // Where we store user-filed bug report attachment data.
   "report-attachments": { cdnDomain: undefined },
