@@ -15,15 +15,18 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "zones-social": {
     cdnDomain: "social.biomes.gg",
   },
+  // Biomes Static
   "biomes-static": {
-    cdnDomain: process.env.DOMAIN,
+    cdnDomain: "https://storage.cloud.google.com/staging.biomes42.appspot.com",
   },
   // Where we store user-filed bug report attachment data.
   "report-attachments": { cdnDomain: undefined },
   // Where we store world backups
   "biomes-backup": { cdnDomain: undefined },
-  // Where Bikkie binary data is stored.
-  "biomes-bikkie": { cdnDomain: undefined },
+  // Where Bikkie binary data is stored. e.g. biomes-bikkie
+  "biomes-bikkie": {
+    cdnDomain: "https://storage.cloud.google.com/biomes42.appspot.com",
+  },
 });
 
 export function useLocalDisk() {
