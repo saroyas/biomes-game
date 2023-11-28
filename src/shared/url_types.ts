@@ -52,8 +52,8 @@ export function localPath(bucket: CloudBucketKey, path: string) {
   return `./public${bucketURL(bucket, path)}`;
 }
 
-export function realBucketName(bucket: string) {
-  return allCloudBuckets[bucketName as CloudBucketKey]?.realBucketName || bucket;
+export function realBucketName(bucketName: string) {
+  return allCloudBuckets[bucketName as CloudBucketKey]?.realBucketName || bucketName;
 }
 
 type ValidCloudBucketKey = keyof typeof allCloudBuckets;
