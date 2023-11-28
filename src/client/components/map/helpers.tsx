@@ -346,11 +346,7 @@ export function mapTileURL(
   const lvl = zoomToTileLevel(zoom);
   const key = tileName(kind, lvl, [u, v]);
   const version = metadata.versionIndex[key];
-  if (version) {
-    return tileURL(version, kind, lvl, [u, v]);
-  } else {
-    return black.src;
-  }
+  return tileURL(version, kind, lvl, [u, v]);
 }
 
 // Gets smoothed position if available

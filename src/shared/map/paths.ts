@@ -28,7 +28,8 @@ export function tileURL(
   pos: TilePos
 ) {
   const baseUrl = bucketURL("biomes-static", tilePath(type, zoom, pos), true);
-  return `${baseUrl}?version=${version}`;
+  const queryParam = version ? `?version=${version}` : '';
+  return `${baseUrl}${queryParam}`;
 }
 
 export function adminImageURL(version: number) {
