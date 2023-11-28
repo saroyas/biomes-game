@@ -100,6 +100,6 @@ export function allPathsForAttribute(attribute: AnyBinaryAttribute): string[] {
 
 export function staticUrlForAttribute(attribute: AnyBinaryAttribute): string {
   return `${
-    process.env.BIKKIE_STATIC_PREFIX || `https://${process.env.DOMAIN}/`
+    process.env.BIKKIE_STATIC_PREFIX || `https://static.biomes.gg/`
   }${gcsPathForAttribute(attribute)}`;
 }
