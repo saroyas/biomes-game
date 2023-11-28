@@ -2,6 +2,7 @@ import { log } from "@/shared/logging";
 import {
   localPath,
   useLocalDisk,
+  realBucketName,
   type CloudBucketKey,
 } from "@/shared/url_types";
 import { stripLeadingSlash } from "@/shared/util/helpers";
@@ -22,8 +23,7 @@ function getInstance(): gcs.Storage {
 }
 
 export function getStorageBucketInstance(bucketName: string) {
-  const realBucketName = allCloudBuckets[bucketName as CloudBucketKey]?.realBucketName || bucketName;
-  return getInstance().bucket(realBucketName);
+  return getInstance().bucket(realBucketName(bucketName));
 }
 export async function uploadToBucket(
   bucket: CloudBucketKey,
