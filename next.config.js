@@ -23,7 +23,7 @@ const withPWA =
 
 module.exports = withBundleAnalyzer(
   withPWA({
-    ...(isProd && { assetPrefix: "https://static.biomes.gg" }),
+    ...(isProd && { assetPrefix: "https://d3g8c5gmju0rws.cloudfront.net" }),
 
     reactStrictMode: false,
     poweredByHeader: false,
