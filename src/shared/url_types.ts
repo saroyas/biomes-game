@@ -18,7 +18,8 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
   },
   // Biomes Static
   "biomes-static": {
-    realBucketName: "staging.biomes42.appspot.com",
+    cdnDomain: "static.biomes.gg",
+    // realBucketName: "staging.biomes42.appspot.com",
   },
   // Where we store user-filed bug report attachment data.
   "report-attachments": { cdnDomain: undefined },
