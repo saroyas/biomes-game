@@ -176,7 +176,7 @@ export function logHttpRequest(
         context
       );
     } else {
-      log.info(`${statusCode} ${req.url}`, context);
+      // log.info(`${statusCode} ${req.url}`, context);
     }
   }
 }
@@ -188,7 +188,7 @@ function maybeReportStatic(path: string) {
     process.env.NODE_ENV === "production" &&
     !ACCEPTABLE_STATIC_FILES.has(path)
   ) {
-    log.warn(`Web server serving static: ${path}`);
+    // log.warn(`Web server serving static: ${path}`);
   }
 }
 
