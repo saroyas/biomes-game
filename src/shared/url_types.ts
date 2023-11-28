@@ -5,6 +5,7 @@ import { z } from "zod";
 
 interface CloudBucket {
   cdnDomain?: string;
+  realBucketName?: string;
 }
 
 export const allCloudBuckets = valueLiteral<CloudBucket>()({
@@ -17,7 +18,7 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
   },
   // Biomes Static
   "biomes-static": {
-    cdnDomain: "https://storage.cloud.google.com/staging.biomes42.appspot.com",
+    realBucketName: "staging.biomes42.appspot.com",
   },
   // Where we store user-filed bug report attachment data.
   "report-attachments": { cdnDomain: undefined },
@@ -25,7 +26,7 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-backup": { cdnDomain: undefined },
   // Where Bikkie binary data is stored. e.g. biomes-bikkie
   "biomes-bikkie": {
-    cdnDomain: "https://storage.cloud.google.com/biomes42.appspot.com",
+    realBucketName: "biomes42.appspot.com",
   },
 });
 
@@ -41,9 +42,10 @@ export function bucketURL(bucket: string, path: string, useCDN = true) {
   if (maybeVal?.cdnDomain && useCDN) {
     return `https://${maybeVal.cdnDomain}/${stripLeadingSlash(path)}`;
   }
-  return `https://storage.cloud.google.com/${bucket}/${stripLeadingSlash(
-    path
-  )}`;
+  if (maybeVal?.realBucketName) {
+    bucket = maybeVal?.realBucketName;
+  }
+  return `https://storage.cloud.google.com/${bucket}/${stripLeadingSlash(path)}`;
 }
 
 export function localPath(bucket: CloudBucketKey, path: string) {

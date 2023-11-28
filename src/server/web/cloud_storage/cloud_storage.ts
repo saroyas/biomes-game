@@ -22,7 +22,8 @@ function getInstance(): gcs.Storage {
 }
 
 export function getStorageBucketInstance(bucketName: string) {
-  return getInstance().bucket(bucketName);
+  const realBucketName = allCloudBuckets[bucketName as CloudBucketKey]?.realBucketName || bucketName;
+  return getInstance().bucket(realBucketName);
 }
 export async function uploadToBucket(
   bucket: CloudBucketKey,
