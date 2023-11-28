@@ -13,7 +13,7 @@ import type { GetServerSidePropsContext, NextApiResponse } from "next";
 
 function checkPermitsDevAuth() {
   ok(
-    true, // process.env.NODE_ENV !== "production",
+    process.env.NODE_ENV !== "production",
     "Dev auth is for development only."
   );
 }

@@ -36,10 +36,6 @@ const SERVICE_DEFAULTS = {
       value: "service-account@biomes42.iam.gserviceaccount.com",
     },
     {
-      name: "ALLOW_DEV_LOGIN_IN_PROD",
-      value: "1",
-    },
-    {
       name: "FIREBASE_PROJECT_ID",
       value: "biomes42",
     },

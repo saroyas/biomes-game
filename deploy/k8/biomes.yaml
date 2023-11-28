@@ -147,8 +147,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -326,8 +324,6 @@ spec:
                   value: '0'
                 - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
                   value: service-account@biomes42.iam.gserviceaccount.com
-                - name: ALLOW_DEV_LOGIN_IN_PROD
-                  value: '1'
                 - name: FIREBASE_PROJECT_ID
                   value: biomes42
                 - name: DOMAIN
@@ -460,8 +456,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -616,8 +610,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -804,8 +796,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -992,8 +982,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -1148,8 +1136,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -1338,8 +1324,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -1528,8 +1512,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -2579,8 +2561,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -2881,8 +2861,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -3240,8 +3218,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -3641,8 +3617,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -3836,8 +3810,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
@@ -4033,8 +4005,6 @@ spec:
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: service-account@biomes42.iam.gserviceaccount.com
-            - name: ALLOW_DEV_LOGIN_IN_PROD
-              value: '1'
             - name: FIREBASE_PROJECT_ID
               value: biomes42
             - name: DOMAIN
