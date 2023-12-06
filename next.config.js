@@ -23,7 +23,7 @@ const withPWA =
 
 module.exports = withBundleAnalyzer(
   withPWA({
-    ...(isProd && { assetPrefix: "https://biomes.dedyn.io" }),
+    ...(isProd && { assetPrefix: "https://biomes.us.to" }),
 
     reactStrictMode: false,
     poweredByHeader: false,

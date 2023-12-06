@@ -41,7 +41,7 @@ const SERVICE_DEFAULTS = {
     },
     {
       name: "DOMAIN",
-      value: "biomes.dedyn.io",
+      value: "biomes.us.to",
     },
   ]
 } as const;
