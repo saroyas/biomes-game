@@ -9,7 +9,7 @@ class MyDocument extends Document {
           <link
             rel="icon"
             type="image/x-icon"
-            href="https://d3g8c5gmju0rws.cloudfront.net/favicon.ico"
+            href="https://biomes.dedyn.io/favicon.ico"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link

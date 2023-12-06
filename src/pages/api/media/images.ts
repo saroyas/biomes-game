@@ -96,7 +96,7 @@ export default biomesApiHandler(
       filename,
       Buffer.from(await response.arrayBuffer())
     );
-    const biomesUrl = `https://d3g8c5gmju0rws.cloudfront.net/${filename}`;
+    const biomesUrl = `https://biomes.dedyn.io/${filename}`;
     const image = { url: biomesUrl };
     await db.collection("images-cache").doc(hash).set(image);
     await serverCache.set(

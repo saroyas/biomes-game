@@ -56,7 +56,7 @@ async function internalReportFunnelStage(
   await asyncBackoffOnAllErrors(
     async () =>
       jsonPost<void, FunnelRequest>(
-        `https://d3g8c5gmju0rws.cloudfront.net/api/f`,
+        `https://biomes.dedyn.io/api/f`,
         removeFalsyInPlace({
           stage,
           bdid,

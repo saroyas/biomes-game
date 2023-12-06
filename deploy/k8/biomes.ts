@@ -41,7 +41,7 @@ const SERVICE_DEFAULTS = {
     },
     {
       name: "DOMAIN",
-      value: "d3g8c5gmju0rws.cloudfront.net",
+      value: "biomes.dedyn.io",
     },
   ]
 } as const;
