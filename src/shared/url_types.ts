@@ -10,7 +10,8 @@ interface CloudBucket {
 
 export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-social": {
-    cdnDomain: "social.biomes.gg",
+    // cdnDomain: "social.biomes.gg",
+    realBucketName: "biomes-social.appspot.com",
   },
   // Legacy
   "zones-social": {
