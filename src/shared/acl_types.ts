@@ -31,9 +31,12 @@ export function isAclAction(value: unknown): value is AclAction {
 }
 
 export const ALL_SPECIAL_ROLES = [
+  // Can modify national parks.
+  "groundskeeper",
 ] as const;
 
 export const zSpecialRoles = z.enum([
+  ...ALL_SPECIAL_ROLES,
 ]);
 
 export type SpecialRoles = z.infer<typeof zSpecialRoles>;
