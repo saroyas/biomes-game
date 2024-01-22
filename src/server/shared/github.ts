@@ -3,7 +3,7 @@ import { log } from "@/shared/logging";
 import { Octokit } from "octokit";
 
 export const GITHUB_THIS_REPO = "biomes-game";
-export const GITHUB_THIS_OWNER = "biomes-lite";
+export const GITHUB_THIS_OWNER = "saroyas";
 export const GITHUB_MAIN_BRANCH = "main";
 
 const PERSONAL_ACCESS_TOKEN_ENV = "GH_PAT";
