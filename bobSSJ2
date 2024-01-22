@@ -13,4 +13,4 @@ export BOB_SKIP_LINT_AND_TEST=1
 export NODE_ENV=development
 export USE_PRODUCTION_SECRETS=0
 
-node dist/bob.js --workspace ${HOME}/my_test_workspace
+node dist/bob.js --workspace /workspaces/biomes-game

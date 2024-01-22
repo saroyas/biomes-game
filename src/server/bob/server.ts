@@ -48,7 +48,7 @@ const BACKOFF_CONFIG: BackoffConfig = {
   baseMs: 250,
   exponent: 3,
 };
-const IMAGE_NAME = "xerebz/biomes";
+const IMAGE_NAME = "ssaros/biomes";
 
 type RunOptions = {
   signal: AbortSignal;

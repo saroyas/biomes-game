@@ -15,7 +15,7 @@ const PROD_IMAGE_OVERRIDE = "latest";
 const PROD_IMAGE_TAG = PROD_IMAGE_OVERRIDE || LAST_BOB_IMAGE || LAST_BOB_BUILD;
 
 // I would use an organization here but Docker Hub Organizations cost money.
-const DOCKER_HUB_USERNAME = "xerebz"
+const DOCKER_HUB_USERNAME = "ssaros"
 
 const PROD_IMAGE_NAME = `${DOCKER_HUB_USERNAME}/biomes`;
 
