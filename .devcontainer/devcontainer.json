@@ -5,6 +5,9 @@
   "name": "biomes",
   "context": ".",
   "dockerFile": "Dockerfile",
+  "features": {
+    "docker-in-docker": "latest"
+  },
   "customizations": {
     "vscode": {
       "settings": {
