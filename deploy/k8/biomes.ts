@@ -33,11 +33,11 @@ const SERVICE_DEFAULTS = {
     },
     {
       name: "FIREBASE_SERVICE_ACCOUNT_EMAIL",
-      value: "service-account@biomes42.iam.gserviceaccount.com",
+      value: "firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com",
     },
     {
       name: "FIREBASE_PROJECT_ID",
-      value: "biomes42",
+      value: "biomes43",
     },
     {
       name: "DOMAIN",
@@ -1005,11 +1005,11 @@ function gaiaDeployment({
         },
         {
           name: "FIREBASE_SERVICE_ACCOUNT_EMAIL",
-          value: "service-account@biomes42.iam.gserviceaccount.com",
+          value: "firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com",
         },
         {
           name: "FIREBASE_PROJECT_ID",
-          value: "biomes42",
+          value: "biomes43",
         },
         { name: "DO_NOT_WAIT_FOR_GCE", value: "1" },
         { name: "WASM_MEMORY", value: "4096" },
