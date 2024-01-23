@@ -1216,13 +1216,13 @@ export class BobTheBuilder {
               "biomes-static/_next/static"
             )
           ),
-          buildStep("rsync-source-maps", () =>
-            this.gsRsyncContents(
-              signal,
-              ".next-source-maps/static",
-              "biomes-source-maps/_next/static"
-            )
-          ),
+          // buildStep("rsync-source-maps", () =>
+          //   this.gsRsyncContents(
+          //     signal,
+          //     ".next-source-maps/static",
+          //     "biomes-source-maps/_next/static"
+          //   )
+          // ),
         ]);
 
         await this.cleanGit(signal);
