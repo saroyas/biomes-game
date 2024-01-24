@@ -5,7 +5,9 @@
   },
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": { "source.fixAll.stylelint": true }
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": "explicit"
+    }
   },
   "[glsl]": { "editor.defaultFormatter": "raczzalan.webgl-glsl-editor" },
   "[fs]": { "editor.defaultFormatter": "raczzalan.webgl-glsl-editor" },
@@ -152,5 +154,16 @@
     "**/.hg/**",
     "**/.svn/**",
     "*.ts"
-  ]
+  ],
+  "[javascript][python]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
+  },
+  "[typescript][typescriptreact]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit",
+      "source.fixAll.eslint": "explicit"
+    }
+  }
 }
