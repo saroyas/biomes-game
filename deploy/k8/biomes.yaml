@@ -94,7 +94,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -146,9 +146,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -273,7 +273,7 @@ spec:
                     path: nginx.conf
           initContainers: []
           containers:
-            - image: xerebz/biomes:latest
+            - image: ssaros/biomes:latest
               name: biomes
               args:
                 - '-r'
@@ -323,9 +323,9 @@ spec:
                 - name: MIRROR_ASSETS
                   value: '0'
                 - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-                  value: service-account@biomes42.iam.gserviceaccount.com
+                  value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
                 - name: FIREBASE_PROJECT_ID
-                  value: biomes42
+                  value: biomes43
                 - name: DOMAIN
                   value: biomes.us.to
               volumeMounts:
@@ -405,7 +405,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -455,9 +455,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -559,7 +559,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -609,9 +609,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -745,7 +745,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -795,9 +795,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -931,7 +931,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -981,9 +981,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -1085,7 +1085,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -1135,9 +1135,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
             - name: STATEFUL_SET_REPLICAS
@@ -1273,7 +1273,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -1323,9 +1323,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -1461,7 +1461,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -1511,9 +1511,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -1634,7 +1634,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -1688,9 +1688,9 @@ spec:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: WASM_MEMORY
@@ -1815,7 +1815,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -1866,9 +1866,9 @@ spec:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: WASM_MEMORY
@@ -1993,7 +1993,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -2044,9 +2044,9 @@ spec:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: WASM_MEMORY
@@ -2171,7 +2171,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -2223,9 +2223,9 @@ spec:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: WASM_MEMORY
@@ -2350,7 +2350,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -2400,9 +2400,9 @@ spec:
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
               value: '1'
             - name: WASM_MEMORY
@@ -2510,7 +2510,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -2560,9 +2560,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -2664,7 +2664,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -2810,7 +2810,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -2860,9 +2860,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -2980,7 +2980,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -3167,7 +3167,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -3217,9 +3217,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -3356,7 +3356,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -3566,7 +3566,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -3616,9 +3616,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:
@@ -3759,7 +3759,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -3809,9 +3809,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
             - name: RO_SYNC
@@ -3954,7 +3954,7 @@ spec:
                 path: nginx.conf
       initContainers: []
       containers:
-        - image: xerebz/biomes:latest
+        - image: ssaros/biomes:latest
           name: biomes
           args:
             - '-r'
@@ -4004,9 +4004,9 @@ spec:
             - name: MIRROR_ASSETS
               value: '0'
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
-              value: service-account@biomes42.iam.gserviceaccount.com
+              value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
-              value: biomes42
+              value: biomes43
             - name: DOMAIN
               value: biomes.us.to
           volumeMounts:

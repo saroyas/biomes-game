@@ -676,7 +676,7 @@ function biomesPodTemplate({
             {
               name: "secrets",
               mountPath: "/etc/secrets",
-	      readOnly: true
+              readOnly: true,
             },
           ],
           ports: [

@@ -1,13 +1,13 @@
 import { getApps, initializeApp } from "firebase/app";
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyCwMbT6fgxyQNH7c2642oh5eVrvgvHL4yQ",
-  authDomain: "zones-cloud.firebaseapp.com",
-  projectId: "zones-cloud",
-  storageBucket: "zones-cloud.appspot.com",
-  messagingSenderId: "336371362626",
-  appId: "1:336371362626:web:81190ca1dbc91d460e76db",
-  measurementId: "G-NC4PLYNRM0",
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyA5hw-AeOr-6BkWNoAXZUq5tle_gJBEMTI",
+  authDomain: "biomes43.firebaseapp.com",
+  projectId: "biomes43",
+  storageBucket: "biomes43.appspot.com",
+  messagingSenderId: "646396540903",
+  appId: "1:646396540903:web:0bf7f827579a373d3faf42",
 };
 
 export function initializeFirebaseIfNeeded() {

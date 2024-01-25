@@ -3,6 +3,6 @@ eksctl create nodegroup \
   --cluster $cluster \
   --name $nodegroup \
   --node-type m6i.2xlarge \
-  --nodes-min 50 \
+  --nodes-min 5 \
   --nodes-max 100 \
-  --nodes 50
+  --nodes 5
