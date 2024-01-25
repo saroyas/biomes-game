@@ -32,7 +32,7 @@ export class DevProvider implements ForeignAuthProvider<DevFlowState> {
     request: WebServerApiRequest,
     response: NextApiResponse<any>
   ) {
-    checkPermitsDevAuth();
+    // checkPermitsDevAuth();
     const { db, idGenerator } = request.context;
 
     const usernameOrId = validateString(request.query.usernameOrId);

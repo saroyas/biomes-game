@@ -10,6 +10,8 @@ __pycache__
 .*.pid
 .b
 /build
+biomes/
+context/
 build.spec
 cmake_out
 dist/
