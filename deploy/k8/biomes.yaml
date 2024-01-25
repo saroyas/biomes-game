@@ -1944,7 +1944,7 @@ metadata:
   namespace: default
   name: gaia-light
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -3516,7 +3516,7 @@ metadata:
   namespace: default
   name: sync
 spec:
-  replicas: 2
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -3905,7 +3905,7 @@ metadata:
   namespace: default
   name: web
 spec:
-  replicas: 3
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
