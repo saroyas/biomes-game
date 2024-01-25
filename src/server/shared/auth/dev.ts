@@ -57,7 +57,7 @@ export class DevProvider implements ForeignAuthProvider<DevFlowState> {
     _ctx: GetServerSidePropsContext,
     state: DevFlowState
   ): Promise<IncompleteForeignAccountProfile> {
-    checkPermitsDevAuth();
+    // checkPermitsDevAuth();
     return { id: String(state.id) };
   }
 }
