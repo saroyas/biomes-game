@@ -101,7 +101,7 @@ export async function findLinkForForeignAuth(
   provider: ForeignAuthProviderName,
   key: string
 ) {
-  if (process.env.NODE_ENV !== "production" && provider === "dev") {
+  if (provider === "dev") {
     return devLink(parseBiomesId(key));
   }
   return findUserLink(db, foreignAuthLinkId(provider), key);

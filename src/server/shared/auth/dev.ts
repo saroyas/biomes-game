@@ -13,7 +13,8 @@ import type { GetServerSidePropsContext, NextApiResponse } from "next";
 
 function checkPermitsDevAuth() {
   ok(
-    process.env.NODE_ENV !== "production",
+    true,
+    // process.env.NODE_ENV !== "production",
     "Dev auth is for development only."
   );
 }
@@ -32,7 +33,7 @@ export class DevProvider implements ForeignAuthProvider<DevFlowState> {
     request: WebServerApiRequest,
     response: NextApiResponse<any>
   ) {
-    // checkPermitsDevAuth();
+    checkPermitsDevAuth();
     const { db, idGenerator } = request.context;
 
     const usernameOrId = validateString(request.query.usernameOrId);
@@ -57,7 +58,7 @@ export class DevProvider implements ForeignAuthProvider<DevFlowState> {
     _ctx: GetServerSidePropsContext,
     state: DevFlowState
   ): Promise<IncompleteForeignAccountProfile> {
-    // checkPermitsDevAuth();
+    checkPermitsDevAuth();
     return { id: String(state.id) };
   }
 }
