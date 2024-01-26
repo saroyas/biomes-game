@@ -150,7 +150,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -327,7 +327,7 @@ spec:
                 - name: FIREBASE_PROJECT_ID
                   value: biomes43
                 - name: DOMAIN
-                  value: biomes.us.to
+                  value: oasis.siliconsoul.xyz
               volumeMounts:
                 - name: biomes-config
                   mountPath: /biomes
@@ -459,7 +459,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -613,7 +613,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -799,7 +799,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -985,7 +985,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1139,7 +1139,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
             - name: STATEFUL_SET_REPLICAS
               value: '1'
           volumeMounts:
@@ -1327,7 +1327,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1515,7 +1515,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -2564,7 +2564,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -2864,7 +2864,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3221,7 +3221,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3620,7 +3620,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3813,7 +3813,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
             - name: RO_SYNC
               value: '1'
           volumeMounts:
@@ -4008,7 +4008,7 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: biomes.us.to
+              value: oasis.siliconsoul.xyz
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes

@@ -10,7 +10,7 @@ interface CloudBucket {
 
 export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-social": {
-    cdnDomain: "social.biomes.us.to",
+    cdnDomain: "social.oasis.siliconsoul.xyz",
     realBucketName: "biomes-social.appspot.com",
   },
   // Legacy
@@ -47,7 +47,9 @@ export function bucketURL(bucket: string, path: string, useCDN = true) {
   if (maybeVal?.realBucketName) {
     bucket = maybeVal?.realBucketName;
   }
-  return `https://storage.cloud.google.com/${bucket}/${stripLeadingSlash(path)}`;
+  return `https://storage.cloud.google.com/${bucket}/${stripLeadingSlash(
+    path
+  )}`;
 }
 
 export function localPath(bucket: CloudBucketKey, path: string) {
@@ -55,7 +57,9 @@ export function localPath(bucket: CloudBucketKey, path: string) {
 }
 
 export function realBucketName(bucketName: string) {
-  return allCloudBuckets[bucketName as CloudBucketKey]?.realBucketName || bucketName;
+  return (
+    allCloudBuckets[bucketName as CloudBucketKey]?.realBucketName || bucketName
+  );
 }
 
 type ValidCloudBucketKey = keyof typeof allCloudBuckets;
