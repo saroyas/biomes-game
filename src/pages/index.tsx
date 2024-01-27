@@ -15,11 +15,9 @@ export const BiomesHeadTag: React.FunctionComponent<BiomesHeadTagProps> = (
 ) => {
   const desc =
     props.description ??
-    "Biomes is an open source sandbox MMORPG built for the web using web technologies.";
+    "Oasis is the worlds first space for both AI and Humans. Brought to you by Silicon Soul.";
 
-  const title = props.refinedTitle
-    ? `${props.refinedTitle} | Biomes`
-    : "Biomes";
+  const title = props.refinedTitle ? `${props.refinedTitle} | Oasis` : "Oais";
 
   const embedImage = props.embedImage ?? homeBg.src;
   const imageAlt = props.embedImage

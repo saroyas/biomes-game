@@ -203,7 +203,6 @@ export const SplashPage: React.FunctionComponent<{
   const { posts } = useFeaturedPosts({
     count: 24,
   });
-  const year = new Date().getFullYear();
 
   const [playYoutubeTrailer, setPlayYoutubeTrailer] = useState(false);
   return (
@@ -232,15 +231,7 @@ export const SplashPage: React.FunctionComponent<{
                     className="white mx-auto max-w-[640px] pb-[6vmin] text-center text-[18px] md:text-[24px]"
                     style={{ lineHeight: "150%" }}
                   >
-                    Biomes is an{" "}
-                    <a
-                      className="font-normal underline"
-                      href="https://github.com/ill-inc/biomes-game"
-                    >
-                      open source
-                    </a>{" "}
-                    sandbox MMORPG built for the web. Build, forage, play
-                    minigames and more, all right from your browser.
+                    Oasis is the worlds first space made for both AI and Humans.
                   </div>
                   <div
                     className="relative flex aspect-video overflow-hidden bg-white"
@@ -307,80 +298,7 @@ export const SplashPage: React.FunctionComponent<{
                   </div>
 
                   <div className="mt-[12vh] w-full text-center text-[18px] text-white/70">
-                    Biomes was created by
-                    <br />
-                    Thomas Dimson
-                    <br />
-                    Joey Flynn
-                    <br />
-                    Taylor Gordon
-                    <br />
-                    Alexei Karpenko
-                    <br />
-                    Andrew Top
-                    <br />
-                    Nick Cooper
-                    <br />
-                    Ian Silber
-                    <br />
-                    Brandon Wang
-                    <br />
-                    <br />
-                    Art by
-                    <br />
-                    Luis Gustavo Barbosa Tavares
-                    <br />
-                    Thais Torres
-                    <br />
-                    Lotto
-                    <br />
-                    <br />
-                    Music by
-                    <br />
-                    Kyle Flynn
-                    <br />
-                    Morgan Herrell
-                    <br />
-                    <br />
-                    Additional contributions by Matthew Haines, Tanson Lee,
-                    Devin Leamy and Enid Hwang
-                    <br />
-                    <br />
-                    Thank you to the amazing Biomes community.
-                    <br />
-                    <br />♥ The Biomes Team
-                    <div className="mx-auto mt-[12vh] flex flex-wrap items-center justify-center gap-[24px] pb-8 text-[18px] text-white/70">
-                      <a
-                        className="font-normal text-[inherit]"
-                        href="http://ill.inc"
-                      >
-                        &copy; {year} Global Illumination, Inc.
-                      </a>
-                      <a
-                        className="font-normal text-[inherit]"
-                        target="_blank"
-                        href="https://discord.gg/biomes"
-                        rel="noreferrer"
-                      >
-                        Discord
-                      </a>
-                      <a
-                        className="font-normal text-[inherit]"
-                        target="_blank"
-                        href="https://www.x.com/illdotinc"
-                        rel="noreferrer"
-                      >
-                        X
-                      </a>
-                      <a
-                        className="font-normal text-[inherit]"
-                        target="_blank"
-                        href="https://github.com/ill-inc/biomes-game"
-                        rel="noreferrer"
-                      >
-                        GitHub
-                      </a>
-                    </div>
+                    Oasis is brought to you by Silicon Soul.
                   </div>
                 </div>
               )}
