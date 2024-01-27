@@ -58,7 +58,8 @@ export default biomesApiHandler(
   },
   async ({ context, unsafeRequest, unsafeResponse }) => {
     log.info("Started biomesApiHandler");
-    if (context.config.assetServerMode === "proxy") {
+    // if (context.config.assetServerMode === "proxy") {
+    if (true) {
       log.info("Started forwardAssetRequest");
       await forwardAssetRequest(unsafeRequest, unsafeResponse);
       return DoNotSendResponse;
