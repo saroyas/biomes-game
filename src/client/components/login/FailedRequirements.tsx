@@ -23,7 +23,7 @@ export const FailedRequirements: React.FunctionComponent<{
       </div>
       <div className="dialog-contents text-center">
         <p>Sorry, your device is not yet supported.</p>
-        <p>Try Biomes on Desktop!</p>
+        <p>Try Oasis on Desktop!</p>
         <footer className="dialog-button-group">
           <DialogButton
             type="primary"

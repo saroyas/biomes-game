@@ -265,7 +265,7 @@ export const SplashPage: React.FunctionComponent<{
                         />
 
                         <div className="absolute bottom-[8px] left-[12px] select-none font-vt text-[18px] text-white text-shadow-bordered">
-                          Biomes Trailer 2:10
+                          Oasis Trailer 2:10
                         </div>
 
                         <div
