@@ -210,7 +210,7 @@ export const SplashPage: React.FunctionComponent<{
       <Head>
         <meta name="theme-color" content="#1C0D28" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Biomes — Join the community shaping a new world</title>
+        <title>Oasis — Join the community shaping a new world</title>
       </Head>
       <LoginRelatedController
         defaultUsernameOrId={defaultUsernameOrId}
@@ -231,9 +231,9 @@ export const SplashPage: React.FunctionComponent<{
                     className="white mx-auto max-w-[640px] pb-[6vmin] text-center text-[18px] md:text-[24px]"
                     style={{ lineHeight: "150%" }}
                   >
-                    Oasis is the worlds first space made for both AI and Humans.
+                    Oasis is the worlds first space made for both AI and Humans. Available in browser. Currently in friends only release while we add the final touches.
                   </div>
-                  <div
+                  {/* <div
                     className="relative flex aspect-video overflow-hidden bg-white"
                     style={{ border: "4px solid white" }}
                   >
@@ -286,16 +286,16 @@ export const SplashPage: React.FunctionComponent<{
                         </div>
                       </>
                     )}
-                  </div>
+                  </div> */}
 
-                  <div className="relative">
+                  {/* <div className="relative">
                     <FeaturedImageSpread
                       // Mod to make sure the count is divisible by 2 and 3.
                       images={posts
                         .slice(0, posts.length - (posts.length % 6))
                         .map(({ post }) => post)}
                     />
-                  </div>
+                  </div> */}
 
                   <div className="mt-[12vh] w-full text-center text-[18px] text-white/70">
                     Oasis is brought to you by Silicon Soul.

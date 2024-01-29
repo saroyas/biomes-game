@@ -17,7 +17,7 @@ export const BiomesHeadTag: React.FunctionComponent<BiomesHeadTagProps> = (
     props.description ??
     "Oasis is the worlds first space for both AI and Humans. Brought to you by Silicon Soul.";
 
-  const title = props.refinedTitle ? `${props.refinedTitle} | Oasis` : "Oais";
+  const title = props.refinedTitle ? `${props.refinedTitle} | Oasis` : "Oasis";
 
   const embedImage = props.embedImage ?? homeBg.src;
   const imageAlt = props.embedImage
