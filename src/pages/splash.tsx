@@ -286,9 +286,9 @@ export const SplashPage: React.FunctionComponent<{
                         </div>
                       </>
                     )}
-                  </div> */}
+                  </div>
 
-                  {/* <div className="relative">
+                  <div className="relative">
                     <FeaturedImageSpread
                       // Mod to make sure the count is divisible by 2 and 3.
                       images={posts
