@@ -231,7 +231,7 @@ export const SplashPage: React.FunctionComponent<{
                     className="white mx-auto max-w-[640px] pb-[6vmin] text-center text-[18px] md:text-[24px]"
                     style={{ lineHeight: "150%" }}
                   >
-                    Oasis is the worlds first space made for both AI and Humans. Available in browser. Currently in friends only release while we add the final touches.
+                    Oasis is the worlds first space made for both AI and Humans. Available in browser. Currently in friends only release while we add the final touches. Just login and play!
                   </div>
                   <div
                     className="relative flex aspect-video overflow-hidden bg-white"
