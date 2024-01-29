@@ -298,20 +298,20 @@ export const LoginFlowController: React.FunctionComponent<{
   );
 
   const PROD_LOGIN_METHODS: LoginMethod[] = [
-    {
-      name: "Twitch",
-      showByDefault: true,
-      icon: iconTwitch.src,
-      onLogin: () => doForeignLogin("twitch"),
-      onCreate: () => doForeignCreate("twitch"),
-    },
-    {
-      name: "Discord",
-      showByDefault: true,
-      icon: iconDiscord.src,
-      onLogin: () => doForeignLogin("discord"),
-      onCreate: () => doForeignCreate("discord"),
-    },
+    // {
+    //   name: "Twitch",
+    //   showByDefault: true,
+    //   icon: iconTwitch.src,
+    //   onLogin: () => doForeignLogin("twitch"),
+    //   onCreate: () => doForeignCreate("twitch"),
+    // },
+    // {
+    //   name: "Discord",
+    //   showByDefault: true,
+    //   icon: iconDiscord.src,
+    //   onLogin: () => doForeignLogin("discord"),
+    //   onCreate: () => doForeignCreate("discord"),
+    // },
     {
       name: "Google",
       icon: iconGoogle.src,
@@ -319,13 +319,13 @@ export const LoginFlowController: React.FunctionComponent<{
       onLogin: () => doForeignLogin("google"),
       onCreate: () => doForeignCreate("google"),
     },
-    {
-      name: "E-mail",
-      icon: iconEmail.src,
-      disclaimer: "Requires Invite Code",
-      onLogin: () => setStageAndClearError({ kind: "email-login" }),
-      onCreate: () => setStageAndClearError({ kind: "email-create" }),
-    },
+    // {
+    //   name: "E-mail",
+    //   icon: iconEmail.src,
+    //   disclaimer: "Requires Invite Code",
+    //   onLogin: () => setStageAndClearError({ kind: "email-login" }),
+    //   onCreate: () => setStageAndClearError({ kind: "email-create" }),
+    // },
   ];
 
   const DEV_LOGIN_METHODS: LoginMethod[] = [
@@ -340,7 +340,7 @@ export const LoginFlowController: React.FunctionComponent<{
 
   const LOGIN_METHODS: LoginMethod[] = [
     ...PROD_LOGIN_METHODS,
-    ...DEV_LOGIN_METHODS,
+    // ...DEV_LOGIN_METHODS,
   ];
 
   switch (stage.kind) {
