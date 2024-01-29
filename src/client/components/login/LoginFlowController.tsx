@@ -364,7 +364,7 @@ export const LoginFlowController: React.FunctionComponent<{
       return (
         <LoginMethodPicker
           error={error}
-          title={customTitle ?? "Biomes Early Access"}
+          title={customTitle ?? "Oasis Early Access"}
           disclaimer={signupDisclaimer}
           methods={LOGIN_METHODS}
         >
