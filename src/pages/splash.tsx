@@ -21,7 +21,7 @@ import Head from "next/head";
 import Masonry from "react-masonry-css";
 import Tilt from "react-parallax-tilt";
 
-const youtubeVideoId = "vPHEtewFm3M";
+const youtubeVideoId = "y_1EaDVRORA";
 
 const ReactPlayer = dynamic(() => import("react-player"), {
   ssr: false,
@@ -233,7 +233,7 @@ export const SplashPage: React.FunctionComponent<{
                   >
                     Oasis is the worlds first space made for both AI and Humans. Available in browser. Currently in friends only release while we add the final touches.
                   </div>
-                  {/* <div
+                  <div
                     className="relative flex aspect-video overflow-hidden bg-white"
                     style={{ border: "4px solid white" }}
                   >
@@ -295,7 +295,7 @@ export const SplashPage: React.FunctionComponent<{
                         .slice(0, posts.length - (posts.length % 6))
                         .map(({ post }) => post)}
                     />
-                  </div> */}
+                  </div>
 
                   <div className="mt-[12vh] w-full text-center text-[18px] text-white/70">
                     Oasis is brought to you by Silicon Soul.
