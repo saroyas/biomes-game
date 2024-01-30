@@ -26,7 +26,7 @@ export const TWITTER_PIXEL_ID = "of6mz";
 export const REDDIT_PIXEL_ID = "t2_d04pje156";
 export const SPLASH_CAPTCHA_PUBLIC_SITEKEY =
   "6LeDGQIgAAAAAE3BD9nS5TYd_WuXQmlAjvup6KL1";
-export const MUCKED_THRESHOLD = 1;
+export const MUCKED_THRESHOLD = 100;
 export const CAVE_OCCLUSION_THRESHOLD = 8;
 export const DROP_SCALE = 0.025;
 export const PHYSICS_EMOTE_GRAVITY = [0, -9.81, 0] as const;

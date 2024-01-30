@@ -40,7 +40,7 @@ describe("Item helpers", () => {
 
   it("isSplittableItem", () => {
     assert.ok(!isSplittableItem(undefined));
-    assert.ok(isSplittableItem(countOf(BikkieIds.bling, 10n)));
+    assert.ok(isSplittableItem(countOf(BikkieIds.bling, 1n)));
     assert.ok(isSplittableItem(countOf(BikkieIds.granite, 10n)));
     assert.ok(!isSplittableItem(countOf(BikkieIds.granite)));
   });

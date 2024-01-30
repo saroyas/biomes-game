@@ -20,7 +20,7 @@ export const playerInitEventHandler = makeEventHandler("playerInitEvent", {
     player.mutablePlayerStatus().init = true;
 
     const inventory = new PlayerInventoryEditor(context, player);
-    inventory.giveCurrency(BikkieIds.bling, 10n);
+    inventory.giveCurrency(BikkieIds.bling, 1000n);
   },
 });
 
