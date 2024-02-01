@@ -1,3 +1,4 @@
+import { newPlayer } from "@/server/logic/utils/players";
 import { dumpAllSyncServers } from "@/server/shared/sync";
 import { okOrAPIError } from "@/server/web/errors";
 import { applySourceMapToCallstack } from "@/server/web/source_maps";
@@ -101,7 +102,23 @@ export default biomesApiHandler(
           if (prefix !== "ClientInVoid" || !auth) {
             return "unknown";
           }
-          return (await worldApi.get(auth.userId))?.position()?.v;
+          const targetId = auth.userId;
+          okOrAPIError(targetId, "not_found");
+          const entity = await worldApi.get(targetId);
+          okOrAPIError(entity, "not_found");
+          const name = entity.label()?.text;
+          okOrAPIError(name, "not_found");
+
+          log.warn(`Admin fully resetting player ${targetId}`);
+          return worldApi.apply({
+            changes: [
+              {
+                kind: "create",
+                entity: newPlayer(auth.userId, name),
+              },
+            ],
+          });
+          // return (await worldApi.get(auth.userId))?.position()?.v;
         })(),
       }
     );
