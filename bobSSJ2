@@ -10,7 +10,7 @@ export DO_NOT_WAIT_FOR_GCE=1
 export BOB_ALWAYS_BUILD=1
 export BOB_DEPLOY=1
 export BOB_SKIP_LINT_AND_TEST=1
-export NODE_ENV=production
+export NODE_ENV=development
 export USE_PRODUCTION_SECRETS=0
 
 node dist/bob.js --workspace /workspaces/biomes-game
