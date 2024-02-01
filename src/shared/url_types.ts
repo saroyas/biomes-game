@@ -47,7 +47,7 @@ export function bucketURL(bucket: string, path: string, useCDN = true) {
   if (maybeVal?.realBucketName) {
     bucket = maybeVal?.realBucketName;
   }
-  return `https://storage.cloud.google.com/${bucket}/${stripLeadingSlash(
+  return `https://storage.googleapis.com/${bucket}/${stripLeadingSlash(
     path
   )}`;
 }
