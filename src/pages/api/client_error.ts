@@ -102,26 +102,7 @@ export default biomesApiHandler(
           if (prefix !== "ClientInVoid" || !auth) {
             return "unknown";
           }
-          //  wait a few seconds before the next step
-          // eslint-disable-next-line no-promise-executor-return
-          await new Promise((resolve) => setTimeout(resolve, 10000));
-          const targetId = auth.userId;
-          okOrAPIError(targetId, "not_found");
-          const entity = await worldApi.get(targetId);
-          okOrAPIError(entity, "not_found");
-          const name = entity.label()?.text;
-          okOrAPIError(name, "not_found");
-
-          log.warn(`Admin fully resetting player ${targetId}`);
-          return worldApi.apply({
-            changes: [
-              {
-                kind: "create",
-                entity: newPlayer(auth.userId, name),
-              },
-            ],
-          });
-          // return (await worldApi.get(auth.userId))?.position()?.v;
+          return (await worldApi.get(auth.userId))?.position()?.v;
         })(),
       }
     );
