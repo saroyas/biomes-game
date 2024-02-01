@@ -102,6 +102,9 @@ export default biomesApiHandler(
           if (prefix !== "ClientInVoid" || !auth) {
             return "unknown";
           }
+          //  wait a few seconds before the next step
+          // eslint-disable-next-line no-promise-executor-return
+          await new Promise((resolve) => setTimeout(resolve, 10000));
           const targetId = auth.userId;
           okOrAPIError(targetId, "not_found");
           const entity = await worldApi.get(targetId);
