@@ -10,8 +10,8 @@ interface CloudBucket {
 
 export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-social": {
-    cdnDomain: "social.oasis.siliconsoul.xyz",
-    realBucketName: "biomes-social.appspot.com",
+    // cdnDomain: "social.oasis.siliconsoul.xyz",
+    realBucketName: "oasis-social",
   },
   // Legacy
   "zones-social": {
@@ -28,7 +28,7 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-backup": { cdnDomain: undefined },
   // Where Bikkie binary data is stored. e.g. biomes-bikkie
   "biomes-bikkie": {
-    realBucketName: "biomes42.appspot.com",
+    realBucketName: "biomes43.appspot.com",
   },
 });
 
