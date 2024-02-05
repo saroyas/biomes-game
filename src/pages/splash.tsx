@@ -1,10 +1,8 @@
-import styles from "@/client/styles/new_site.module.css";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 
 import { WakeupMuckParticles } from "@/client/components/Particles";
 import { LoginRelatedController } from "@/client/components/static_site/LoginRelatedController";
 import { LoginRelatedControllerContext } from "@/client/components/static_site/LoginRelatedControllerContext";
-import { SplashHeader } from "@/client/components/static_site/SplashHeader";
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 
 import Head from "next/head";
@@ -16,57 +14,6 @@ export const getServerSideProps = async () => {
       primaryCTA: CONFIG.primaryCTA,
     },
   };
-};
-
-// Style objects for the component
-const styles2 = {
-  fullScreenContainer: {
-    height: "100vh",
-    width: "100%",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    color: "#fff",
-    backgroundColor: "#1C0D28",
-    position: "relative",
-    overflow: "hidden",
-  },
-  splashOverlay: {
-    zIndex: 2,
-    padding: "20px",
-    textAlign: "center",
-  },
-  contentWrapper: {
-    maxWidth: "600px",
-    margin: "0 auto",
-    paddingTop: "20vh",
-  },
-  title: {
-    fontSize: "2.5rem",
-    fontWeight: "bold",
-    marginBottom: "1rem",
-  },
-  subtitle: {
-    fontSize: "1.25rem",
-    marginBottom: "2rem",
-    lineHeight: "1.5",
-  },
-  primaryButton: {
-    fontSize: "1.25rem",
-    padding: "10px 20px",
-    backgroundColor: "#FFA500",
-    border: "none",
-    borderRadius: "5px",
-    cursor: "pointer",
-    color: "#1C0D28",
-    marginBottom: "2rem",
-  },
-  footerText: {
-    fontSize: "1rem",
-    color: "#fff",
-    opacity: 0.7,
-  },
 };
 
 // Style for the button in its default state
@@ -160,9 +107,9 @@ export const SplashPage: React.FunctionComponent<{
                         lineHeight: "1.5",
                       }}
                     >
-                      The worlds first space designed for both AI and Humans.
+                      The first world designed for both AI and Humans.
                       <br />
-                      Explore this new world straight from your browser.
+                      Explore this new reality straight from your browser.
                       <br />
                       Join our exclusive friends-only release.
                     </p>
