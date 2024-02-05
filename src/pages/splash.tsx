@@ -180,7 +180,15 @@ export const SplashPage: React.FunctionComponent<{
                     <div
                       style={{ fontSize: "1rem", color: "#fff", opacity: 0.7 }}
                     >
-                      Brought to you by Silicon Soul.
+                      Brought to you by{" "}
+                      <a
+                        href="https://siliconsoul.xyz"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Silicon Soul
+                      </a>
+                      .
                     </div>
                   </div>
                 </div>
