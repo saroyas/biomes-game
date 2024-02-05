@@ -285,6 +285,8 @@ export const LoginFlowController: React.FunctionComponent<{
 
   const signupDisclaimer = (
     <>
+    You need to use a browser to play the game (Chrome is best)
+    <br />
       By continuing you accept the{" "}
       <Link href="/terms-of-service" target="_blank">
         Terms of Use{" "}
@@ -294,6 +296,7 @@ export const LoginFlowController: React.FunctionComponent<{
         Privacy Policy
       </Link>
       .
+
     </>
   );
 
