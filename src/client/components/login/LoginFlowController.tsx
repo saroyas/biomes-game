@@ -288,11 +288,11 @@ export const LoginFlowController: React.FunctionComponent<{
     You need to use a browser to play the game (Chrome is best)
     <br />
       By continuing you accept the{" "}
-      <Link href="/terms-of-service" target="_blank">
+      <Link href="https://privacypolicy.siliconsoul.xyz/" target="_blank">
         Terms of Use{" "}
       </Link>
       and{" "}
-      <Link href="/privacy-policy" target="_blank">
+      <Link href="https://privacypolicy.siliconsoul.xyz/" target="_blank">
         Privacy Policy
       </Link>
       .
