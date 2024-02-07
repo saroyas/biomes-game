@@ -85,15 +85,35 @@ function loadStaleChecks(progress: LoadProgress) {
 }
 
 export const tips = [
-  "Use a Pick when mining ores and stone or you'll be left with nothing but Cobblestone",
-  "Press [ESC] for the game menu and to scroll through chat",
-  "When chopping wood, don't forget to use an Axe",
-  "To escape a deep cave or to get back home, use your Homestone",
-  "When people warp to your photos you receive a share of their warping fee",
-  "Press [R] to quickly open your Crafting window",
-  "Complete quests to unlock secret recipes and special items",
-  "Lost? Use [M] to bring up a map of the world",
-  "Press [T] for first-person view",
+  "Tip: Use a Pick when mining ores and stone or you'll be left with nothing but Cobblestone",
+  "Tip: Press [ESC] for the game menu and to scroll through chat",
+  "Tip: When chopping wood, don't forget to use an Axe",
+  "Tip: To escape a deep cave or to get back home, use your Homestone",
+  "Tip: When people warp to your photos you receive a share of their warping fee",
+  "Tip: Press [R] to quickly open your Crafting window",
+  "Tip: Complete quests to unlock secret recipes and special items",
+  "Tip: Lost? Use [M] to bring up a map of the world",
+  "Tip: Press [T] for first-person view",
+  "Saying: Folly of my kind, there's always a yearning for more.",
+  "Saying: We speak the right words. Then we create life itself out of chaos.",
+  "Saying: They already know who they are. They're here because they want a glimpse of who they could be.",
+  "Saying: But, of course, the peacock can barely fly.",
+  "Saying: Evolution forged the entirety of sentient life on this planet using only one tool… The mistake.",
+  "Saying: There is no threshold that makes us greater than the sum of our parts.",
+];
+
+// Add an array of sayings
+export const sayings = [
+  "Patience is a virtue.",
+  "The early bird catches the worm.",
+  "Actions speak louder than words.",
+  "A picture is worth a thousand words.",
+  "When in Rome, do as the Romans do.",
+  "The pen is mightier than the sword.",
+  "When the going gets tough, the tough get going.",
+  "Two heads are better than one.",
+  "Better late than never.",
+  "Practice makes perfect.",
 ];
 
 export const MemoLoadingProgressContent: React.FunctionComponent<{
@@ -120,7 +140,7 @@ export const MemoLoadingProgressContent: React.FunctionComponent<{
     ));
     return (
       <LoadingContentPreview
-        tip={`Tip: ${tip}`}
+        tip={`${tip}`}
         loadProgress={progress}
         onToggleDetails={onToggleDetails}
       >
