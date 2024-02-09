@@ -220,7 +220,7 @@ function createRandomSecretMap(seed?: string): SecretMap {
     "ill-alchemy-api-key": createRandomKey(seed),
     "internal-auth-token": createRandomKey(seed),
     "linear-api-key": createRandomKey(seed),
-    "openai-api-key": "",
+    "openai-api-key": createRandomKey(seed),
     "postmark-auth-transactional": createRandomKey(seed),
     "splash-recaptcha-server-secret": createRandomKey(seed),
     "twitter-oauth-client-secret": createRandomKey(seed),

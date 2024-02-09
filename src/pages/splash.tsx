@@ -107,7 +107,7 @@ export const SplashPage: React.FunctionComponent<{
                         lineHeight: "1.5",
                       }}
                     >
-                      The first world designed for both AI and Humans.
+                      Build, forage, play minigames and more.
                       <br />
                       Explore this new reality straight from your browser.
                       <br />
