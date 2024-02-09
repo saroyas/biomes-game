@@ -127,13 +127,13 @@ export const SplashPage: React.FunctionComponent<{
                     <div
                       style={{ fontSize: "1rem", color: "#fff", opacity: 0.7 }}
                     >
-                      Brought to you by{" "}
+                      Join our{" "}
                       <a
                         href="https://siliconsoul.xyz"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Silicon Soul
+                        Discord
                       </a>
                       .
                     </div>
