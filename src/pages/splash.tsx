@@ -129,7 +129,7 @@ export const SplashPage: React.FunctionComponent<{
                     >
                       Join our{" "}
                       <a
-                        href="https://siliconsoul.xyz"
+                        href="https://discord.gg/w75gmHbM"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
