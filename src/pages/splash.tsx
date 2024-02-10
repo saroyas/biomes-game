@@ -111,7 +111,7 @@ export const SplashPage: React.FunctionComponent<{
                       <br />
                       Explore this new reality straight from your browser.
                       <br />
-                      Join our exclusive friends-only release.
+                      Currently in beta play testing.
                     </p>
                     <div
                       style={{
