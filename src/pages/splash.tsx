@@ -137,19 +137,6 @@ export const SplashPage: React.FunctionComponent<{
                       </a>
                       .
                     </div>
-                    <div
-                      style={{ fontSize: "1rem", color: "#fff", opacity: 0.7 }}
-                    >
-                      Join our{" "}
-                      <a
-                        href="https://discord.gg/w75gmHbM"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Discord
-                      </a>
-                      .
-                    </div>
                   </div>
                 </div>
               )}
