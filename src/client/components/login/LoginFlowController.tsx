@@ -343,7 +343,7 @@ export const LoginFlowController: React.FunctionComponent<{
 
   const LOGIN_METHODS: LoginMethod[] = [
     ...PROD_LOGIN_METHODS,
-    // ...DEV_LOGIN_METHODS,
+    ...DEV_LOGIN_METHODS,
   ];
 
   switch (stage.kind) {

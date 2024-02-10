@@ -535,8 +535,8 @@ export class LazyDiscordBot implements DiscordBot {
 export async function registerDiscordBot<C extends { db: BDB }>(
   loader: RegistryLoader<C>
 ): Promise<DiscordBot> {
-  const enabled =
-    process.env.NODE_ENV === "production" || process.env.ALLOW_DEV_DISCORD;
+  const enabled = false;
+  // process.env.NODE_ENV === "production" || process.env.ALLOW_DEV_DISCORD;
   if (!enabled) {
     return new DisabledDiscordBot();
   }
