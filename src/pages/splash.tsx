@@ -129,7 +129,7 @@ export const SplashPage: React.FunctionComponent<{
                   }}
                 ></div>
               </div>
-              <WakeupMuckParticles />
+              {/* <WakeupMuckParticles /> */}
               {/* Use the showingModal state to conditionally render content */}
               {!loginRelatedControllerContext.showingModal && (
                 <div style={{ textAlign: "center" }}>
