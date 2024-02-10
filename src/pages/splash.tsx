@@ -158,7 +158,7 @@ export const SplashPage: React.FunctionComponent<{
                     >
                       Build, forage, play minigames and more.
                       <br />
-                      Explore this new reality straight from your browser.
+                      Explore this new community straight from your browser.
                       <br />
                       Currently in beta testing.
                     </p>
