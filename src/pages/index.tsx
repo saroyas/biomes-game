@@ -13,16 +13,14 @@ export interface BiomesHeadTagProps {
 export const BiomesHeadTag: React.FunctionComponent<BiomesHeadTagProps> = (
   props
 ) => {
-  const desc =
-    props.description ??
-    "Oasis is the worlds first space for both AI and Humans. Brought to you by Silicon Soul.";
+  const desc = props.description ?? "Oasis - A new world";
 
   const title = props.refinedTitle ? `${props.refinedTitle} | Oasis` : "Oasis";
 
   const embedImage = props.embedImage ?? homeBg.src;
   const imageAlt = props.embedImage
-    ? "Overhead view of a Biomes world"
-    : "People and animals standing on a hill in a Biomes world";
+    ? "Overhead view of a Oasis world"
+    : "People and animals standing on a hill in a Oasis world";
   const cardMode: BiomesHeadTagProps["cardMode"] =
     props.cardMode ?? "summary_large_image";
 
