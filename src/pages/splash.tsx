@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { WakeupMuckParticles } from "@/client/components/Particles";
 import { LoginRelatedController } from "@/client/components/static_site/LoginRelatedController";
@@ -6,6 +6,29 @@ import { LoginRelatedControllerContext } from "@/client/components/static_site/L
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 
 import Head from "next/head";
+
+const DynamicBackgroundVideo = () => {
+  const [videoSrc, setVideoSrc] = useState("");
+
+  useEffect(() => {
+    // Dynamically set the video source after component mounts
+    setVideoSrc("trailer.mp4");
+  }, []);
+
+  if (!videoSrc) return null; // Render nothing or a placeholder until videoSrc is set
+
+  return (
+    <video
+      autoPlay
+      muted
+      loop
+      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+    >
+      <source src={videoSrc} type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+  );
+};
 
 export const getServerSideProps = async () => {
   return {
@@ -80,6 +103,32 @@ export const SplashPage: React.FunctionComponent<{
         <LoginRelatedControllerContext.Consumer>
           {(loginRelatedControllerContext) => (
             <>
+              {/* Background video */}
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  overflow: "hidden",
+                  zIndex: -1,
+                }}
+              >
+                <DynamicBackgroundVideo />
+                {/* Dark translucent overlay */}
+                <div
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust opacity as needed
+                    zIndex: 2, // Ensure it's above the video but below everything else
+                  }}
+                ></div>
+              </div>
               <WakeupMuckParticles />
               {/* Use the showingModal state to conditionally render content */}
               {!loginRelatedControllerContext.showingModal && (
@@ -111,7 +160,7 @@ export const SplashPage: React.FunctionComponent<{
                       <br />
                       Explore this new reality straight from your browser.
                       <br />
-                      Currently in beta play testing.
+                      Currently in beta testing.
                     </p>
                     <div
                       style={{
