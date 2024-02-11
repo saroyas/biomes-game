@@ -22,6 +22,14 @@ async function main(rawId?: string) {
   );
 
   await api.healthy();
+
+  // await api.sendMessage({
+  //   from: id, // ID of the user sending the message
+  //   message: {
+  //     kind: "text", // Assuming a simple text message
+  //     content: "wassup my g",
+  //   },
+  // });
   const deliveries = await api.export(id);
 
   const countByChannel = new DefaultMap<string, number>(() => 0);
@@ -31,6 +39,7 @@ async function main(rawId?: string) {
       countByChannel.get(delivery.channelName) + (delivery.mail?.length ?? 0)
     );
     if (delivery.mail) {
+      log.info(`Channel: ${delivery.channelName}`);
       log.info(
         render(
           compactMap(delivery.mail, (m) =>
