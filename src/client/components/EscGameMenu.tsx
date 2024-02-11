@@ -112,8 +112,11 @@ export const EscGameMenu: React.FunctionComponent<{}> = React.memo(({}) => {
   }
 
   escapeActions.push({
-    name: "Give Feedback",
-    onClick: () => handleGiveFeedback(),
+    name: "Join Discord",
+    onClick: () => {
+      // Open the Discord invite link in a new tab or window
+      window.open("https://discord.gg/JWyjrp7ebb", "_blank");
+    },
   });
 
   return (

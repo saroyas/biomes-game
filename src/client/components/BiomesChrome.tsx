@@ -67,18 +67,16 @@ const TopRightHUD: React.FunctionComponent<{}> = ({}) => {
 };
 
 const ReportButton: React.FunctionComponent<{}> = ({}) => {
-  const { reactResources } = useClientContext();
+  // const { reactResources } = useClientContext();
   return (
     <>
       <div
         className="report-button-hud"
         onClick={() => {
-          reactResources.set("/game_modal", {
-            kind: "report_bug",
-          });
+          window.open("https://discord.gg/JWyjrp7ebb", "_blank");
         }}
       >
-        Report Issue
+        Dev Discord
       </div>
     </>
   );
