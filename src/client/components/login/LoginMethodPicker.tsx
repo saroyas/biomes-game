@@ -109,7 +109,7 @@ export const LoginMethodPicker: React.FunctionComponent<
                       />
                     )}
                     <div className="flex flex-1 flex-col">
-                      <div>Login with {name}</div>
+                      <div>Login with {name === "Dev" ? "Username" : name}</div>{" "}
                       {disclaimer && (
                         <div className="text-xs">{disclaimer}</div>
                       )}
