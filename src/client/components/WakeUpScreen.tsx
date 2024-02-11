@@ -26,6 +26,7 @@ import {
   PlayerInitEvent,
 } from "@/shared/ecs/gen/events";
 import { reportFunnelStage } from "@/shared/funnel";
+import { log } from "@/shared/logging";
 import { fireAndForget } from "@/shared/util/async";
 import { motion } from "framer-motion";
 import type { PropsWithChildren } from "react";
@@ -160,23 +161,47 @@ const WakeUpContent: React.FunctionComponent<{ onWakeup: () => void }> = ({
   });
   const [error, setError] = useError();
   const [savingName, setSavingName] = useState(false);
+  const [isFlagged, setIsFlagged] = useState(false); // To store moderation result
+
+  const checkNameForModeration = async (name: string) => {
+    try {
+      const response = await fetch("/api/moderation", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text: name }),
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      return data.flagged; // Assuming your API returns { flagged: boolean }
+    } catch (error) {
+      log.error("Error during moderation check:", { error });
+      return false; // Assume not flagged if there's an error, adjust as necessary
+    }
+  };
 
   const doUsernameSave = async () => {
-    if (nameEntry === reactResources.get("/ecs/c/label", userId)?.text) {
-      setState("character");
-      return;
-    }
-
     setSavingName(true);
-    try {
-      await saveUsername(nameEntry);
+    const flagged = await checkNameForModeration(nameEntry);
 
-      fireAndForget(socialManager.userInfoBundle(userId, true)); // Bust cache
-      setState("character");
-    } catch (error: any) {
-      setError(error);
-    } finally {
+    if (flagged) {
+      setError("This username is not allowed. Please choose another one.");
       setSavingName(false);
+      setIsFlagged(true); // Prevent proceeding if flagged
+    } else {
+      // Proceed with saving the username as before, if not flagged
+      try {
+        await saveUsername(nameEntry);
+        fireAndForget(socialManager.userInfoBundle(userId, true)); // Bust cache
+        setState("character");
+      } catch (error: any) {
+        setError(error);
+      } finally {
+        setSavingName(false);
+      }
     }
   };
 

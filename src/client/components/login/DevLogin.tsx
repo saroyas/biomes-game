@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import { DialogButton } from "@/client/components/system/DialogButton";
 import { MaybeError } from "@/client/components/system/MaybeError";
+import { log } from "@/shared/logging";
 
 export const DevLogin: React.FunctionComponent<{
   error?: any;
@@ -16,18 +17,25 @@ export const DevLogin: React.FunctionComponent<{
 
   const checkModeration = async (text: string) => {
     setModerationPending(true);
-    const response = await fetch("https://api.openai.com/v1/moderations", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization:
-          "Bearer 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", // Replace YOUR_API_KEY with your actual API key
-      },
-      body: JSON.stringify({ input: text }),
-    });
+    try {
+      const response = await fetch("/api/moderation", { // Update this line to your Next.js API route
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ text }),
+      });
 
-    const data = await response.json();
-    setIsFlagged(data.results[0].flagged);
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setIsFlagged(data.flagged); // Adjust according to the response structure
+    } catch (error) {
+      log.error("Error during moderation check:", error);
+      setIsFlagged(false); // Consider how you want to handle errors
+    }
     setModerationPending(false);
   };
 
