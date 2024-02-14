@@ -41,7 +41,7 @@ const SERVICE_DEFAULTS = {
     },
     {
       name: "DOMAIN",
-      value: "oasis.siliconsoul.xyz",
+      value: "oasis.silkencompute.com",
     },
   ],
 } as const;

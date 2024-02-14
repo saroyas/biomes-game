@@ -10,7 +10,7 @@ interface CloudBucket {
 
 export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-social": {
-    // cdnDomain: "social.oasis.siliconsoul.xyz",
+    // cdnDomain: "social.oasis.silkencompute.com",
     realBucketName: "oasis-social",
   },
   // Legacy
@@ -47,9 +47,7 @@ export function bucketURL(bucket: string, path: string, useCDN = true) {
   if (maybeVal?.realBucketName) {
     bucket = maybeVal?.realBucketName;
   }
-  return `https://storage.googleapis.com/${bucket}/${stripLeadingSlash(
-    path
-  )}`;
+  return `https://storage.googleapis.com/${bucket}/${stripLeadingSlash(path)}`;
 }
 
 export function localPath(bucket: CloudBucketKey, path: string) {

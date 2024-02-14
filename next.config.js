@@ -23,7 +23,7 @@ const withPWA =
 
 module.exports = withBundleAnalyzer(
   withPWA({
-    ...(isProd && { assetPrefix: "https://oasis.siliconsoul.xyz" }),
+    ...(isProd && { assetPrefix: "https://oasis.silkencompute.com" }),
 
     reactStrictMode: false,
     poweredByHeader: false,

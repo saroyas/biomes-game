@@ -96,7 +96,7 @@ export default biomesApiHandler(
       filename,
       Buffer.from(await response.arrayBuffer())
     );
-    const biomesUrl = `https://oasis.siliconsoul.xyz/${filename}`;
+    const biomesUrl = `https://oasis.silkencompute.com/${filename}`;
     const image = { url: biomesUrl };
     await db.collection("images-cache").doc(hash).set(image);
     await serverCache.set(

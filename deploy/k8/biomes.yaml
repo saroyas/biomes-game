@@ -67,7 +67,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -97,24 +97,24 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/web/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
-            - '-a'
+            - "-a"
             - local
           env:
             - name: POD_IP
@@ -122,35 +122,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -191,7 +191,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1.5'
+              cpu: "1.5"
         - name: nginx
           image: nginx:stable
           args: []
@@ -200,7 +200,7 @@ spec:
               mountPath: /etc/nginx
           resources:
             requests:
-              cpu: '1'
+              cpu: "1"
           ports:
             - name: nginx
               containerPort: 80
@@ -246,7 +246,7 @@ spec:
             config.linkerd.io/proxy-await: enabled
             config.linkerd.io/skip-outbound-ports: 6379,2379
             config.linkerd.io/skip-subnets: 169.254.169.254/32
-            config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+            config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
             kubectl.kubernetes.io/default-container: biomes
         spec:
           serviceAccountName: zones-backend
@@ -276,22 +276,22 @@ spec:
             - image: ssaros/biomes:latest
               name: biomes
               args:
-                - '-r'
+                - "-r"
                 - ts-node/register
                 - src/server/backup/main.ts
-                - '--bikkieCacheMode'
+                - "--bikkieCacheMode"
                 - redis
-                - '--biscuitMode'
+                - "--biscuitMode"
                 - redis2
-                - '--chatApiMode'
+                - "--chatApiMode"
                 - redis
-                - '--firehoseMode'
+                - "--firehoseMode"
                 - redis
-                - '--serverCacheMode'
+                - "--serverCacheMode"
                 - redis
-                - '--storageMode'
+                - "--storageMode"
                 - firestore
-                - '--worldApiMode'
+                - "--worldApiMode"
                 - hfc-hybrid
               env:
                 - name: POD_IP
@@ -299,35 +299,35 @@ spec:
                     fieldRef:
                       fieldPath: status.podIP
                 - name: CPU_COUNT
-                  value: '1'
+                  value: "1"
                 - name: NODE_OPTIONS
-                  value: '--openssl-legacy-provider --max-old-space-size=4096'
+                  value: "--openssl-legacy-provider --max-old-space-size=4096"
                 - name: GOOGLE_CLOUD_PROJECT
                   value: zones-cloud
                 - name: IS_SERVER
-                  value: 'true'
+                  value: "true"
                 - name: NEXT_TELEMETRY_DISABLED
-                  value: '1'
+                  value: "1"
                 - name: DETECT_GCP_RETRIES
-                  value: '3'
+                  value: "3"
                 - name: USE_REDIS_REPLICAS
-                  value: '0'
+                  value: "0"
                 - name: LD_PRELOAD
                   value: /usr/local/lib/libjemalloc.so.2
                 - name: USE_K8_REDIS
-                  value: '1'
+                  value: "1"
                 - name: DO_NOT_WAIT_FOR_GCE
-                  value: '1'
+                  value: "1"
                 - name: GOOGLE_APPLICATION_CREDENTIALS
                   value: /etc/secrets/gac
                 - name: MIRROR_ASSETS
-                  value: '0'
+                  value: "0"
                 - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
                   value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
                 - name: FIREBASE_PROJECT_ID
                   value: biomes43
                 - name: DOMAIN
-                  value: oasis.siliconsoul.xyz
+                  value: oasis.silkencompute.com
               volumeMounts:
                 - name: biomes-config
                   mountPath: /biomes
@@ -342,7 +342,7 @@ spec:
               resources:
                 requests:
                   memory: 4096Mi
-                  cpu: '1'
+                  cpu: "1"
           restartPolicy: Never
       activeDeadlineSeconds: 600
 ---
@@ -378,7 +378,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -408,22 +408,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/notify/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -431,35 +431,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '0.5'
+              value: "0.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=1024'
+              value: "--openssl-legacy-provider --max-old-space-size=1024"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -498,7 +498,7 @@ spec:
           resources:
             requests:
               memory: 1024Mi
-              cpu: '0.5'
+              cpu: "0.5"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -532,7 +532,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -562,22 +562,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/trigger/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -585,35 +585,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=2048'
+              value: "--openssl-legacy-provider --max-old-space-size=2048"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -652,7 +652,7 @@ spec:
           resources:
             requests:
               memory: 2048Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: v1
 kind: Service
@@ -718,7 +718,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -748,22 +748,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/chat/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -771,35 +771,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=1024'
+              value: "--openssl-legacy-provider --max-old-space-size=1024"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -838,7 +838,7 @@ spec:
           resources:
             requests:
               memory: 1024Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: v1
 kind: Service
@@ -904,7 +904,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -934,22 +934,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/logic/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -957,35 +957,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1026,7 +1026,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -1058,7 +1058,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -1088,22 +1088,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/bikkie/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -1111,37 +1111,37 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
             - name: STATEFUL_SET_REPLICAS
-              value: '1'
+              value: "1"
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1180,7 +1180,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: v1
 kind: Service
@@ -1246,7 +1246,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -1276,22 +1276,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/ask/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -1299,35 +1299,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1368,7 +1368,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1.5'
+              cpu: "1.5"
 ---
 apiVersion: v1
 kind: Service
@@ -1434,7 +1434,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -1464,22 +1464,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/balancer/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -1487,35 +1487,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '0.5'
+              value: "0.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=512'
+              value: "--openssl-legacy-provider --max-old-space-size=512"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -1556,7 +1556,7 @@ spec:
           resources:
             requests:
               memory: 512Mi
-              cpu: '0.5'
+              cpu: "0.5"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -1607,7 +1607,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -1637,24 +1637,24 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/gaia_v2/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
-            - '--simulations'
+            - "--simulations"
             - flora_decay
             - flora_growth
             - flora_muck
@@ -1666,25 +1666,25 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=6144'
+              value: "--openssl-legacy-provider --max-old-space-size=6144"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -1692,9 +1692,9 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: WASM_MEMORY
-              value: '4096'
+              value: "4096"
             - name: GAIA_SHARD_DOMAIN
               value: gaia-flora
             - name: SHARD_MANAGER_KIND
@@ -1737,7 +1737,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: "1.5"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -1788,7 +1788,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -1818,24 +1818,24 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/gaia_v2/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
-            - '--simulations'
+            - "--simulations"
             - muck
             - water
           env:
@@ -1844,25 +1844,25 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=6144'
+              value: "--openssl-legacy-provider --max-old-space-size=6144"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -1870,9 +1870,9 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: WASM_MEMORY
-              value: '4096'
+              value: "4096"
             - name: GAIA_SHARD_DOMAIN
               value: gaia-flow
             - name: SHARD_MANAGER_KIND
@@ -1915,7 +1915,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: "1.5"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -1966,7 +1966,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -1996,24 +1996,24 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/gaia_v2/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
-            - '--simulations'
+            - "--simulations"
             - irradiance
             - sky_occlusion
           env:
@@ -2022,25 +2022,25 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=6144'
+              value: "--openssl-legacy-provider --max-old-space-size=6144"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -2048,9 +2048,9 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: WASM_MEMORY
-              value: '4096'
+              value: "4096"
             - name: GAIA_SHARD_DOMAIN
               value: gaia-light
             - name: SHARD_MANAGER_KIND
@@ -2093,7 +2093,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: "1.5"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -2144,7 +2144,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -2174,24 +2174,24 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/gaia_v2/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
-            - '--simulations'
+            - "--simulations"
             - restoration
             - lifetime
             - ore_growth
@@ -2201,25 +2201,25 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=6144'
+              value: "--openssl-legacy-provider --max-old-space-size=6144"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -2227,9 +2227,9 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: WASM_MEMORY
-              value: '4096'
+              value: "4096"
             - name: GAIA_SHARD_DOMAIN
               value: gaia-restoration
             - name: SHARD_MANAGER_KIND
@@ -2272,7 +2272,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: "1.5"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -2323,7 +2323,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -2353,24 +2353,24 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/gaia_v2/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
-            - '--simulations'
+            - "--simulations"
             - farming
           env:
             - name: POD_IP
@@ -2378,25 +2378,25 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1.5'
+              value: "1.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=6144'
+              value: "--openssl-legacy-provider --max-old-space-size=6144"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
@@ -2404,9 +2404,9 @@ spec:
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: WASM_MEMORY
-              value: '4096'
+              value: "4096"
             - name: GAIA_SHARD_DOMAIN
               value: gaia-farming
             - name: SHARD_MANAGER_KIND
@@ -2449,7 +2449,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: "1.5"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2483,7 +2483,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -2513,22 +2513,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/map/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -2536,35 +2536,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=10240'
+              value: "--openssl-legacy-provider --max-old-space-size=10240"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -2603,7 +2603,7 @@ spec:
           resources:
             requests:
               memory: 10240Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2637,7 +2637,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -2667,22 +2667,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/newton/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -2690,25 +2690,25 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: SHARD_MANAGER_KIND
               value: distributed
           volumeMounts:
@@ -2749,7 +2749,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2783,7 +2783,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -2813,22 +2813,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/sidefx/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -2836,35 +2836,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -2903,7 +2903,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -2953,7 +2953,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -2983,22 +2983,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/anima/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -3006,27 +3006,27 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: ANIMA_HFC_WRITES
-              value: '1'
+              value: "1"
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3065,7 +3065,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '1'
+              cpu: "1"
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -3140,7 +3140,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -3170,22 +3170,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/spawn/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -3193,35 +3193,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '0.5'
+              value: "0.5"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=4096'
+              value: "--openssl-legacy-provider --max-old-space-size=4096"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3260,7 +3260,7 @@ spec:
           resources:
             requests:
               memory: 4096Mi
-              cpu: '0.5'
+              cpu: "0.5"
 ---
 apiVersion: v1
 kind: Service
@@ -3329,7 +3329,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -3359,22 +3359,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/oob/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -3382,27 +3382,27 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=1024'
+              value: "--openssl-legacy-provider --max-old-space-size=1024"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: PERMIT_ANONYMOUS
-              value: '1'
+              value: "1"
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3443,7 +3443,7 @@ spec:
           resources:
             requests:
               memory: 1024Mi
-              cpu: '1'
+              cpu: "1"
         - name: nginx
           image: nginx:stable
           args: []
@@ -3452,7 +3452,7 @@ spec:
               mountPath: /etc/nginx
           resources:
             requests:
-              cpu: '1'
+              cpu: "1"
           ports:
             - name: nginx
               containerPort: 80
@@ -3539,7 +3539,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -3569,22 +3569,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/sync/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -3592,35 +3592,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '2'
+              value: "2"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=2048'
+              value: "--openssl-legacy-provider --max-old-space-size=2048"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3663,7 +3663,7 @@ spec:
           resources:
             requests:
               memory: 2048Mi
-              cpu: '2'
+              cpu: "2"
 ---
 apiVersion: v1
 kind: Service
@@ -3732,7 +3732,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -3762,22 +3762,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/sync/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -3785,37 +3785,37 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '2'
+              value: "2"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=2048'
+              value: "--openssl-legacy-provider --max-old-space-size=2048"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
             - name: RO_SYNC
-              value: '1'
+              value: "1"
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -3858,7 +3858,7 @@ spec:
           resources:
             requests:
               memory: 2048Mi
-              cpu: '2'
+              cpu: "2"
 ---
 apiVersion: v1
 kind: Service
@@ -3927,7 +3927,7 @@ spec:
         config.linkerd.io/proxy-await: enabled
         config.linkerd.io/skip-outbound-ports: 6379,2379
         config.linkerd.io/skip-subnets: 169.254.169.254/32
-        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: '60'
+        config.alpha.linkerd.io/proxy-wait-before-exit-seconds: "60"
         kubectl.kubernetes.io/default-container: biomes
     spec:
       serviceAccountName: zones-backend
@@ -3957,22 +3957,22 @@ spec:
         - image: ssaros/biomes:latest
           name: biomes
           args:
-            - '-r'
+            - "-r"
             - ts-node/register
             - src/server/web/main.ts
-            - '--bikkieCacheMode'
+            - "--bikkieCacheMode"
             - redis
-            - '--biscuitMode'
+            - "--biscuitMode"
             - redis2
-            - '--chatApiMode'
+            - "--chatApiMode"
             - redis
-            - '--firehoseMode'
+            - "--firehoseMode"
             - redis
-            - '--serverCacheMode'
+            - "--serverCacheMode"
             - redis
-            - '--storageMode'
+            - "--storageMode"
             - firestore
-            - '--worldApiMode'
+            - "--worldApiMode"
             - hfc-hybrid
           env:
             - name: POD_IP
@@ -3980,35 +3980,35 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: CPU_COUNT
-              value: '1'
+              value: "1"
             - name: NODE_OPTIONS
-              value: '--openssl-legacy-provider --max-old-space-size=1500'
+              value: "--openssl-legacy-provider --max-old-space-size=1500"
             - name: GOOGLE_CLOUD_PROJECT
               value: zones-cloud
             - name: IS_SERVER
-              value: 'true'
+              value: "true"
             - name: NEXT_TELEMETRY_DISABLED
-              value: '1'
+              value: "1"
             - name: DETECT_GCP_RETRIES
-              value: '3'
+              value: "3"
             - name: USE_REDIS_REPLICAS
-              value: '0'
+              value: "0"
             - name: LD_PRELOAD
               value: /usr/local/lib/libjemalloc.so.2
             - name: USE_K8_REDIS
-              value: '1'
+              value: "1"
             - name: DO_NOT_WAIT_FOR_GCE
-              value: '1'
+              value: "1"
             - name: GOOGLE_APPLICATION_CREDENTIALS
               value: /etc/secrets/gac
             - name: MIRROR_ASSETS
-              value: '0'
+              value: "0"
             - name: FIREBASE_SERVICE_ACCOUNT_EMAIL
               value: firebase-adminsdk-iebzy@biomes43.iam.gserviceaccount.com
             - name: FIREBASE_PROJECT_ID
               value: biomes43
             - name: DOMAIN
-              value: oasis.siliconsoul.xyz
+              value: oasis.silkencompute.com
           volumeMounts:
             - name: biomes-config
               mountPath: /biomes
@@ -4049,7 +4049,7 @@ spec:
           resources:
             requests:
               memory: 1500Mi
-              cpu: '1'
+              cpu: "1"
         - name: nginx
           image: nginx:stable
           args: []
@@ -4058,7 +4058,7 @@ spec:
               mountPath: /etc/nginx
           resources:
             requests:
-              cpu: '1'
+              cpu: "1"
           ports:
             - name: nginx
               containerPort: 80
