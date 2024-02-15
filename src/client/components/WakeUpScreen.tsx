@@ -28,6 +28,7 @@ import {
 import { reportFunnelStage } from "@/shared/funnel";
 import { log } from "@/shared/logging";
 import { fireAndForget } from "@/shared/util/async";
+import { containsProfanity } from "@/shared/util/profanity";
 import { motion } from "framer-motion";
 import type { PropsWithChildren } from "react";
 import { useEffect, useState } from "react";
@@ -185,23 +186,30 @@ const WakeUpContent: React.FunctionComponent<{ onWakeup: () => void }> = ({
 
   const doUsernameSave = async () => {
     setSavingName(true);
-    const flagged = await checkNameForModeration(nameEntry);
-
-    if (flagged) {
+    const flaggedByModeration = await checkNameForModeration(nameEntry);
+    if (flaggedByModeration) {
       setError("This username is not allowed. Please choose another one.");
       setSavingName(false);
       setIsFlagged(true); // Prevent proceeding if flagged
-    } else {
-      // Proceed with saving the username as before, if not flagged
-      try {
-        await saveUsername(nameEntry);
-        fireAndForget(socialManager.userInfoBundle(userId, true)); // Bust cache
-        setState("character");
-      } catch (error: any) {
-        setError(error);
-      } finally {
-        setSavingName(false);
-      }
+      return; // Stop the process here if flagged by moderation
+    }
+
+    // Next, check the name for profanity
+    if (containsProfanity(nameEntry)) {
+      setError("Username contains profanity. Please choose another one.");
+      setSavingName(false);
+      setIsFlagged(true); // Prevent proceeding if contains profanity
+      return; // Stop the process here if contains profanity
+    }
+
+    try {
+      await saveUsername(nameEntry);
+      fireAndForget(socialManager.userInfoBundle(userId, true)); // Bust cache
+      setState("character");
+    } catch (error: any) {
+      setError(error);
+    } finally {
+      setSavingName(false);
     }
   };
 
