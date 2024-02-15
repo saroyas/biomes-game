@@ -35,6 +35,26 @@ import React, {
   useState,
 } from "react";
 
+async function checkMessageForModeration(message: any) {
+  try {
+    const response = await fetch("/api/moderation", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text: message }),
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+    const data = await response.json();
+    return data.flagged; // Assuming the API returns { flagged: boolean }
+  } catch (error) {
+    log("Error during moderation check:", error);
+    return false; // Assume not flagged if there's an error, adjust as necessary
+  }
+}
+
 interface ChatAutocompleteCommand {
   command: string;
   description?: string;
@@ -246,6 +266,14 @@ const ChatInput: React.FunctionComponent<{
 
     if (input.length === 0) {
       return;
+    }
+
+    const isFlagged = await checkMessageForModeration(input);
+    if (isFlagged) {
+      // Handle flagged message here
+      // For example, alert the user or log the attempt
+      log.info("This message is not allowed due to content moderation.");
+      return; // Do not proceed with message submission
     }
 
     if (isCommand(input)) {
