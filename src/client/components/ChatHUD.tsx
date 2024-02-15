@@ -45,12 +45,12 @@ async function checkMessageForModeration(message: any) {
       body: JSON.stringify({ text: message }),
     });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      return false;
     }
     const data = await response.json();
     return data.flagged; // Assuming the API returns { flagged: boolean }
   } catch (error) {
-    log("Error during moderation check:", error);
+    log.info("Error during moderation check:", { error });
     return false; // Assume not flagged if there's an error, adjust as necessary
   }
 }
