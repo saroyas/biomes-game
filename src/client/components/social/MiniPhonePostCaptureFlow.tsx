@@ -171,6 +171,7 @@ export const MiniPhonePostCaptureFlow: React.FunctionComponent<{
           <DialogButton onClick={downloadPhoto} disabled={uploading}>
             Download
           </DialogButton>
+          <br />
           <DialogButton
             type="primary"
             onClick={() => uploadFeedPost()}
