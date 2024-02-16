@@ -50,6 +50,15 @@ export const MiniPhonePostCaptureFlow: React.FunctionComponent<{
   const captionField = useRef<HTMLTextAreaElement>(null);
   const allowWarping = true;
 
+  const downloadPhoto = useCallback(() => {
+    const link = document.createElement("a");
+    link.href = item.photoDataURI; // Assuming this is a base64 encoded string
+    link.download = "photo.png"; // Provide a default filename for the photo
+    document.body.appendChild(link); // Append to body to ensure it can be clicked
+    link.click();
+    document.body.removeChild(link); // Clean up
+  }, [item.photoDataURI]);
+
   const uploadFeedPost = useCallback(async () => {
     setUploading(true);
     const caption = captionField.current ? captionField.current.value : "";
@@ -159,6 +168,9 @@ export const MiniPhonePostCaptureFlow: React.FunctionComponent<{
           </form>
         </div>
         <PaneBottomDock>
+          <DialogButton onClick={downloadPhoto} disabled={uploading}>
+            Download
+          </DialogButton>
           <DialogButton
             type="primary"
             onClick={() => uploadFeedPost()}
