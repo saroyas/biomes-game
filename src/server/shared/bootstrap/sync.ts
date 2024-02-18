@@ -21,8 +21,8 @@ import { ok } from "assert";
 export async function determineEmployeeUserId(): Promise<BiomesId> {
   const account = await getGCloudAccount();
   switch (account) {
-    case "shehryarsaroya@gmail.com":
-      return 3367621663064746 as BiomesId; // Shehryar
+    case "n@ill.inc":
+      return 8521385202672319 as BiomesId; // Nick
     case "a@ill.inc":
       return 8521385202672316 as BiomesId; // akarpenko
     case "j@ill.inc":
@@ -48,9 +48,9 @@ export async function determineEmployeeUserId(): Promise<BiomesId> {
 export async function safeDetermineEmployeeUserId(): Promise<
   BiomesId | undefined
 > {
-  // if (process.env.NODE_ENV === "production") {
-  //   return;
-  // }
+  if (process.env.NODE_ENV === "production") {
+    return;
+  }
   try {
     return await determineEmployeeUserId();
   } catch {
