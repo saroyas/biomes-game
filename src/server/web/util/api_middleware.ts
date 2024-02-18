@@ -176,24 +176,24 @@ export function biomesApiHandler<TConfig extends AnyApiEndpointConfig>(
           res: NextApiResponse
         ) => {
           // Check biomes auth is as required.
-          if (
-            process.env.OPEN_ADMIN_ACCESS !== "1" &&
-            config.auth !== "optional" &&
-            config.auth !== "developer_api"
-          ) {
-            okOrAPIError(req.authedToken, "unauthorized", "Not logged in");
-            if (config.auth === "admin") {
-              const userEntity = await req.context.worldApi.get(
-                req.authedToken.userId
-              );
-              if (!evaluateRole(userEntity?.userRoles()?.roles, "admin")) {
-                log.warn("Unauthorized attempt at admin endpoint", {
-                  userId: req.authedToken.userId,
-                });
-                throw new APIError("unauthorized");
-              }
-            }
-          }
+          // if (
+          //   process.env.OPEN_ADMIN_ACCESS !== "1" &&
+          //   config.auth !== "optional" &&
+          //   config.auth !== "developer_api"
+          // ) {
+          //   okOrAPIError(req.authedToken, "unauthorized", "Not logged in");
+          //   if (config.auth === "admin") {
+          //     const userEntity = await req.context.worldApi.get(
+          //       req.authedToken.userId
+          //     );
+          //     if (!evaluateRole(userEntity?.userRoles()?.roles, "admin")) {
+          //       log.warn("Unauthorized attempt at admin endpoint", {
+          //         userId: req.authedToken.userId,
+          //       });
+          //       throw new APIError("unauthorized");
+          //     }
+          //   }
+          // }
 
           if (config.auth === "developer_api") {
             // TODO: check for API key here
