@@ -72,17 +72,17 @@ export function biomesGetServerSideProps<
           return maybeRedirect;
         }
         okOrAPIError(!token.error, "unauthorized");
-        if (config.auth === "admin") {
-          const userEntity = await webServerRequest.context.worldApi.get(
-            token.auth.userId
-          );
-          if (!evaluateRole(userEntity?.userRoles()?.roles, "admin")) {
-            log.warn("Unauthorized attempt at admin endpoint", {
-              userId: token.auth.userId,
-            });
-            throw new APIError("unauthorized");
-          }
-        }
+        // if (config.auth === "admin") {
+        //   const userEntity = await webServerRequest.context.worldApi.get(
+        //     token.auth.userId
+        //   );
+        //   if (!evaluateRole(userEntity?.userRoles()?.roles, "admin")) {
+        //     log.warn("Unauthorized attempt at admin endpoint", {
+        //       userId: token.auth.userId,
+        //     });
+        //     throw new APIError("unauthorized");
+        //   }
+        // }
       }
       return await handler({
         config,
