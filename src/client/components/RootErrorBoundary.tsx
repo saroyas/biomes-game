@@ -134,7 +134,7 @@ const UnknownErrorDialog: React.FunctionComponent<{
       <DialogBoxContents>
         <MaybeError error={message} />
         <div className="full-page-error-description">
-          Something went wrong in Biomes. Our engineering team has been alerted.
+          Something went wrong in Oasis. Our engineering team has been alerted.
           We recommend you try refreshing your browser.
         </div>
         <div className="dialog-button-group">
