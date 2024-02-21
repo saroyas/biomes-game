@@ -160,7 +160,7 @@ export const SplashPage: React.FunctionComponent<{
                       <br />
                       Explore this new community straight from your browser.
                       <br />
-                      Currently in beta testing.
+                      Currently in early beta testing. Things will break.
                     </p>
                     <div
                       style={{
