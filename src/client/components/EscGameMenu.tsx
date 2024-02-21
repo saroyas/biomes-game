@@ -115,7 +115,7 @@ export const EscGameMenu: React.FunctionComponent<{}> = React.memo(({}) => {
     name: "Join Discord",
     onClick: () => {
       // Open the Discord invite link in a new tab or window
-      window.open("https://discord.gg/JWyjrp7ebb", "_blank");
+      window.open("https://discord.gg/yAdTWu2C", "_blank");
     },
   });
 

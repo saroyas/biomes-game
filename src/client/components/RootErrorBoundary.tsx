@@ -135,7 +135,17 @@ const UnknownErrorDialog: React.FunctionComponent<{
         <MaybeError error={message} />
         <div className="full-page-error-description">
           Something went wrong in Oasis. Our engineering team has been alerted.
-          We recommend you try refreshing your browser.
+          We are currently working to resolve the issue. We recommend you try
+          refreshing your browser. If you need further assistance, please visit
+          our
+          <a
+            href="https://discord.gg/yAdTWu2C"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Discord
+          </a>
+          .
         </div>
         <div className="dialog-button-group">
           <RefreshButton type="primary" busy={busy} setBusy={setBusy} />
