@@ -134,10 +134,10 @@ const UnknownErrorDialog: React.FunctionComponent<{
       <DialogBoxContents>
         <MaybeError error={message} />
         <div className="full-page-error-description">
-          Something went wrong in Oasis. Our engineering team has been alerted.
-          We are currently working to resolve the issue. We recommend you try
-          refreshing your browser. If you need further assistance, please visit
-          our
+          Something is temporarily broken in Oasis. <br />
+          We are currently working to resolve the issue. <br />
+          Please return in a few hours. <br />
+          You can follow the dev discussion on{" "}
           <a
             href="https://discord.gg/yAdTWu2C"
             target="_blank"
