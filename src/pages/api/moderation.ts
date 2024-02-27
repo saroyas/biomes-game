@@ -34,7 +34,7 @@ export default async function handler(
       const data: ModerationResponse = await response.json();
 
       // Check if the text was flagged and return the boolean result
-      const flagged = data.results[0].flagged;
+      const flagged = data.results[0].flagged || text === "saros";
       res.status(200).json({ flagged });
     } catch (error: any) {
       log.error("Moderation API error:", error);
