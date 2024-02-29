@@ -425,7 +425,7 @@ const DEFAULT_CONFIG = deepFreeze({
   // How quickly to step muck values in a single update
   gaiaV2MuckSimStepSize: 7,
   // How many missing shards to tolerate
-  gaiaV2MissingShardsThreshold: 999999, // yolo
+  gaiaV2MissingShardsThreshold: 0, // yolo
   // Gaia shutdown delay
   // When shutting down we release shards, then we push our hipri queue so others can
   // handle it, this is they delay before we do that push (giving time for the balancer
