@@ -6,7 +6,7 @@ import { biomesApiHandler } from "@/server/web/util/api_middleware";
 
 export default biomesApiHandler(
   {
-    auth: "admin",
+    auth: "optional",
     response: zStoredBakedTray,
     zrpc: true,
   },

@@ -285,6 +285,7 @@ async function fixItems(backupFile: string) {
     if (Object.keys(assignment).length > 0) {
       definitions.push({ id: biscuit.id, attributes: assignment });
     }
+    log.info(`Read ${biscuit.name}`);
   }
   if (definitions.length > 0) {
     log.info(`Updating ${definitions.length} biscuits...`);
@@ -301,274 +302,274 @@ async function fixItems(backupFile: string) {
     await triggerProdBake("fix_items script was run");
   }
 
-  log.info("Migrating ECS entities...");
-  const itemNeedsMigration = (item?: Item): item is Item => {
-    if (!item) {
-      return false;
-    }
-    return item.id !== idMap.get(item.id) || keys(item.payload).length > 0;
-  };
+  // log.info("Migrating ECS entities...");
+  // const itemNeedsMigration = (item?: Item): item is Item => {
+  //   if (!item) {
+  //     return false;
+  //   }
+  //   return item.id !== idMap.get(item.id) || keys(item.payload).length > 0;
+  // };
 
-  const itemAndCountNeedsMigration = (itemAndCount?: ItemAndCount) => {
-    if (!itemAndCount) {
-      return false;
-    }
-    return itemNeedsMigration(itemAndCount.item);
-  };
+  // const itemAndCountNeedsMigration = (itemAndCount?: ItemAndCount) => {
+  //   if (!itemAndCount) {
+  //     return false;
+  //   }
+  //   return itemNeedsMigration(itemAndCount.item);
+  // };
 
-  const migrateItem = (item: Item) => {
-    const id = idMap.get(item.id);
-    if (id === 7539420629350486 && item.payload) {
-      // Environment group
-      let name: string | undefined;
-      let groupId = 0;
-      let orientation: number | undefined;
-      for (const key in item.payload) {
-        const value = item.payload[key];
-        if (typeof value === "number" && value > 1000) {
-          groupId = value;
-        } else if (typeof value === "string") {
-          name = value;
-        } else if (typeof value === "number") {
-          orientation = value;
-        }
-      }
-      return anItem({
-        id,
-        payload: removeFalsyInPlace({
-          [attribs.groupId.id]: groupId,
-          [attribs.displayName.id]: name,
-          [attribs.rotation.id]: orientation,
-        }),
-      });
-    }
-    return anItem({
-      id: idMap.get(item.id),
-      payload: mapKeys(item.payload, (_value, key) => {
-        const original = parseInt(key);
-        return original < 200 ? original + 200 : original;
-      }),
-    });
-  };
+  // const migrateItem = (item: Item) => {
+  //   const id = idMap.get(item.id);
+  //   if (id === 7539420629350486 && item.payload) {
+  //     // Environment group
+  //     let name: string | undefined;
+  //     let groupId = 0;
+  //     let orientation: number | undefined;
+  //     for (const key in item.payload) {
+  //       const value = item.payload[key];
+  //       if (typeof value === "number" && value > 1000) {
+  //         groupId = value;
+  //       } else if (typeof value === "string") {
+  //         name = value;
+  //       } else if (typeof value === "number") {
+  //         orientation = value;
+  //       }
+  //     }
+  //     return anItem({
+  //       id,
+  //       payload: removeFalsyInPlace({
+  //         [attribs.groupId.id]: groupId,
+  //         [attribs.displayName.id]: name,
+  //         [attribs.rotation.id]: orientation,
+  //       }),
+  //     });
+  //   }
+  //   return anItem({
+  //     id: idMap.get(item.id),
+  //     payload: mapKeys(item.payload, (_value, key) => {
+  //       const original = parseInt(key);
+  //       return original < 200 ? original + 200 : original;
+  //     }),
+  //   });
+  // };
 
-  const migrateItemAndCount = (itemAndCount: ItemAndCount) => {
-    const { item, count } = itemAndCount;
-    return {
-      item: migrateItem(item),
-      count,
-    };
-  };
+  // const migrateItemAndCount = (itemAndCount: ItemAndCount) => {
+  //   const { item, count } = itemAndCount;
+  //   return {
+  //     item: migrateItem(item),
+  //     count,
+  //   };
+  // };
 
-  const bagNeedsMigration = (bag?: ReadonlyItemBag): bag is ReadonlyItemBag => {
-    if (!bag) {
-      return false;
-    }
-    for (const itemAndCount of bag.values()) {
-      if (itemAndCountNeedsMigration(itemAndCount)) {
-        return true;
-      }
-    }
-    return false;
-  };
+  // const bagNeedsMigration = (bag?: ReadonlyItemBag): bag is ReadonlyItemBag => {
+  //   if (!bag) {
+  //     return false;
+  //   }
+  //   for (const itemAndCount of bag.values()) {
+  //     if (itemAndCountNeedsMigration(itemAndCount)) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
 
-  const migrateBag = (bag: ReadonlyItemBag) => {
-    return createBag(
-      ...mapMap(bag, (itemAndCount) => migrateItemAndCount(itemAndCount))
-    );
-  };
+  // const migrateBag = (bag: ReadonlyItemBag) => {
+  //   return createBag(
+  //     ...mapMap(bag, (itemAndCount) => migrateItemAndCount(itemAndCount))
+  //   );
+  // };
 
-  const setNeedsMigration = (set?: ReadonlyItemSet): set is ReadonlyItemSet => {
-    if (!set) {
-      return false;
-    }
-    for (const item of set.values()) {
-      if (itemNeedsMigration(item)) {
-        return true;
-      }
-    }
-    return false;
-  };
+  // const setNeedsMigration = (set?: ReadonlyItemSet): set is ReadonlyItemSet => {
+  //   if (!set) {
+  //     return false;
+  //   }
+  //   for (const item of set.values()) {
+  //     if (itemNeedsMigration(item)) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // };
 
-  const migrateSet = (set: ReadonlyItemSet) => {
-    const newItems: Item[] = [];
-    for (const item of set.values()) {
-      newItems.push(migrateItem(item));
-    }
-    return createItemSet(...newItems);
-  };
+  // const migrateSet = (set: ReadonlyItemSet) => {
+  //   const newItems: Item[] = [];
+  //   for (const item of set.values()) {
+  //     newItems.push(migrateItem(item));
+  //   }
+  //   return createItemSet(...newItems);
+  // };
 
-  const containerNeedsMigration = (
-    container?: ReadonlyItemContainer
-  ): container is ReadonlyItemContainer => {
-    return (
-      container?.some((itemAndCount) =>
-        itemAndCountNeedsMigration(itemAndCount)
-      ) ?? false
-    );
-  };
+  // const containerNeedsMigration = (
+  //   container?: ReadonlyItemContainer
+  // ): container is ReadonlyItemContainer => {
+  //   return (
+  //     container?.some((itemAndCount) =>
+  //       itemAndCountNeedsMigration(itemAndCount)
+  //     ) ?? false
+  //   );
+  // };
 
-  const migrateContainer = (container: ReadonlyItemContainer) => {
-    return container.map((itemAndCount) =>
-      itemAndCount ? migrateItemAndCount(itemAndCount) : itemAndCount
-    );
-  };
+  // const migrateContainer = (container: ReadonlyItemContainer) => {
+  //   return container.map((itemAndCount) =>
+  //     itemAndCount ? migrateItemAndCount(itemAndCount) : itemAndCount
+  //   );
+  // };
 
-  if (backupFile) {
-    await migrateEntities(
-      backupFile,
-      (entity) =>
-        !!(
-          entity.grab_bag ||
-          entity.acquisition ||
-          entity.loose_item ||
-          entity.inventory ||
-          entity.wearing ||
-          entity.container_inventory ||
-          entity.priced_container_inventory ||
-          entity.selected_item ||
-          entity.appearance_component ||
-          entity.recipe_book ||
-          entity.buffs_component ||
-          entity.placeable_component ||
-          entity.lifetime_stats ||
-          entity.farming_plant_component
-        ),
-      (entity) => {
-        if (bagNeedsMigration(entity.grabBag()?.slots)) {
-          entity.mutableGrabBag().slots = migrateBag(entity.grabBag()!.slots);
-        }
-        if (bagNeedsMigration(entity.acquisition()?.items)) {
-          entity.mutableAcquisition().items = migrateBag(
-            entity.acquisition()!.items
-          );
-        }
-        if (itemNeedsMigration(entity.looseItem()?.item)) {
-          entity.mutableLooseItem().item = migrateItem(
-            entity.looseItem()!.item
-          );
-        }
-        if (containerNeedsMigration(entity.inventory()?.items)) {
-          entity.mutableInventory().items = migrateContainer(
-            entity.inventory()!.items
-          );
-        }
-        if (bagNeedsMigration(entity.inventory()?.currencies)) {
-          entity.mutableInventory().currencies = migrateBag(
-            entity.inventory()!.currencies
-          );
-        }
-        if (containerNeedsMigration(entity.inventory()?.hotbar)) {
-          entity.mutableInventory().hotbar = migrateContainer(
-            entity.inventory()!.hotbar
-          );
-        }
-        if (bagNeedsMigration(entity.inventory()?.overflow)) {
-          entity.mutableInventory().overflow = migrateBag(
-            entity.inventory()!.overflow
-          );
-        }
-        if (containerNeedsMigration(entity.containerInventory()?.items)) {
-          entity.mutableContainerInventory().items = migrateContainer(
-            entity.containerInventory()!.items
-          );
-        }
-        if (
-          entity
-            .pricedContainerInventory()
-            ?.items.some(
-              (i) =>
-                i &&
-                (itemAndCountNeedsMigration(i.contents) ||
-                  itemAndCountNeedsMigration(i.price))
-            )
-        ) {
-          entity.mutablePricedContainerInventory().items = entity
-            .pricedContainerInventory()!
-            .items.map((i) => {
-              if (!i) {
-                return i;
-              }
-              return {
-                contents: migrateItemAndCount(i.contents),
-                price: migrateItemAndCount(i.price),
-                seller_id: i.seller_id,
-              };
-            });
-        }
-        if (itemAndCountNeedsMigration(entity.selectedItem()?.item)) {
-          entity.mutableSelectedItem().item = migrateItemAndCount(
-            entity.selectedItem()!.item!
-          );
-        }
-        if (
-          someMap(
-            entity.wearing()?.items ?? new Map(),
-            (i, k) => k !== idMap.get(k) || itemNeedsMigration(i)
-          )
-        ) {
-          entity.mutableWearing().items = new Map(
-            mapMap(entity.wearing()!.items, (v, k) => [
-              idMap.get(k),
-              migrateItem(v),
-            ])
-          );
-        }
-        if (
-          entity.appearanceComponent()?.appearance.head_id &&
-          entity.appearanceComponent()!.appearance.head_id !==
-            idMap.get(entity.appearanceComponent()!.appearance.head_id)
-        ) {
-          entity.mutableAppearanceComponent().appearance.head_id = idMap.get(
-            entity.appearanceComponent()!.appearance.head_id
-          );
-        }
-        if (setNeedsMigration(entity.recipeBook()?.recipes)) {
-          entity.mutableRecipeBook().recipes = migrateSet(
-            entity.recipeBook()!.recipes
-          );
-        }
-        if (
-          entity
-            .buffsComponent()
-            ?.buffs.some((b) => b.item_id !== idMap.get(b.item_id))
-        ) {
-          entity.mutableBuffsComponent().buffs = entity
-            .buffsComponent()!
-            .buffs.map((b) => ({
-              ...b,
-              item_id: idMap.get(b.item_id),
-            }));
-        }
-        if (
-          entity.placeableComponent()?.item_id &&
-          entity.placeableComponent()!.item_id !==
-            idMap.get(entity.placeableComponent()!.item_id)
-        ) {
-          entity.mutablePlaceableComponent().item_id = idMap.get(
-            entity.placeableComponent()!.item_id
-          );
-        }
-        if (
-          someMap(entity.lifetimeStats()?.stats ?? new Map(), (v) =>
-            bagNeedsMigration(v)
-          )
-        ) {
-          entity.mutableLifetimeStats().stats = new Map(
-            mapMap(entity.lifetimeStats()!.stats, (v, k) => [k, migrateBag(v)])
-          );
-        }
-        if (
-          entity.farmingPlantComponent()?.seed &&
-          entity.farmingPlantComponent()!.seed !==
-            idMap.get(entity.farmingPlantComponent()!.seed)
-        ) {
-          entity.mutableFarmingPlantComponent().seed = idMap.get(
-            entity.farmingPlantComponent()!.seed
-          );
-        }
-      }
-    );
-  }
+  // if (backupFile) {
+  //   await migrateEntities(
+  //     backupFile,
+  //     (entity) =>
+  //       !!(
+  //         entity.grab_bag ||
+  //         entity.acquisition ||
+  //         entity.loose_item ||
+  //         entity.inventory ||
+  //         entity.wearing ||
+  //         entity.container_inventory ||
+  //         entity.priced_container_inventory ||
+  //         entity.selected_item ||
+  //         entity.appearance_component ||
+  //         entity.recipe_book ||
+  //         entity.buffs_component ||
+  //         entity.placeable_component ||
+  //         entity.lifetime_stats ||
+  //         entity.farming_plant_component
+  //       ),
+  //     (entity) => {
+  //       if (bagNeedsMigration(entity.grabBag()?.slots)) {
+  //         entity.mutableGrabBag().slots = migrateBag(entity.grabBag()!.slots);
+  //       }
+  //       if (bagNeedsMigration(entity.acquisition()?.items)) {
+  //         entity.mutableAcquisition().items = migrateBag(
+  //           entity.acquisition()!.items
+  //         );
+  //       }
+  //       if (itemNeedsMigration(entity.looseItem()?.item)) {
+  //         entity.mutableLooseItem().item = migrateItem(
+  //           entity.looseItem()!.item
+  //         );
+  //       }
+  //       if (containerNeedsMigration(entity.inventory()?.items)) {
+  //         entity.mutableInventory().items = migrateContainer(
+  //           entity.inventory()!.items
+  //         );
+  //       }
+  //       if (bagNeedsMigration(entity.inventory()?.currencies)) {
+  //         entity.mutableInventory().currencies = migrateBag(
+  //           entity.inventory()!.currencies
+  //         );
+  //       }
+  //       if (containerNeedsMigration(entity.inventory()?.hotbar)) {
+  //         entity.mutableInventory().hotbar = migrateContainer(
+  //           entity.inventory()!.hotbar
+  //         );
+  //       }
+  //       if (bagNeedsMigration(entity.inventory()?.overflow)) {
+  //         entity.mutableInventory().overflow = migrateBag(
+  //           entity.inventory()!.overflow
+  //         );
+  //       }
+  //       if (containerNeedsMigration(entity.containerInventory()?.items)) {
+  //         entity.mutableContainerInventory().items = migrateContainer(
+  //           entity.containerInventory()!.items
+  //         );
+  //       }
+  //       if (
+  //         entity
+  //           .pricedContainerInventory()
+  //           ?.items.some(
+  //             (i) =>
+  //               i &&
+  //               (itemAndCountNeedsMigration(i.contents) ||
+  //                 itemAndCountNeedsMigration(i.price))
+  //           )
+  //       ) {
+  //         entity.mutablePricedContainerInventory().items = entity
+  //           .pricedContainerInventory()!
+  //           .items.map((i) => {
+  //             if (!i) {
+  //               return i;
+  //             }
+  //             return {
+  //               contents: migrateItemAndCount(i.contents),
+  //               price: migrateItemAndCount(i.price),
+  //               seller_id: i.seller_id,
+  //             };
+  //           });
+  //       }
+  //       if (itemAndCountNeedsMigration(entity.selectedItem()?.item)) {
+  //         entity.mutableSelectedItem().item = migrateItemAndCount(
+  //           entity.selectedItem()!.item!
+  //         );
+  //       }
+  //       if (
+  //         someMap(
+  //           entity.wearing()?.items ?? new Map(),
+  //           (i, k) => k !== idMap.get(k) || itemNeedsMigration(i)
+  //         )
+  //       ) {
+  //         entity.mutableWearing().items = new Map(
+  //           mapMap(entity.wearing()!.items, (v, k) => [
+  //             idMap.get(k),
+  //             migrateItem(v),
+  //           ])
+  //         );
+  //       }
+  //       if (
+  //         entity.appearanceComponent()?.appearance.head_id &&
+  //         entity.appearanceComponent()!.appearance.head_id !==
+  //           idMap.get(entity.appearanceComponent()!.appearance.head_id)
+  //       ) {
+  //         entity.mutableAppearanceComponent().appearance.head_id = idMap.get(
+  //           entity.appearanceComponent()!.appearance.head_id
+  //         );
+  //       }
+  //       if (setNeedsMigration(entity.recipeBook()?.recipes)) {
+  //         entity.mutableRecipeBook().recipes = migrateSet(
+  //           entity.recipeBook()!.recipes
+  //         );
+  //       }
+  //       if (
+  //         entity
+  //           .buffsComponent()
+  //           ?.buffs.some((b) => b.item_id !== idMap.get(b.item_id))
+  //       ) {
+  //         entity.mutableBuffsComponent().buffs = entity
+  //           .buffsComponent()!
+  //           .buffs.map((b) => ({
+  //             ...b,
+  //             item_id: idMap.get(b.item_id),
+  //           }));
+  //       }
+  //       if (
+  //         entity.placeableComponent()?.item_id &&
+  //         entity.placeableComponent()!.item_id !==
+  //           idMap.get(entity.placeableComponent()!.item_id)
+  //       ) {
+  //         entity.mutablePlaceableComponent().item_id = idMap.get(
+  //           entity.placeableComponent()!.item_id
+  //         );
+  //       }
+  //       if (
+  //         someMap(entity.lifetimeStats()?.stats ?? new Map(), (v) =>
+  //           bagNeedsMigration(v)
+  //         )
+  //       ) {
+  //         entity.mutableLifetimeStats().stats = new Map(
+  //           mapMap(entity.lifetimeStats()!.stats, (v, k) => [k, migrateBag(v)])
+  //         );
+  //       }
+  //       if (
+  //         entity.farmingPlantComponent()?.seed &&
+  //         entity.farmingPlantComponent()!.seed !==
+  //           idMap.get(entity.farmingPlantComponent()!.seed)
+  //       ) {
+  //         entity.mutableFarmingPlantComponent().seed = idMap.get(
+  //           entity.farmingPlantComponent()!.seed
+  //         );
+  //       }
+  //     }
+  //   );
+  // }
 }
 
 const [backupFile] = process.argv.slice(2);
