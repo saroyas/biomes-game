@@ -38,7 +38,8 @@ export const DevCreate: React.FunctionComponent<{
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          if (!createDisabled && usernameOrId !== "saros") {
+          if (!createDisabled) {
+            // && usernameOrId !== "saros") {
             onDevSignUp(usernameOrId);
           }
         }}
@@ -63,9 +64,9 @@ export const DevCreate: React.FunctionComponent<{
           <div className="dialog-button-group">
             <DialogButton
               onClick={() => {
-                if (usernameOrId !== "saros") {
-                  onDevSignUp(usernameOrId);
-                }
+                // if (usernameOrId !== "saros") {
+                onDevSignUp(usernameOrId);
+                // }
               }}
               type="primary"
               disabled={createDisabled}
