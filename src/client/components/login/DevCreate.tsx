@@ -39,7 +39,6 @@ export const DevCreate: React.FunctionComponent<{
         onSubmit={(e) => {
           e.preventDefault();
           if (!createDisabled) {
-            // && usernameOrId !== "saros") {
             onDevSignUp(usernameOrId);
           }
         }}
