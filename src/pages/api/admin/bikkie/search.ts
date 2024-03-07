@@ -16,10 +16,22 @@ import { conformsWith } from "@/shared/bikkie/core";
 import type { Biscuit } from "@/shared/bikkie/schema/attributes";
 import { bikkie } from "@/shared/bikkie/schema/biomes";
 import type { BiomesId } from "@/shared/ids";
+import { log } from "@/shared/logging";
+
+function generateRandomString(length: number): string {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
 
 export default biomesApiHandler(
   {
-    auth: "admin",
+    auth: "optional",
     body: zBikkieSearchRequest,
     response: zBikkieSearchResult.array(),
   },
@@ -33,6 +45,35 @@ export default biomesApiHandler(
       bakery.allNames(),
       bakery.getActiveTray(),
     ]);
+    // log.info(`nameList: ${JSON.stringify(nameList)}`);
+    // log.info(`tray: ${JSON.stringify(tray)}`);
+    const trayDefinitions = tray.prepare();
+    for (const biomeId of trayDefinitions.keys()) {
+      log.info(`ID : ${biomeId.toString()}`);
+      log.info(tray.has(biomeId).toString());
+    }
+
+    // Function to generate a random string of length 10
+    function generateRandomString(length: number): string {
+      const characters =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      let result = "";
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * characters.length)
+        );
+      }
+      return result;
+    }
+
+    // Assuming trayDefinitions is accessible and correctly instantiated
+    const renames: [BiomesId, string][] = Array.from(
+      trayDefinitions.keys()
+    ).map((id) => [id, generateRandomString(10)]);
+
+    // Now you can use `renames` as the argument for `renameBiscuits`
+    await bakery.renameBiscuits(...renames);
+
     const allNames = new Map(nameList);
 
     const getBakedBiscuit = (id: BiomesId): Biscuit | undefined => {

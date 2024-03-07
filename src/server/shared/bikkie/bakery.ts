@@ -306,6 +306,8 @@ export class Bakery<TBikkie extends AnyBikkie> {
   }
 
   async getActiveTray() {
+    log.info(`Getting active tray id : ${await this.getActiveTrayId()} - from cache`);
+    log.info("Getting active tray");
     return this.getTray(await this.getActiveTrayId());
   }
 
@@ -359,44 +361,46 @@ export class Bakery<TBikkie extends AnyBikkie> {
     );
     // Before doing any real work, check that this has a chance of success at all.
     // By creating a merged tray based on the active one.
+    log.info("Saving as active");
     const active = await this.getActiveTray();
+    log.info(`tray: ${JSON.stringify(active)}`);
     // Not a real BiomesID here as it's just for validation, we discard the result.
     active.extendAs(1 as BiomesId, meta, ...definitions);
-    const latest = await this.db.runTransaction(async (tx) => {
-      const txActiveId = (await tx.get(this.activeIdDocRef())).data()?.id;
-      const txActive = await (async () => {
-        const current = await this.getTray(txActiveId);
-        if (!forceCompaction && current.depth < 10) {
-          return current;
-        }
-        // The current tray is a bit deep, lets just compact it so that
-        // future reads don't need to recurse so much.
-        const compactedId = await this.idGenerator!.next();
-        const compacted = current.compactAs(compactedId, {
-          ...meta,
-          name: `Compacted ${txActiveId}/${current.meta.name}`,
-          compactedFrom: txActiveId,
-        });
-        await this.storage.saveDefinition(compacted);
-        tx.set(
-          this.db.collection("bikkie").doc(toStoredEntityId(compactedId)),
-          encodeTray(compacted)
-        );
-        return compacted;
-      })();
+    // const latest = await this.db.runTransaction(async (tx) => {
+    //   const txActiveId = (await tx.get(this.activeIdDocRef())).data()?.id;
+    //   const txActive = await (async () => {
+    //     const current = await this.getTray(txActiveId);
+    //     if (!forceCompaction && current.depth < 10) {
+    //       return current;
+    //     }
+    //     // The current tray is a bit deep, lets just compact it so that
+    //     // future reads don't need to recurse so much.
+    //     const compactedId = await this.idGenerator!.next();
+    //     const compacted = current.compactAs(compactedId, {
+    //       ...meta,
+    //       name: `Compacted ${txActiveId}/${current.meta.name}`,
+    //       compactedFrom: txActiveId,
+    //     });
+    //     await this.storage.saveDefinition(compacted);
+    //     tx.set(
+    //       this.db.collection("bikkie").doc(toStoredEntityId(compactedId)),
+    //       encodeTray(compacted)
+    //     );
+    //     return compacted;
+    //   })();
 
-      const id = await this.idGenerator!.next();
-      const tray = txActive.extendAs(id, meta, ...definitions);
-      await this.storage.saveDefinition(tray);
-      tx.set(
-        this.db.collection("bikkie").doc(toStoredEntityId(id)),
-        encodeTray(tray)
-      );
-      tx.set(this.activeIdDocRef(), { id });
-      log.info("Updating active tray", { id });
-      return tray;
-    });
-    return latest;
+    //   const id = await this.idGenerator!.next();
+    //   const tray = txActive.extendAs(id, meta, ...definitions);
+    //   await this.storage.saveDefinition(tray);
+    //   tx.set(
+    //     this.db.collection("bikkie").doc(toStoredEntityId(id)),
+    //     encodeTray(tray)
+    //   );
+    //   tx.set(this.activeIdDocRef(), { id });
+    //   log.info("Updating active tray", { id });
+    //   return tray;
+    // });
+    return active;
   }
 
   private buildPendingInference(

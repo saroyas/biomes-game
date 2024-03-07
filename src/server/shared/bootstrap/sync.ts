@@ -21,7 +21,7 @@ import { ok } from "assert";
 export async function determineEmployeeUserId(): Promise<BiomesId> {
   const account = await getGCloudAccount();
   switch (account) {
-    case "n@ill.inc":
+    case "shehryarsaroya@gmail.com":
       return 8521385202672319 as BiomesId; // Nick
     case "a@ill.inc":
       return 8521385202672316 as BiomesId; // akarpenko
