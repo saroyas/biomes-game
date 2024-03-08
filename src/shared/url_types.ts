@@ -25,7 +25,9 @@ export const allCloudBuckets = valueLiteral<CloudBucket>()({
   // Where we store user-filed bug report attachment data.
   "report-attachments": { cdnDomain: undefined },
   // Where we store world backups
-  "biomes-backup": { cdnDomain: undefined },
+  "biomes-backup": {
+    realBucketName: "oasis-backup",
+  },
   // Where Bikkie binary data is stored. e.g. biomes-bikkie
   "biomes-bikkie": {
     realBucketName: "biomes43.appspot.com",
