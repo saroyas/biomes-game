@@ -83,6 +83,7 @@ BUILD_ID.bob
 
 # Biomes data snapshot installed files.
 snapshot_backup.json
+snapshot_backup2.json
 biomes_data_snapshot.tar.gz.hash.md5
 *.rdb
 deploy/k8/biomes43-firestore.json
