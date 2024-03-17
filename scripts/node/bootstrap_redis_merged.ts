@@ -41,7 +41,7 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
     if (version === "bikkie") {
       console.log("Skipping version 'bikkie' from original...");
     } else {
-      if (value.box) {
+      if (value.shard_seed?.buffer) {
         shardIdsOriginal.set(value.id.toString(), value);
       }
     }
@@ -63,7 +63,7 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
         kind: "create",
         entity: value,
       });
-      if (value.box) {
+      if (value.shard_seed?.buffer) {
         shardIdsLatest.set(value.id.toString(), value);
       }
     }
