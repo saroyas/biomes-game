@@ -55,6 +55,7 @@ export default biomesApiHandler(
     }
     // only rename if the query is "rename_all"
     if (query === "admin_rename_all") {
+      log.info(`Renaming all biscuits`);
       const renames: [BiomesId, string][] = Array.from(
         trayDefinitions.keys()
       ).map((id) => [id, getNameFromId(id)]);
