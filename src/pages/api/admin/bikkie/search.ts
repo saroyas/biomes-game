@@ -18,17 +18,6 @@ import { bikkie } from "@/shared/bikkie/schema/biomes";
 import type { BiomesId } from "@/shared/ids";
 import { log } from "@/shared/logging";
 
-function generateRandomString(length: number): string {
-  const characters =
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-  let result = "";
-  const charactersLength = characters.length;
-  for (let i = 0; i < length; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
-
 export default biomesApiHandler(
   {
     auth: "optional",
@@ -40,6 +29,7 @@ export default biomesApiHandler(
     body: { id: searchId, query: rawQuery, schemaPath },
   }) => {
     const query = rawQuery?.trim();
+    log.info(`rawQuery: ${query}`);
     const schema = bikkie.getSchema(schemaPath);
     const [nameList, tray] = await Promise.all([
       bakery.allNames(),
@@ -48,31 +38,28 @@ export default biomesApiHandler(
     // log.info(`nameList: ${JSON.stringify(nameList)}`);
     // log.info(`tray: ${JSON.stringify(tray)}`);
     const trayDefinitions = tray.prepare();
-    for (const biomeId of trayDefinitions.keys()) {
-      log.info(`ID : ${biomeId.toString()}`);
-      log.info(tray.has(biomeId).toString());
-    }
 
-    // Function to generate a random string of length 10
-    function generateRandomString(length: number): string {
-      const characters =
-        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      let result = "";
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * characters.length)
-        );
+    // Function to get the name of a biscuit from its ID
+    function getNameFromId(id: BiomesId): string {
+      const baked = BikkieRuntime.get().getBiscuitOnlyIfExists(id);
+      if (baked?.name !== undefined) {
+        return baked.name;
       }
-      return result;
+      if (baked?.displayName !== undefined) {
+        return baked.displayName;
+      }
+
+      log.info(`No name for ID: ${id} - using id as name`);
+
+      return id.toString();
     }
-
-    // Assuming trayDefinitions is accessible and correctly instantiated
-    const renames: [BiomesId, string][] = Array.from(
-      trayDefinitions.keys()
-    ).map((id) => [id, generateRandomString(10)]);
-
-    // Now you can use `renames` as the argument for `renameBiscuits`
-    await bakery.renameBiscuits(...renames);
+    // only rename if the query is "rename_all"
+    if (query === "admin_rename_all") {
+      const renames: [BiomesId, string][] = Array.from(
+        trayDefinitions.keys()
+      ).map((id) => [id, getNameFromId(id)]);
+      await bakery.renameBiscuits(...renames);
+    }
 
     const allNames = new Map(nameList);
 
