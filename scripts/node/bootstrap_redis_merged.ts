@@ -39,7 +39,12 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
   // Loading and processing entries from the first backup file
   for await (const [version, value] of iterBackupEntriesFromFile(originalBackup)) {
     if (version === "bikkie") {
-      console.log("Skipping version 'bikkie' from original...");
+      console.log("Using version 'bikkie' from original...");
+      const { definition, baked } = value;
+      await Promise.all([
+        storage.saveDefinition(definition),
+        storage.save(baked),
+      ]);
     } else {
       if (value.shard_seed?.buffer) {
         shardIdsOriginal.set(value.id.toString(), value);
@@ -53,11 +58,11 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
   for await (const [version, value] of iterBackupEntriesFromFile(latestBackup)) {
     if (version === "bikkie") {
       console.log("Processing version 'bikkie' from latest backup...");
-      const { definition, baked } = value;
-      await Promise.all([
-        storage.saveDefinition(definition),
-        storage.save(baked),
-      ]);
+      // const { definition, baked } = value;
+      // await Promise.all([
+      //   storage.saveDefinition(definition),
+      //   storage.save(baked),
+      // ]);
     } else {
       changes.push({
         kind: "create",
