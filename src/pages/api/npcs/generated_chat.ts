@@ -116,6 +116,7 @@ export default biomesApiHandler(
     const userName = user.label()?.text ?? "Unknown";
     process.env["OPENAI_API_KEY"] = key;
     const configuration = new Configuration({
+      baseURL: "https://openrouter.ai/api/v1",
       apiKey: key,
     });
 
@@ -143,8 +144,9 @@ export default biomesApiHandler(
     const openai = new OpenAIApi(configuration);
     const completion = await openai.createChatCompletion(
       {
-        model: "gpt-3.5-turbo",
+        model: "nousresearch/nous-hermes-2-mistral-7b-dpo",
         messages,
+        max_tokens: 200,
       },
       {}
     );
