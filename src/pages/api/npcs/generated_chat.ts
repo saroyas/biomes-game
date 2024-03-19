@@ -134,7 +134,7 @@ export default biomesApiHandler(
       });
     }
 
-    log.info("OpenAI request", messages);
+    log.info("OpenAI request", { messages });
 
     METRICS.contextSize.set(sumBy(messages, (e) => e.content.length));
 
