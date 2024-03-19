@@ -28,7 +28,7 @@ const FooterComponent = () => {
           alt="Artists for Ceasefire"
           style={{
             marginBottom: "10px",
-            maxWidth: "70px", // Adjust the size of the image to be smaller
+            maxWidth: "40px", // Adjust the size of the image to be smaller
             height: "auto",
             border: "none", // Makes the border transparent
             display: "block", // Ensures the image is centered by using margin auto
@@ -40,7 +40,7 @@ const FooterComponent = () => {
           onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")} // Returns to original scale when not hovered
         />
       </a>
-      <p>Dedicated to the loving memory of our brother, Ismail.</p>
+      <p>Dedicated to the loving memory of Ismail.</p>
       <p>Killed by Israeli forces at the age of 14.</p>
     </div>
   );
