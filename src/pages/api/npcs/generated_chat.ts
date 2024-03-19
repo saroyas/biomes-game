@@ -114,11 +114,6 @@ export default biomesApiHandler(
     okOrAPIError(entity, "not_found", `Entity ${entityId} not found!`);
     okOrAPIError(user, "not_found", `User ${userId} not found!`);
     const userName = user.label()?.text ?? "Unknown";
-    process.env["OPENAI_API_KEY"] = key;
-    const configuration = new Configuration({
-      baseURL: "https://openrouter.ai/api/v1",
-      apiKey: key,
-    });
 
     const messages: ChatCompletionRequestMessage[] = messageContext
       ? JSON.parse(messageContext)
@@ -141,17 +136,24 @@ export default biomesApiHandler(
 
     METRICS.contextSize.set(sumBy(messages, (e) => e.content.length));
 
-    const openai = new OpenAIApi(configuration);
-    const completion = await openai.createChatCompletion(
+    // Use the direct approach with fetch API
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "nousresearch/nous-hermes-2-mistral-7b-dpo",
-        messages,
-        max_tokens: 200,
-      },
-      {}
-    );
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${key}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          model: "nousresearch/nous-hermes-2-mistral-7b-dpo", // Update the model name if needed
+          messages,
+          max_tokens: 200,
+        }),
+      }
+    ).then((res) => res.json());
 
-    const nextMessage = completion.data.choices[0];
+    const nextMessage = response.choices[0];
     const nextMessageContent = nextMessage.message?.content ?? "";
     const { dialog, buttons } = parseDialog(nextMessageContent);
     const nextMessageContext = [...messages];
