@@ -8,7 +8,6 @@ import { relevantBiscuitForEntity } from "@/shared/npc/bikkie";
 import { andify } from "@/shared/util/text";
 import { sumBy } from "lodash";
 import type { ChatCompletionRequestMessage } from "openai";
-import { Configuration, OpenAIApi } from "openai";
 import { z } from "zod";
 
 const METRICS = {
