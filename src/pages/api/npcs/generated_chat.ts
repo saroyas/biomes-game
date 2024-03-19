@@ -9,6 +9,7 @@ import { andify } from "@/shared/util/text";
 import { sumBy } from "lodash";
 import type { ChatCompletionRequestMessage } from "openai";
 import { z } from "zod";
+import { log } from "@/shared/logging";
 
 const METRICS = {
   contextSize: createGauge({
@@ -133,6 +134,8 @@ export default biomesApiHandler(
       });
     }
 
+    log.info("OpenAI request", messages);
+
     METRICS.contextSize.set(sumBy(messages, (e) => e.content.length));
 
     // Use the direct approach with fetch API
@@ -151,6 +154,8 @@ export default biomesApiHandler(
         }),
       }
     ).then((res) => res.json());
+
+    log.info("OpenAI response", response);
 
     const nextMessage = response.choices[0];
     const nextMessageContent = nextMessage.message?.content ?? "";
