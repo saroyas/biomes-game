@@ -143,7 +143,7 @@ export default biomesApiHandler(
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          model: "nousresearch/nous-hermes-2-mistral-7b-dpo", // Update the model name if needed
+          model: "nousresearch/nous-hermes-2-mixtral-8x7b-dpo", // Update the model name if needed
           messages,
           max_tokens: 250,
         }),
