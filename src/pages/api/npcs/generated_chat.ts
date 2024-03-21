@@ -3,13 +3,13 @@ import { okOrAPIError } from "@/server/web/errors";
 import { biomesApiHandler } from "@/server/web/util/api_middleware";
 import type { ReadonlyEntity } from "@/shared/ecs/gen/entities";
 import { zBiomesId } from "@/shared/ids";
+import { log } from "@/shared/logging";
 import { createGauge } from "@/shared/metrics/metrics";
 import { relevantBiscuitForEntity } from "@/shared/npc/bikkie";
 import { andify } from "@/shared/util/text";
 import { sumBy } from "lodash";
 import type { ChatCompletionRequestMessage } from "openai";
 import { z } from "zod";
-import { log } from "@/shared/logging";
 
 const METRICS = {
   contextSize: createGauge({
@@ -145,7 +145,7 @@ export default biomesApiHandler(
         body: JSON.stringify({
           model: "nousresearch/nous-hermes-2-mistral-7b-dpo", // Update the model name if needed
           messages,
-          max_tokens: 200,
+          max_tokens: 250,
         }),
       }
     ).then((res) => res.json());
@@ -153,7 +153,10 @@ export default biomesApiHandler(
     log.info("OpenAI response", response);
 
     const nextMessage = response.choices[0];
-    const nextMessageContent = nextMessage.message?.content ?? "";
+    const nextMessageContent =
+      // eslint-disable-next-line @typescript-eslint/restrict-plus-operands
+      (nextMessage.message?.content || "").toString() +
+      "<button> Dummy Button </button>";
     const { dialog, buttons } = parseDialog(nextMessageContent);
     const nextMessageContext = [...messages];
 

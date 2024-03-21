@@ -102,14 +102,27 @@ export const TalkToNpcDefaultDialog: React.FunctionComponent<{
       setId((old) => old + 1);
       lastMessageContext.current = res.messageContext;
       setAdditionalActions(
-        res.nextDialog.buttons.map(
-          (e): TalkDialogStepAction => ({
-            name: e,
-            onPerformed: () => {
-              void respondWith(e);
-            },
-          })
-        )
+        // res.nextDialog.buttons
+        []
+          .map(
+            (e): TalkDialogStepAction => ({
+              name: e,
+              onPerformed: () => {
+                void respondWith(e);
+              },
+            })
+          )
+          .concat([
+            {
+              name: "custom_user_input",
+              onPerformed: () => {
+                void respondWith("Sorry I missed that");
+              },
+              onPerformedInput: (input) => {
+                void respondWith(input);
+              },
+            } as TalkDialogStepAction,
+          ])
       );
     } catch (error: any) {
       log.error("Error querying for generated chat", { error });

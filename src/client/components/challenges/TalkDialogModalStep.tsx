@@ -38,6 +38,7 @@ export interface TalkDialogStepAction {
   disabled?: boolean;
   onPerformed: () => void;
   icon?: { view?: ReactNode; src?: string; text?: string };
+  onPerformedInput?: (e: string) => void;
 }
 
 export type ButtonLayout = "horizontal-rectangle" | "vertical";
@@ -150,6 +151,7 @@ export const GenericTalkDialogModalStep: React.FunctionComponent<
   const [typingComplete, setTypingComplete] = useState(false);
   const [dialogIndex, setDialogIndex] = useState(0);
   const [shouldFinishTyping, setShouldFinishTyping] = useState(false);
+  const [userInput, setUserInput] = useState<string>("");
 
   const voice =
     reactResources.use("/ecs/c/voice", entityId) ??
@@ -277,30 +279,82 @@ export const GenericTalkDialogModalStep: React.FunctionComponent<
                   } gap-1`}
                 >
                   {actions.map((e, i) => {
-                    return (
-                      <Tooltipped
-                        wrapperExtraClass="w-full max-w-[60%] mx-auto"
-                        key={i}
-                        tooltip={e.tooltip}
-                      >
-                        <DialogButton
-                          size="xl"
-                          disabled={e.disabled}
-                          type={e.type ?? undefined}
-                          glow={e.type === "primary"}
-                          extraClassNames={`items-center flex flex-row
+                    // if e.name is "custom_user_input" render an input field
+                    if (e.name === "custom_user_input") {
+                      return (
+                        // a cutom user input field that edits the user input
+                        // Custom user input field and button styled to match the DialogButton
+                        <>
+                          <div className="border-gray-300 rounded-lg mx-auto mt-4 flex w-full max-w-[80%] overflow-hidden border-2 shadow-md">
+                            <input
+                              type="text"
+                              value={userInput}
+                              onChange={(event) =>
+                                setUserInput(event.target.value)
+                              }
+                              onKeyPress={(event) => {
+                                if (event.key === "Enter" && !event.shiftKey) {
+                                  event.preventDefault();
+                                  // Assuming setUserInput and goNext are correctly defined elsewhere
+                                  if (userInput.trim() !== "") {
+                                    // Assuming there's a function to handle the input submission
+                                    if (e.onPerformedInput) {
+                                      e.onPerformedInput(userInput); // Handle the input submission logic
+                                    }
+                                    setUserInput(""); // Reset input field after submission
+                                    goNext();
+                                  }
+                                }
+                              }}
+                              className="w-full border-none p-4 text-xl focus:ring-0"
+                              placeholder="Type your message here..."
+                            />
+                            <button
+                              onClick={() => {
+                                if (userInput.trim() !== "") {
+                                  // Assuming handleSubmit handles the logic for when the button is clicked
+                                  if (e.onPerformedInput) {
+                                    e.onPerformedInput(userInput); // Handle the input submission logic
+                                  }
+                                  setUserInput(""); // Reset input field after submission
+                                  goNext();
+                                }
+                              }}
+                              className="bg-blue-500 hover:bg-blue-600 focus:ring-blue-500 px-4 transition-all focus:outline-none focus:ring-2 focus:ring-offset-2"
+                              aria-label="Send"
+                            >
+                              {/* Replaced SVG with a text icon */}
+                              &#x27A4;
+                            </button>
+                          </div>
+                        </>
+                      );
+                    } else {
+                      return (
+                        <Tooltipped
+                          wrapperExtraClass="w-full max-w-[60%] mx-auto"
+                          key={i}
+                          tooltip={e.tooltip}
+                        >
+                          <DialogButton
+                            size="xl"
+                            disabled={e.disabled}
+                            type={e.type ?? undefined}
+                            glow={e.type === "primary"}
+                            extraClassNames={`items-center flex flex-row
                             ${!e.tooltip ? "w-full max-w-[60%] mx-auto" : ""}
                           `}
-                          onClick={() => {
-                            e.onPerformed();
-                            goNext();
-                          }}
-                        >
-                          {e.icon?.view && <>{e.icon.view}</>}
-                          <div className="flex-1">{e.name}</div>
-                        </DialogButton>
-                      </Tooltipped>
-                    );
+                            onClick={() => {
+                              e.onPerformed();
+                              goNext();
+                            }}
+                          >
+                            {e.icon?.view && <>{e.icon.view}</>}
+                            <div className="flex-1">{e.name}</div>
+                          </DialogButton>
+                        </Tooltipped>
+                      );
+                    }
                   })}
                 </div>
               )}
