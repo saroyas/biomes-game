@@ -55,6 +55,8 @@ export async function bootstrapRedis(backupFile?: string) {
         storage.saveDefinition(definition),
         storage.save(baked),
       ]);
+      const result = await storage.getCurrentBakedTrayId();
+      console.log(`Saved in tray id ${result}`);
     } else {
       changes.push({
         kind: "create",

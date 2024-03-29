@@ -16,7 +16,10 @@ import { Timer, TimerNeverSet } from "@/shared/metrics/timer";
 import { chunk } from "lodash";
 
 // Function to compare backup files and log differences in value objects
-export async function bootstrapRedis(originalBackup: string, latestBackup: string) {
+export async function bootstrapRedis(
+  originalBackup: string,
+  latestBackup: string
+) {
   if (!originalBackup || !latestBackup) {
     log.fatal(`Usage: node script.js <originalBackup> <latestBackup>`);
     return;
@@ -30,21 +33,24 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
     await storage.save(await loadBakedTrayFromProd());
   }
 
-
   // Maps for storing ID to value object from each file
   const shardIdsOriginal = new Map();
   const shardIdsLatest = new Map();
 
   console.log("Processing original backup file...");
   // Loading and processing entries from the first backup file
-  for await (const [version, value] of iterBackupEntriesFromFile(originalBackup)) {
+  for await (const [version, value] of iterBackupEntriesFromFile(
+    originalBackup
+  )) {
     if (version === "bikkie") {
-      console.log("Using version 'bikkie' from original...");
-      const { definition, baked } = value;
-      await Promise.all([
-        storage.saveDefinition(definition),
-        storage.save(baked),
-      ]);
+      // console.log("Using version 'bikkie' from original...");
+      // const { definition, baked } = value;
+      // await Promise.all([
+      //   storage.saveDefinition(definition),
+      //   storage.save(baked),
+      // ]);
+      // const result = await storage.getCurrentBakedTrayId();
+      // console.log(`Saved in tray id ${result}`);
     } else {
       if (value.shard_seed?.buffer) {
         shardIdsOriginal.set(value.id.toString(), value);
@@ -55,14 +61,18 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
   // Loading and processing entries from the second backup file
   console.log("Loading world and processing latest backup file...");
   const changes: ProposedChange[] = [];
-  for await (const [version, value] of iterBackupEntriesFromFile(latestBackup)) {
+  for await (const [version, value] of iterBackupEntriesFromFile(
+    latestBackup
+  )) {
     if (version === "bikkie") {
       console.log("Processing version 'bikkie' from latest backup...");
-      // const { definition, baked } = value;
-      // await Promise.all([
-      //   storage.saveDefinition(definition),
-      //   storage.save(baked),
-      // ]);
+      const { definition, baked } = value;
+      await Promise.all([
+        storage.saveDefinition(definition),
+        storage.save(baked),
+      ]);
+      const result = await storage.getCurrentBakedTrayId();
+      console.log(`Saved in tray id ${result}`);
     } else {
       changes.push({
         kind: "create",
@@ -79,8 +89,12 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
   console.log(`Latest shard count: ${shardIdsLatest.size}`);
 
   // Determining missing values by comparing maps
-  const missingShardsInOriginal = [...shardIdsLatest.keys()].filter(id => !shardIdsOriginal.has(id)).map(id => shardIdsLatest.get(id));
-  const missingShardsInLatest = [...shardIdsOriginal.keys()].filter(id => !shardIdsLatest.has(id)).map(id => shardIdsOriginal.get(id));
+  const missingShardsInOriginal = [...shardIdsLatest.keys()]
+    .filter((id) => !shardIdsOriginal.has(id))
+    .map((id) => shardIdsLatest.get(id));
+  const missingShardsInLatest = [...shardIdsOriginal.keys()]
+    .filter((id) => !shardIdsLatest.has(id))
+    .map((id) => shardIdsOriginal.get(id));
 
   // console log the number of missing values
   console.log(`Missing shards in original: ${missingShardsInOriginal.length}`);
@@ -124,7 +138,6 @@ export async function bootstrapRedis(originalBackup: string, latestBackup: strin
   printStatus();
   await world.stop();
   console.log("Done!");
-
 }
 
 // Extract backup file paths from command line arguments

@@ -31,7 +31,7 @@ export class RedisBikkieStorage implements BikkieStorage {
     return parseEncodedTrayDefinition(id, raw, this.loadDefinition.bind(this));
   }
 
-  private async getCurrentBakedTrayId(): Promise<BiomesId | undefined> {
+  async getCurrentBakedTrayId(): Promise<BiomesId | undefined> {
     const rawTrayId = await this.redis.primary.get(BAKED_TRAY_ID_KEY);
     if (rawTrayId) {
       return parseBiomesId(rawTrayId);
