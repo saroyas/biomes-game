@@ -10,7 +10,7 @@ interface CloudBucket {
 
 export const allCloudBuckets = valueLiteral<CloudBucket>()({
   "biomes-social": {
-    // cdnDomain: "social.oasis.silkencompute.com",
+    // cdnDomain: "social.www.oasis-realm.com",
     realBucketName: "oasis-social",
   },
   // Legacy

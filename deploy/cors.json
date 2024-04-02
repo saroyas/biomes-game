@@ -1,6 +1,6 @@
 [
   {
-    "origin": ["https://oasis.silkencompute.com"],
+    "origin": ["https://www.oasis-realm.com"],
     "responseHeader": ["Content-Type"],
     "method": ["GET", "HEAD"],
     "maxAgeSeconds": 3600

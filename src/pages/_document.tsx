@@ -9,7 +9,7 @@ class MyDocument extends Document {
           <link
             rel="icon"
             type="image/x-icon"
-            href="https://oasis.silkencompute.com/favicon.ico"
+            href="https://www.oasis-realm.com/favicon.ico"
           />
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link

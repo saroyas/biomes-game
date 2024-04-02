@@ -31,7 +31,7 @@ export const BiomesHeadTag: React.FunctionComponent<BiomesHeadTagProps> = (
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link
         rel="manifest"
-        href="https://oasis.silkencompute.com/pwa/manifest.json"
+        href="https://www.oasis-realm.com/pwa/manifest.json"
       />
       {/* General */}
       <title>{title}</title>
