@@ -139,7 +139,7 @@ const UnknownErrorDialog: React.FunctionComponent<{
           Please return in a few hours. <br />
           You can follow the dev discussion on{" "}
           <a
-            href="https://discord.gg/yAdTWu2C"
+            href="https://discord.gg/suttC9A6yJ"
             target="_blank"
             rel="noopener noreferrer"
           >

@@ -73,7 +73,7 @@ const ReportButton: React.FunctionComponent<{}> = ({}) => {
       <div
         className="report-button-hud"
         onClick={() => {
-          window.open("https://discord.gg/yAdTWu2C", "_blank");
+          window.open("https://discord.gg/suttC9A6yJ", "_blank");
         }}
       >
         Dev Discord
