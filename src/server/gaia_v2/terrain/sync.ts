@@ -15,11 +15,13 @@ import { log } from "@/shared/logging";
 import type { RegistryLoader } from "@/shared/registry";
 import { asyncYieldForEach } from "@/shared/util/async";
 import type { VoxelooModule } from "@/shared/wasm/types";
+import { Vec3i } from "@/shared/wasm/types/common";
 import type {
   GaiaTerrainMapBuilderV2,
   GaiaTerrainMapV2,
 } from "@/shared/wasm/types/gaia";
 import { ok } from "assert";
+import { join } from "lodash";
 
 export class TerrainSync {
   private changeSubscription?: ListenerKey;
