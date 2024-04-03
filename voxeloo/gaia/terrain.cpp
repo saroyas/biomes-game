@@ -123,7 +123,7 @@ uint32_t TerrainMapBuilderV2::hole_count() {
   auto shards = shard_count();
   if (shards > seeded_.size()) {
     missing_shards_.clear();
-    missing_shards_.reserve(shards - seeded_.size()); // Reserve space to avoid reallocations
+    missing_shards_.reserve(shards - seeded_.size()); // Reserve space to avoid rehashing
 
     const auto& aabb = seeds_.aabb();
     for (int z = aabb.v0.z; z < aabb.v1.z; z += 1) {
@@ -131,7 +131,7 @@ uint32_t TerrainMapBuilderV2::hole_count() {
         for (int x = aabb.v0.x; x < aabb.v1.x; x += 1) {
           Vec3i pos{x, y, z};
           if (seeded_.find(pos) == seeded_.end()) {
-            missing_shards_.emplace_back(pos); // Use emplace_back instead of insert
+            missing_shards_.emplace(pos); // Use emplace instead of insert
           }
         }
       }
