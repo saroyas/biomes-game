@@ -15,11 +15,13 @@ import { log } from "@/shared/logging";
 import type { RegistryLoader } from "@/shared/registry";
 import { asyncYieldForEach } from "@/shared/util/async";
 import type { VoxelooModule } from "@/shared/wasm/types";
+import { Vec3i } from "@/shared/wasm/types/common";
 import type {
   GaiaTerrainMapBuilderV2,
   GaiaTerrainMapV2,
 } from "@/shared/wasm/types/gaia";
 import { ok } from "assert";
+import { join } from "lodash";
 
 export class TerrainSync {
   private changeSubscription?: ListenerKey;
@@ -120,8 +122,11 @@ export class TerrainSync {
 
     const holes = builder.holeCount();
     const missingShards = builder.getMissingShards();
+    const missingShardLocations = missingShards
+      .map((shard) => `(${shard[0]}, ${shard[1]}, ${shard[2]})`)
+      .join(", ");
     log.info(
-      `Builder found ${holes} holes and ${missingShards} missing shards`
+      `Builder found ${holes} holes and missing shards at locations: ${missingShardLocations}`
     );
     ok(holes <= CONFIG.gaiaV2MissingShardsThreshold);
     log.info(
