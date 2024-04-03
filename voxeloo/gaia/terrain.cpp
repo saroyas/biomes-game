@@ -140,7 +140,7 @@ uint32_t TerrainMapBuilderV2::hole_count() {
   }
 }
 
-std::vector<Vec3i> TerrainMapBuilderV2::get_missing_shards() const {
+std::vector<Vec3i> TerrainMapBuilderV2::get_missing_shards() {
   return std::vector<Vec3i>(missing_shards_.begin(), missing_shards_.end());
 }
 
