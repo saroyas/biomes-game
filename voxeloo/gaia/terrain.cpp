@@ -83,36 +83,30 @@ void TerrainMapBuilderV2::assign_seed_block(
 void TerrainMapBuilderV2::assign_diff_block(
     Vec3i pos, const SparseChunk& diff) {
   diffs_.assign_block(pos, diff);
-  seeded_.insert(pos);
 }
 
 void TerrainMapBuilderV2::assign_water_block(
     Vec3i pos, const WaterChunk& water) {
   waters_.assign_block(pos, water);
-  seeded_.insert(pos);
 }
 
 void TerrainMapBuilderV2::assign_irradiance_block(
     Vec3i pos, const IrradianceChunk& irradiance) {
   irradiances_.assign_block(pos, irradiance);
-  seeded_.insert(pos);
 }
 
 void TerrainMapBuilderV2::assign_dye_block(Vec3i pos, const DyeChunk& dye) {
   dyes_.assign_block(pos, dye);
-  seeded_.insert(pos);
 }
 
 void TerrainMapBuilderV2::assign_growth_block(
     Vec3i pos, const GrowthChunk& growth) {
   growths_.assign_block(pos, growth);
-  seeded_.insert(pos);
 }
 
 void TerrainMapBuilderV2::assign_occlusion_block(
     Vec3i pos, const OcclusionChunk& occlusion) {
   occlusions_.assign_block(pos, occlusion);
-  seeded_.insert(pos);
 }
 
 Vec3i TerrainMapBuilderV2::aabb() {
