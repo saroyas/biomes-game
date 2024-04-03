@@ -78,6 +78,7 @@ void TerrainMapBuilderV2::assign_seed_block(
     Vec3i pos, const VolumeChunk& seed) {
   seeds_.assign_block(pos, seed);
   seeded_.insert(pos);
+  missing_shards_.erase(pos);
 }
 
 void TerrainMapBuilderV2::assign_diff_block(
@@ -121,10 +122,26 @@ uint32_t TerrainMapBuilderV2::shard_count() {
 uint32_t TerrainMapBuilderV2::hole_count() {
   auto shards = shard_count();
   if (shards > seeded_.size()) {
+    missing_shards_.clear();
+    for (int64_t z = seeds_.aabb().v0.z; z < seeds_.aabb().v1.z; z += kShardSize) {
+      for (int64_t y = seeds_.aabb().v0.y; y < seeds_.aabb().v1.y; y += kShardSize) {
+        for (int64_t x = seeds_.aabb().v0.x; x < seeds_.aabb().v1.x; x += kShardSize) {
+          Vec3i pos{x, y, z};
+          if (seeded_.find(pos) == seeded_.end()) {
+            missing_shards_.insert(pos);
+          }
+        }
+      }
+    }
     return shards - seeded_.size();
   } else {
+    missing_shards_.clear();
     return 0;
   }
+}
+
+std::vector<Vec3i> TerrainMapBuilderV2::get_missing_shards() const {
+  return std::vector<Vec3i>(missing_shards_.begin(), missing_shards_.end());
 }
 
 TerrainMapV2 TerrainMapBuilderV2::build() && {

@@ -66,6 +66,7 @@ export interface GaiaTerrainMapBuilderV2 {
   aabb(): Vec3i;
   shardCount(): number;
   holeCount(): number;
+  getMissingShards(): Vec3i[];
   build(map: GaiaTerrainMapV2): void;
   delete(): void;
 }

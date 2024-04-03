@@ -311,6 +311,7 @@ class TerrainMapBuilderV2 {
   Vec3i aabb();
   uint32_t shard_count();
   uint32_t hole_count();
+  std::vector<Vec3i>  get_missing_shards();
   TerrainMapV2 build() &&;
 
  private:
@@ -322,6 +323,7 @@ class TerrainMapBuilderV2 {
   WorldMapBuilder<uint8_t> dyes_;
   WorldMapBuilder<uint8_t> growths_;
   WorldMapBuilder<uint8_t> occlusions_;
+  std::unordered_set<Vec3i> missing_shards_;
 };
 
 }  // namespace voxeloo::gaia

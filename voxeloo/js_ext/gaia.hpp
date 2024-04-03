@@ -494,6 +494,9 @@ class TerrainMapBuilderV2Js {
   auto hole_count() {
     return impl_.hole_count();
   }
+  auto get_missing_shards() {
+    return impl_.get_missing_shards();
+  }
   void build(TerrainMapV2Js& map) {
     map = std::move(impl_).build();
   }
@@ -641,6 +644,7 @@ inline void bind() {
       .function("aabb", &TerrainMapBuilderV2Js::aabb)
       .function("shardCount", &TerrainMapBuilderV2Js::shard_count)
       .function("holeCount", &TerrainMapBuilderV2Js::hole_count)
+      .function("getMissingShards", &TerrainMapBuilderV2Js::get_missing_shards)
       .function("build", &TerrainMapBuilderV2Js::build);
 }
 
