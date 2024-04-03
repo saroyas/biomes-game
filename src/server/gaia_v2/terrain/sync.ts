@@ -119,10 +119,7 @@ export class TerrainSync {
     log.info(`Builder expected shard count: ${builder.shardCount()}`);
 
     const holes = builder.holeCount();
-    const missingShards = builder.getMissingShards();
-    log.info(
-      `Builder found ${holes} holes and ${missingShards} missing shards`
-    );
+    log.info(`Builder found ${holes} holes`);
     ok(holes <= CONFIG.gaiaV2MissingShardsThreshold);
     log.info(
       `Finished loading terrain with ${shardIds.length} shards and ${holes} holes.`
