@@ -78,7 +78,7 @@ export const DevLogin: React.FunctionComponent<{
           <MaybeError error={error} />
           <div className="email-sign-in">
             <section>
-              <label>Username (progress may be lost)</label>
+              <label>Temporary Username (progress may be lost)</label>
               <input
                 type="text"
                 ref={usernameOrIdField}
