@@ -78,7 +78,7 @@ export const DevLogin: React.FunctionComponent<{
           <MaybeError error={error} />
           <div className="email-sign-in">
             <section>
-              <label>Username or ID</label>
+              <label>Username (progress may be lost)</label>
               <input
                 type="text"
                 ref={usernameOrIdField}
@@ -101,7 +101,7 @@ export const DevLogin: React.FunctionComponent<{
           </div>
           <section className="dialog-button-group">
             <DialogButton
-              onClick={() => onLogin(usernameOrId)}
+              onClick={() => onLogin(usernameOrId + "_temp")} // Add test to username for dev login
               type="primary"
               disabled={loginDisabled}
             >
