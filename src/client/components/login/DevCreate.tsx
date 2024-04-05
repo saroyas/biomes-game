@@ -39,7 +39,7 @@ export const DevCreate: React.FunctionComponent<{
         onSubmit={(e) => {
           e.preventDefault();
           if (!createDisabled) {
-            onDevSignUp(usernameOrId);
+            onDevSignUp(usernameOrId + "_temp");
           }
         }}
       >
