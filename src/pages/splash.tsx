@@ -235,7 +235,7 @@ export const SplashPage: React.FunctionComponent<{
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            saros
+                            Saros
                           </a>
                           .
                         </div>
