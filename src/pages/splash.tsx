@@ -231,11 +231,11 @@ export const SplashPage: React.FunctionComponent<{
                         >
                           Brought to you by{" "}
                           <a
-                            href="https://siliconsoul.xyz"
+                            href="https://saroya.info/"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Silicon Soul
+                            saros
                           </a>
                           .
                         </div>
