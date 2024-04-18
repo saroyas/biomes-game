@@ -17,6 +17,13 @@ function decrypt(text: string, secret: string) {
   return decrypted.toString();
 }
 
+function removeTextWithinAsterisks(text) {
+  // This regex matches text within asterisks, including the asterisks themselves
+  const regex = /\*[^*]+\*/g;
+  // Replace matched text with an empty string
+  return text.replace(regex, '   ');
+}
+
 export const VoiceChat: React.FunctionComponent<{
   text?: string;
   voice?: string;
@@ -35,14 +42,16 @@ export const VoiceChat: React.FunctionComponent<{
       audioRef.current.pause();
       audioRef.current.src = "";
 
+      const processedText = removeTextWithinAsterisks(text);
+
       const apiKey = decrypt(
         "390f8601b2583902fa213df85c346b08:668c82b2ab9d9171c85e8a90fec503d91ecdd4f9680b9d26ec20b36d5d984b76c2be277ca35eab87b5f88fd396f99c3b",
         "3e19d8a961bebc6c619045faa943181605cef9d973fb3a3177ee833acc4a0b25"
       );
-      const apiUrl = `https://api.elevenlabs.io/v1/text-to-speech/EiNlNiXeDU1pqqOPrYMO/stream`;
+      const apiUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice}/stream`;
       const requestData = {
         method: "POST",
-        body: JSON.stringify({ text, voice, language }),
+        body: JSON.stringify({ processedText, voice, language }),
         headers: {
           "Content-Type": "application/json",
           "xi-api-key": apiKey, // Replace 'SECRET' with your actual API key
