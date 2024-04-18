@@ -146,6 +146,9 @@ export default biomesApiHandler(
           model: "nousresearch/nous-hermes-2-mixtral-8x7b-dpo", // Update the model name if needed
           messages,
           max_tokens: 250,
+          provider: {
+            order: ["Together"],
+          },
         }),
       }
     ).then((res) => res.json());
