@@ -17,11 +17,11 @@ function decrypt(text: string, secret: string) {
   return decrypted.toString();
 }
 
-function removeTextWithinAsterisks(text) {
+function removeTextWithinAsterisks(text: string) {
   // This regex matches text within asterisks, including the asterisks themselves
   const regex = /\*[^*]+\*/g;
   // Replace matched text with an empty string
-  return text.replace(regex, '   ');
+  return text.replace(regex, "   ");
 }
 
 export const VoiceChat: React.FunctionComponent<{
@@ -51,7 +51,7 @@ export const VoiceChat: React.FunctionComponent<{
       const apiUrl = `https://api.elevenlabs.io/v1/text-to-speech/${voice}/stream`;
       const requestData = {
         method: "POST",
-        body: JSON.stringify({ processedText, voice, language }),
+        body: JSON.stringify({ text: processedText, voice, language }),
         headers: {
           "Content-Type": "application/json",
           "xi-api-key": apiKey, // Replace 'SECRET' with your actual API key
