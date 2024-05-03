@@ -53,6 +53,44 @@ const DynamicBackgroundVideo = () => {
   );
 };
 
+const VideoModal = ({
+  isOpen,
+  videoUrl,
+  onClose,
+}: {
+  isOpen: boolean;
+  videoUrl: string;
+  onClose: () => void;
+}) => {
+  if (!isOpen) return null;
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: "rgba(0, 0, 0, 0.3)",
+        zIndex: 1000,
+      }}
+      onClick={onClose}
+    >
+      <iframe
+        src={videoUrl}
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+        style={{ width: "80%", height: "80%" }}
+      ></iframe>
+    </div>
+  );
+};
+
 export const getServerSideProps = async () => {
   return {
     props: {
@@ -120,6 +158,11 @@ export const SplashPage: React.FunctionComponent<{
   defaultUsernameOrId?: string;
   onLogin?: () => unknown;
 }> = ({ defaultUsernameOrId, onLogin }) => {
+  const [showVideo, setShowVideo] = useState(false);
+
+  const handleVideoOpen = () => setShowVideo(true);
+  const handleVideoClose = () => setShowVideo(false);
+
   return (
     <div
       style={{
@@ -133,6 +176,11 @@ export const SplashPage: React.FunctionComponent<{
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Oasis — A new world</title>
       </Head>
+      <VideoModal
+        isOpen={showVideo}
+        videoUrl="https://www.youtube.com/embed/LeqS7HhrIZs?si=3JL15x3QCwBCD-pw"
+        onClose={handleVideoClose}
+      />
 
       <LoginRelatedController
         defaultUsernameOrId={defaultUsernameOrId}
@@ -229,6 +277,38 @@ export const SplashPage: React.FunctionComponent<{
                               Silicon Soul
                             </a>{" "}
                             studios.
+                          </div>
+                          <div
+                            style={{
+                              position: "relative",
+                              textAlign: "center",
+                              marginTop: "20px",
+                            }}
+                          >
+                            <img
+                              src="mainBackground.png" // Your video thumbnail image
+                              alt="Watch Video"
+                              style={{ width: "100%", cursor: "pointer" }}
+                              onClick={handleVideoOpen}
+                            />
+                            <button
+                              onClick={handleVideoOpen}
+                              style={{
+                                position: "absolute",
+                                top: "50%",
+                                left: "50%",
+                                transform: "translate(-50%, -50%)",
+                                fontSize: "30px",
+                                color: "#FFF",
+                                background: "rgba(0, 0, 0, 0.5)",
+                                border: "none",
+                                borderRadius: "50%",
+                                padding: "15px 30px",
+                                cursor: "pointer",
+                              }}
+                            >
+                              ▶
+                            </button>
                           </div>
                         </div>
                       </div>
