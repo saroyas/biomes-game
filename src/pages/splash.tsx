@@ -201,7 +201,6 @@ export const SplashPage: React.FunctionComponent<{
                       </div>
                     </div>
                   </main>
-                  <FooterComponent />
                 </>
               )}
             </>
