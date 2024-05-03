@@ -1,55 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { LoginRelatedController } from "@/client/components/static_site/LoginRelatedController";
 import { LoginRelatedControllerContext } from "@/client/components/static_site/LoginRelatedControllerContext";
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 import Head from "next/head";
 
 const DynamicBackgroundVideo = () => {
-  const [isMobile, setIsMobile] = useState(true);
-
-  useEffect(() => {
-    // Function to update the state based on the window width
-    const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768); // Set the threshold for mobile devices
-    };
-
-    // Call handleResize initially and whenever the window resizes
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup function to remove event listener
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  if (isMobile) {
-    return (
-      <img
-        src="mainBackground.png" // Replace with your mobile-specific image source
-        alt="Background"
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      />
-    );
-  }
-
-  // Fallback to video for non-mobile devices
   return (
-    <video
-      autoPlay
-      muted
-      loop
+    <img
+      src="mainBackground.png" // Replace with your mobile-specific image source
+      alt="Background"
       style={{
         width: "100%",
         height: "100%",
         objectFit: "cover",
       }}
-    >
-      <source src="trailer.mp4" type="video/mp4" />
-      Your browser does not support the video tag.
-    </video>
+    />
   );
 };
 
@@ -81,7 +46,7 @@ const VideoModal = ({
       onClick={onClose}
     >
       <iframe
-        src={videoUrl}
+        src={`${videoUrl}`} // Ensure autoplay triggers when modal opens
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
@@ -162,6 +127,27 @@ export const SplashPage: React.FunctionComponent<{
 
   const handleVideoOpen = () => setShowVideo(true);
   const handleVideoClose = () => setShowVideo(false);
+  const [hoverStyle, setHoverStyle] = useState({});
+
+  // Video thumbnail with similar styling and interaction as the image
+  const videoThumbnailStyle = {
+    maxWidth: "300px", // Ensures the video does not exceed 300px in width
+    width: "100%", // Responsive width
+    cursor: "pointer",
+    borderRadius: "15px", // Rounded corners for the video
+    transition: "transform 0.3s ease", // Smooth transition for hover effect
+    objectFit: "cover", // Ensures the video covers the area without distortion
+    ...hoverStyle, // Dynamic styles for hover effects
+  };
+
+  // Container to center the video thumbnail
+  const thumbnailContainerStyle = {
+    position: "relative",
+    textAlign: "center",
+    display: "flex",
+    justifyContent: "center", // Horizontally center the thumbnail
+    alignItems: "center", // Vertically center the thumbnail
+  };
 
   return (
     <div
@@ -178,7 +164,7 @@ export const SplashPage: React.FunctionComponent<{
       </Head>
       <VideoModal
         isOpen={showVideo}
-        videoUrl="https://www.youtube.com/embed/LeqS7HhrIZs?si=3JL15x3QCwBCD-pw"
+        videoUrl="https://www.youtube.com/embed/LeqS7HhrIZs?si=3JL15x3QCwBCD-pw&autoplay=1"
         onClose={handleVideoClose}
       />
 
@@ -248,6 +234,22 @@ export const SplashPage: React.FunctionComponent<{
                             <br />A collaborative adventure filled with mystery
                             and wonder.
                           </p>
+                          <div style={thumbnailContainerStyle}>
+                            <video
+                              autoPlay
+                              muted
+                              loop
+                              style={videoThumbnailStyle}
+                              onClick={handleVideoOpen}
+                              onMouseEnter={() =>
+                                setHoverStyle({ transform: "scale(1.05)" })
+                              } // Slightly scale up on hover
+                              onMouseLeave={() => setHoverStyle({})} // Return to normal on mouse leave
+                            >
+                              <source src="trailer.mp4" type="video/mp4" />
+                              Your browser does not support the video tag.
+                            </video>
+                          </div>
                           <div
                             style={{
                               display: "flex",
@@ -277,38 +279,6 @@ export const SplashPage: React.FunctionComponent<{
                               Silicon Soul
                             </a>{" "}
                             studios.
-                          </div>
-                          <div
-                            style={{
-                              position: "relative",
-                              textAlign: "center",
-                              marginTop: "20px",
-                            }}
-                          >
-                            <img
-                              src="mainBackground.png" // Your video thumbnail image
-                              alt="Watch Video"
-                              style={{ width: "100%", cursor: "pointer" }}
-                              onClick={handleVideoOpen}
-                            />
-                            <button
-                              onClick={handleVideoOpen}
-                              style={{
-                                position: "absolute",
-                                top: "50%",
-                                left: "50%",
-                                transform: "translate(-50%, -50%)",
-                                fontSize: "30px",
-                                color: "#FFF",
-                                background: "rgba(0, 0, 0, 0.5)",
-                                border: "none",
-                                borderRadius: "50%",
-                                padding: "15px 30px",
-                                cursor: "pointer",
-                              }}
-                            >
-                              ▶
-                            </button>
                           </div>
                         </div>
                       </div>
