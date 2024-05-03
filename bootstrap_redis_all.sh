@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # URL from which to download the new snapshot
-URL="gs://oasis-backup/world/2024/4/23/biomes-2024-04-23T17:00:36.267Z.json"
+URL="gs://oasis-backup/world/2024/5/1/biomes-2024-05-01T14:00:36.798Z.json"
 
 # Delete existing snapshot_backup.json file
 rm -f snapshot_backup.json

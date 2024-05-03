@@ -14,28 +14,30 @@
   "[vs]": { "editor.defaultFormatter": "raczzalan.webgl-glsl-editor" },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.codeActionsOnSave": { "source.organizeImports": true }
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    }
   },
   "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[python]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true
+      "source.organizeImports": "explicit"
     },
     "editor.defaultFormatter": "ms-python.black-formatter"
   },
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.fixAll.eslint": true
+      "source.organizeImports": "explicit",
+      "source.fixAll.eslint": "explicit"
     }
   },
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
-      "source.organizeImports": true,
-      "source.fixAll.eslint": true
+      "source.organizeImports": "explicit",
+      "source.fixAll.eslint": "explicit"
     }
   },
   "[rust]": {

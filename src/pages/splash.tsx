@@ -5,47 +5,6 @@ import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 
 import Head from "next/head";
 
-const FooterComponent = () => {
-  return (
-    <div
-      style={{
-        textAlign: "center",
-        color: "#fff",
-        opacity: 0.7,
-        fontSize: "1rem",
-        marginTop: "100px",
-        marginBottom: "20px",
-      }}
-    >
-      {/* Wrap the image in an anchor (<a>) tag to make it clickable */}
-      <a
-        href="https://www.artists4ceasefire.org/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <img
-          src={"artistsforceasefire.png"}
-          alt="Artists for Ceasefire"
-          style={{
-            marginBottom: "10px",
-            maxWidth: "40px", // Adjust the size of the image to be smaller
-            height: "auto",
-            border: "none", // Makes the border transparent
-            display: "block", // Ensures the image is centered by using margin auto
-            marginLeft: "auto",
-            marginRight: "auto",
-            transition: "transform 0.3s ease", // Adds a smooth transition effect
-          }}
-          onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.1)")} // Scales up the image on hover
-          onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")} // Returns to original scale when not hovered
-        />
-      </a>
-      <p>Dedicated to the loving memory of Ismail.</p>
-      <p>Killed by Israeli forces at the age of 14.</p>
-    </div>
-  );
-};
-
 const DynamicBackgroundVideo = () => {
   const [videoSrc, setVideoSrc] = useState("");
 
@@ -203,12 +162,11 @@ export const SplashPage: React.FunctionComponent<{
                             lineHeight: "1.5",
                           }}
                         >
-                          Build, forage, play minigames and more.
+                          A cozy voxel-based universe
                           <br />
-                          Explore this AI x Human society straight from your
-                          browser.
-                          <br />
-                          Currently in early beta testing. Things will break.
+                          Forage, build, and fight monsters with friends.
+                          <br />A collaborative adventure filled with mystery
+                          and wonder.
                         </p>
                         <div
                           style={{
@@ -232,13 +190,13 @@ export const SplashPage: React.FunctionComponent<{
                         >
                           Brought to you by{" "}
                           <a
-                            href="https://saroya.info/"
+                            href="https://siliconsoul.xyz/info"
                             target="_blank"
                             rel="noopener noreferrer"
                           >
-                            Saros
-                          </a>
-                          .
+                            Silicon Soul
+                          </a>{" "}
+                          studios.
                         </div>
                       </div>
                     </div>
