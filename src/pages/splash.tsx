@@ -6,23 +6,49 @@ import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 import Head from "next/head";
 
 const DynamicBackgroundVideo = () => {
-  const [videoSrc, setVideoSrc] = useState("");
+  const [isMobile, setIsMobile] = useState(true);
 
   useEffect(() => {
-    // Dynamically set the video source after component mounts
-    setVideoSrc("trailer.mp4");
+    // Function to update the state based on the window width
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768); // Set the threshold for mobile devices
+    };
+
+    // Call handleResize initially and whenever the window resizes
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function to remove event listener
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (!videoSrc) return null; // Render nothing or a placeholder until videoSrc is set
+  if (isMobile) {
+    return (
+      <img
+        src="mainBackground.png" // Replace with your mobile-specific image source
+        alt="Background"
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+        }}
+      />
+    );
+  }
 
+  // Fallback to video for non-mobile devices
   return (
     <video
       autoPlay
       muted
       loop
-      style={{ width: "100%", height: "100%", objectFit: "cover" }}
+      style={{
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+      }}
     >
-      <source src={videoSrc} type="video/mp4" />
+      <source src="trailer.mp4" type="video/mp4" />
       Your browser does not support the video tag.
     </video>
   );
