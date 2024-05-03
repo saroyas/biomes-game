@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { LoginRelatedController } from "@/client/components/static_site/LoginRelatedController";
 import { LoginRelatedControllerContext } from "@/client/components/static_site/LoginRelatedControllerContext";
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
-
 import Head from "next/head";
 
 const DynamicBackgroundVideo = () => {
@@ -109,6 +108,14 @@ const EnterOasisButton = ({ onLoginClick }: { onLoginClick: () => void }) => {
   );
 };
 
+const Section = ({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) => <div style={{ minHeight: "100vh", ...style }}>{children}</div>;
+
 export const SplashPage: React.FunctionComponent<{
   defaultUsernameOrId?: string;
   onLogin?: () => unknown;
@@ -126,6 +133,7 @@ export const SplashPage: React.FunctionComponent<{
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Oasis — A new world</title>
       </Head>
+
       <LoginRelatedController
         defaultUsernameOrId={defaultUsernameOrId}
         onLogin={onLogin}
@@ -133,20 +141,8 @@ export const SplashPage: React.FunctionComponent<{
         <LoginRelatedControllerContext.Consumer>
           {(loginRelatedControllerContext) => (
             <>
-              {/* Background video */}
-              <div
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  left: 0,
-                  width: "100%",
-                  height: "100%",
-                  overflow: "hidden",
-                  zIndex: -1,
-                }}
-              >
-                <DynamicBackgroundVideo />
-                {/* Dark translucent overlay */}
+              <Section>
+                {/* Splash section with video background */}
                 <div
                   style={{
                     position: "absolute",
@@ -154,81 +150,103 @@ export const SplashPage: React.FunctionComponent<{
                     left: 0,
                     width: "100%",
                     height: "100%",
-                    backgroundColor: "rgba(0, 0, 0, 0.5)", // Adjust opacity as needed
-                    zIndex: 2, // Ensure it's above the video but below everything else
+                    overflow: "hidden",
+                    zIndex: -1,
                   }}
-                ></div>
-              </div>
-              {/* <WakeupMuckParticles /> */}
-              {/* Use the showingModal state to conditionally render content */}
-              {!loginRelatedControllerContext.showingModal && (
-                <>
-                  <main style={{ flexGrow: 1 }}>
-                    <div style={{ textAlign: "center" }}>
-                      <div
-                        style={{
-                          maxWidth: "600px",
-                          margin: "0 auto",
-                          paddingTop: "20vh",
-                        }}
-                      >
-                        <h1
-                          style={{
-                            fontSize: "2.5rem",
-                            fontWeight: "bold",
-                            marginBottom: "1rem",
-                          }}
-                        >
-                          Welcome to Oasis
-                        </h1>
-                        <p
-                          style={{
-                            fontSize: "1.25rem",
-                            marginBottom: "2rem",
-                            lineHeight: "1.5",
-                          }}
-                        >
-                          A cozy voxel-based universe
-                          <br />
-                          Forage, build, and fight monsters with friends.
-                          <br />A collaborative adventure filled with mystery
-                          and wonder.
-                        </p>
+                >
+                  <DynamicBackgroundVideo />
+                  <div
+                    style={{
+                      position: "absolute",
+                      top: 0,
+                      left: 0,
+                      width: "100%",
+                      height: "100%",
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                      zIndex: 2,
+                    }}
+                  ></div>
+                </div>
+                {!loginRelatedControllerContext.showingModal && (
+                  <>
+                    <main style={{ flexGrow: 1 }}>
+                      <div style={{ textAlign: "center" }}>
                         <div
                           style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            padding: "20px",
+                            maxWidth: "600px",
+                            margin: "0 auto",
+                            paddingTop: "20vh",
                           }}
                         >
-                          <EnterOasisButton
-                            onLoginClick={
-                              loginRelatedControllerContext.showLogin
-                            }
-                          />
-                        </div>
-                        <div
-                          style={{
-                            fontSize: "1rem",
-                            color: "#fff",
-                            opacity: 0.7,
-                          }}
-                        >
-                          Brought to you by{" "}
-                          <a
-                            href="https://siliconsoul.xyz/info"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                          <h1
+                            style={{
+                              fontSize: "2.5rem",
+                              fontWeight: "bold",
+                              marginBottom: "1rem",
+                            }}
                           >
-                            Silicon Soul
-                          </a>{" "}
-                          studios.
+                            Welcome to Oasis
+                          </h1>
+                          <p
+                            style={{
+                              fontSize: "1.25rem",
+                              marginBottom: "2rem",
+                              lineHeight: "1.5",
+                            }}
+                          >
+                            A cozy voxel-based universe
+                            <br />
+                            Forage, build, and fight monsters with friends.
+                            <br />A collaborative adventure filled with mystery
+                            and wonder.
+                          </p>
+                          <div
+                            style={{
+                              display: "flex",
+                              justifyContent: "center",
+                              padding: "20px",
+                            }}
+                          >
+                            <EnterOasisButton
+                              onLoginClick={
+                                loginRelatedControllerContext.showLogin
+                              }
+                            />
+                          </div>
+                          <div
+                            style={{
+                              fontSize: "1rem",
+                              color: "#fff",
+                              opacity: 0.7,
+                            }}
+                          >
+                            Brought to you by{" "}
+                            <a
+                              href="https://siliconsoul.xyz/info"
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              Silicon Soul
+                            </a>{" "}
+                            studios.
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </main>
-                </>
-              )}
+                    </main>
+                  </>
+                )}
+              </Section>
+
+              <Section style={{ background: "#f0f0f0" }}>
+                {/* About section */}
+                <div style={{ textAlign: "center", padding: "20vh 20px" }}>
+                  <h1>About Oasis</h1>
+                  <p>
+                    Learn more about our virtual world where you can forage,
+                    build, and battle in a rich, evolving environment.
+                  </p>
+                </div>
+              </Section>
             </>
           )}
         </LoginRelatedControllerContext.Consumer>
