@@ -3,11 +3,13 @@ import { LoginRelatedController } from "@/client/components/static_site/LoginRel
 import { LoginRelatedControllerContext } from "@/client/components/static_site/LoginRelatedControllerContext";
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 import Head from "next/head";
+import { motion } from 'framer-motion';
 
-const DynamicBackgroundVideo = () => {
+
+const DynamicBackgroundVideo = ({ src }: { src: string }) => {
   return (
     <img
-      src="mainBackground.png" // Replace with your mobile-specific image source
+      src={src} // Using the src prop to dynamically set the image source
       alt="Background"
       style={{
         width: "100%",
@@ -188,7 +190,7 @@ export const SplashPage: React.FunctionComponent<{
                     zIndex: -1,
                   }}
                 >
-                  <DynamicBackgroundVideo />
+                  <DynamicBackgroundVideo src="mainBackground.png" />
                   <div
                     style={{
                       position: "absolute",
@@ -285,17 +287,6 @@ export const SplashPage: React.FunctionComponent<{
                     </main>
                   </>
                 )}
-              </Section>
-
-              <Section style={{ background: "#f0f0f0" }}>
-                {/* About section */}
-                <div style={{ textAlign: "center", padding: "20vh 20px" }}>
-                  <h1>About Oasis</h1>
-                  <p>
-                    Learn more about our virtual world where you can forage,
-                    build, and battle in a rich, evolving environment.
-                  </p>
-                </div>
               </Section>
             </>
           )}
