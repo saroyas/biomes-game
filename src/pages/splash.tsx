@@ -279,16 +279,18 @@ export const SplashPage: React.FunctionComponent<{
   }, []);
 
   // Floating scroll icon style
-  const scrollIconStyle = {
-    width: "40px",
-    height: "40px",
-    animation: "float 2s ease-in-out infinite",
-    position: "absolute",
-    bottom: "20px",
-    left: "50%",
-    transform: "translateX(-50%)",
-    cursor: "pointer",
-  };
+// Floating scroll icon style
+const scrollIconStyle = {
+  width: "40px",
+  height: "40px",
+  animation: "float 2s ease-in-out infinite",
+  position: "absolute",
+  bottom: "20px",
+  left: "calc(50% - 20px)", // Adjust for icon's own width to be dead center
+
+  cursor: "pointer",
+  zIndex: 30 // Make sure it's above other content
+};
 
   return (
     <div
@@ -425,7 +427,6 @@ export const SplashPage: React.FunctionComponent<{
                             src="scroll_icon.png"
                             alt="Scroll Icon"
                             style={scrollIconStyle}
-                            z-index={30}
                           />
 
 
