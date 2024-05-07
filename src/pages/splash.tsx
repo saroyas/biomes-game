@@ -4,7 +4,6 @@ import { LoginRelatedControllerContext } from "@/client/components/static_site/L
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 import Head from "next/head";
 
-
 const DynamicBackgroundVideo = ({ src }: { src: string }) => {
   return (
     <img
@@ -118,7 +117,11 @@ const Section = ({
 }: {
   children: React.ReactNode;
   style?: React.CSSProperties;
-}) => <div style={{ minHeight: "100vh", ...style }}>{children}</div>;
+}) => (
+  <div style={{ minHeight: "calc(var(--vh, 1vh) * 100)", ...style }}>
+    {children}
+  </div>
+);
 
 const InfoSection = ({
   children,
@@ -146,6 +149,18 @@ export const SplashPage: React.FunctionComponent<{
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    const updateHeight = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty("--vh", `${vh}px`);
+    };
+
+    window.addEventListener("resize", updateHeight);
+    updateHeight(); // Set the initial height
+
+    return () => window.removeEventListener("resize", updateHeight);
   }, []);
 
   // Video thumbnail with similar styling and interaction as the image
@@ -238,7 +253,6 @@ export const SplashPage: React.FunctionComponent<{
     color: "#FFFFFF", // Ensures text color is white for better contrast
     textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8)", // Adds a dark shadow for contrast
   };
-
 
   const videoStyle = {
     maxWidth: "500px",
@@ -427,7 +441,6 @@ export const SplashPage: React.FunctionComponent<{
                   </div>
                 </InfoSection>
                 <InfoSection>
-
                   <div style={mainStyle}>
                     <video
                       autoPlay
@@ -447,7 +460,6 @@ export const SplashPage: React.FunctionComponent<{
                     </video>
 
                     <div style={textStyle}>
-
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
                         - Build, farm, forge and design your home
                         <br />
@@ -475,9 +487,12 @@ export const SplashPage: React.FunctionComponent<{
                       </h1>
 
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
-                        You wake up in a giant open world invaded by cute mushy monsters.
+                        You wake up in a giant open world invaded by cute mushy
+                        monsters.
                         <br />
-                        But don’t be fooled. These cute mushes have ravaged almost everything - covering the world with a strange purple muck.
+                        But don’t be fooled. These cute mushes have ravaged
+                        almost everything - covering the world with a strange
+                        purple muck.
                         <br />
                         What’s more, they bite!
                       </p>
@@ -516,9 +531,11 @@ export const SplashPage: React.FunctionComponent<{
                       </h1>
 
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
-                        The Collective - a straggling bunch of survivors - has managed to save a few neighbourhoods.
+                        The Collective - a straggling bunch of survivors - has
+                        managed to save a few neighbourhoods.
                         <br />
-                        But they need need your help. There’s so much to rebuild and those purple monsters are still quite the mystery.
+                        But they need need your help. There’s so much to rebuild
+                        and those purple monsters are still quite the mystery.
                       </p>
                     </div>
                     <video
@@ -541,7 +558,6 @@ export const SplashPage: React.FunctionComponent<{
                 </InfoSection>
               </div>
               <div style={gameEngineBackground}>
-
                 <InfoSection>
                   <div style={mainStyle}>
                     <div style={textStyle}>
@@ -560,7 +576,10 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        The voxel art style comes from our love of virtual sandcastles. We wanted building to be a central game mechanic. But we haven’t just hashed together your typical 3D lego blocks.                      <br />
+                        The voxel art style comes from our love of virtual
+                        sandcastles. We wanted building to be a central game
+                        mechanic. But we haven’t just hashed together your
+                        typical 3D lego blocks. <br />
                       </p>
                       <br />
                       <p
@@ -569,9 +588,14 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        Our game engine captures the glow of soft light; from the gentle rustling of tree leaves to the delicate translucence of water bodies - we indulged in the details.
+                        Our game engine captures the glow of soft light; from
+                        the gentle rustling of tree leaves to the delicate
+                        translucence of water bodies - we indulged in the
+                        details.
                         <br />
-                        We wanted give a beautiful canvas for you build within - and we’ve pushed technical boundaries in the voxel genre’s aesthetic to do that.
+                        We wanted give a beautiful canvas for you build within -
+                        and we’ve pushed technical boundaries in the voxel
+                        genre’s aesthetic to do that.
                       </p>
                       <br />
                       <p
@@ -580,18 +604,21 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        In doing so, we developed a custom game engine for Oasis. Built using three, react and next - all open-source javascript libraries - we freed ourselves from the closed source monopolies Unity and Unreal. As well as letting Oasis be an early example of streamed-gaming - where even the lightest laptops can play.
+                        In doing so, we developed a custom game engine for
+                        Oasis. Built using three, react and next - all
+                        open-source javascript libraries - we freed ourselves
+                        from the closed source monopolies Unity and Unreal. As
+                        well as letting Oasis be an early example of
+                        streamed-gaming - where even the lightest laptops can
+                        play.
                       </p>
                     </div>
                   </div>
                 </InfoSection>
-
               </div>
               <div style={studioBackground}>
-
                 <InfoSection>
                   <div style={mainStyle}>
-
                     <div style={textStyle}>
                       <h1
                         style={{
@@ -608,7 +635,9 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        I left my job last year and founded Silicon Soul studios because of my love of stories.                      </p>
+                        I left my job last year and founded Silicon Soul studios
+                        because of my love of stories.{" "}
+                      </p>
                       <br />
                       <p
                         style={{
@@ -618,7 +647,8 @@ export const SplashPage: React.FunctionComponent<{
                       >
                         I wanted to get my own hands dirty.
                         <br />
-                        To build awesome settings, write rich characters and develop great narratives.
+                        To build awesome settings, write rich characters and
+                        develop great narratives.
                         <br />
                         To craft living, breathing worlds.
                       </p>
@@ -631,7 +661,8 @@ export const SplashPage: React.FunctionComponent<{
                       >
                         Oasis is our first production at the studio.
                         <br />
-                        And although it is ready to play - this is just the start.
+                        And although it is ready to play - this is just the
+                        start.
                       </p>
                       <br />
                       <p
@@ -640,7 +671,8 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        I’d love it if you decided to help guide Oasis’ development.
+                        I’d love it if you decided to help guide Oasis’
+                        development.
                       </p>
                       <br />
                       <p
@@ -649,37 +681,52 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        If you have an idea, or just want to say hi, pop me a message on either Discord or Instagram.
+                        If you have an idea, or just want to say hi, pop me a
+                        message on either Discord or Instagram.
                       </p>
                       <br />
 
-                      <div style={{ display: 'flex', justifyContent: 'center', gap: '6rem', marginBottom: '2rem' }}>
-                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          gap: "6rem",
+                          marginBottom: "2rem",
+                        }}
+                      >
+                        <a
+                          href="https://discord.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <img
                             src="discord-2-128.ico"
                             alt="Discord Icon"
                             style={{
-                              maxWidth: '50px',
-                              height: 'auto',
-                              borderRadius: '10px',
-                              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                              maxWidth: "50px",
+                              height: "auto",
+                              borderRadius: "10px",
+                              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
                             }}
                           />
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://instagram.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <img
                             src="instagram-128.ico"
                             alt="Instagram Icon"
                             style={{
-                              maxWidth: '50px',
-                              height: 'auto',
-                              borderRadius: '10px',
-                              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                              maxWidth: "50px",
+                              height: "auto",
+                              borderRadius: "10px",
+                              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
                             }}
                           />
                         </a>
                       </div>
-
 
                       <p
                         style={{
@@ -692,25 +739,31 @@ export const SplashPage: React.FunctionComponent<{
                         Saros - lead dev at Silicon Soul
                       </p>
                       <br />
-                      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', marginTop: '2rem' }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          marginBottom: "1rem",
+                          marginTop: "2rem",
+                        }}
+                      >
                         <img
                           src="silicon_soul_logo.png"
                           alt="Silicon Soul Logo"
                           style={{
-                            maxWidth: '150px',
-                            height: 'auto',
-                            borderRadius: '10px',
-                            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                            maxWidth: "150px",
+                            height: "auto",
+                            borderRadius: "10px",
+                            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
                           }}
                         />
-
                       </div>
                       <div
                         style={{
                           fontSize: "1rem",
                           color: "#fff",
                           opacity: 0.7,
-                          textAlign: 'center',
+                          textAlign: "center",
                         }}
                       >
                         Brought to you by{" "}
@@ -726,7 +779,6 @@ export const SplashPage: React.FunctionComponent<{
                     </div>
                   </div>
                 </InfoSection>
-
               </div>
             </>
           )}
