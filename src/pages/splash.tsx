@@ -3,8 +3,6 @@ import { LoginRelatedController } from "@/client/components/static_site/LoginRel
 import { LoginRelatedControllerContext } from "@/client/components/static_site/LoginRelatedControllerContext";
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 import Head from "next/head";
-import { motion } from 'framer-motion';
-import { stubFalse } from "lodash";
 
 
 const DynamicBackgroundVideo = ({ src }: { src: string }) => {
@@ -213,14 +211,21 @@ export const SplashPage: React.FunctionComponent<{
     backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
   };
 
-
-
-
   const gameEngineBackground = {
     display: "flex",
     flexDirection: "column",
     width: "100vw", // Ensures the width is always equal to the viewport width
     backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("background_game_engine.png")`, // Adds a dark overlay
+    backgroundSize: "cover, cover, cover", // Ensures both the gradient and the image cover the full area
+    backgroundPosition: "center, center, center", // Centers both the gradient and the image
+    backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
+  };
+
+  const studioBackground = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vw", // Ensures the width is always equal to the viewport width
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("background_studio.png")`, // Adds a dark overlay
     backgroundSize: "cover, cover, cover", // Ensures both the gradient and the image cover the full area
     backgroundPosition: "center, center, center", // Centers both the gradient and the image
     backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
@@ -454,8 +459,8 @@ export const SplashPage: React.FunctionComponent<{
                     </div>
                   </div>
                 </InfoSection>
-                </div>
-                <div style={muckyMonstersBackground}>
+              </div>
+              <div style={muckyMonstersBackground}>
                 <InfoSection>
                   <div style={mainStyle}>
                     <div style={textStyle}>
@@ -495,8 +500,8 @@ export const SplashPage: React.FunctionComponent<{
                     </video>
                   </div>
                 </InfoSection>
-                </div>
-                <div style={collectiveBackground}>
+              </div>
+              <div style={collectiveBackground}>
                 <InfoSection>
                   <div style={mainStyle}>
                     <div style={textStyle}>
@@ -534,13 +539,13 @@ export const SplashPage: React.FunctionComponent<{
                     </video>
                   </div>
                 </InfoSection>
-                </div>
-                <div style={gameEngineBackground}>
+              </div>
+              <div style={gameEngineBackground}>
 
                 <InfoSection>
                   <div style={mainStyle}>
                     <div style={textStyle}>
-                    <h1
+                      <h1
                         style={{
                           fontSize: "2rem",
                           fontWeight: "bold",
@@ -557,7 +562,7 @@ export const SplashPage: React.FunctionComponent<{
                       >
                         The voxel art style comes from our love of virtual sandcastles. We wanted building to be a central game mechanic. But we haven’t just hashed together your typical 3D lego blocks.                      <br />
                       </p>
-                      <br/>
+                      <br />
                       <p
                         style={{
                           fontSize: "2rem",
@@ -565,21 +570,163 @@ export const SplashPage: React.FunctionComponent<{
                         }}
                       >
                         Our game engine captures the glow of soft light; from the gentle rustling of tree leaves to the delicate translucence of water bodies - we indulged in the details.
-
+                        <br />
                         We wanted give a beautiful canvas for you build within - and we’ve pushed technical boundaries in the voxel genre’s aesthetic to do that.
-                        </p>
-                        <br/>
+                      </p>
+                      <br />
                       <p
                         style={{
                           fontSize: "2rem",
                           lineHeight: "1.5",
                         }}
                       >
-                        In doing so, we developed a custom game engine for Oasis. Built using three, react and next - all open-source javascript libraries - we freed ourselves from the constraints imposed by the closed source engines, Unity and Unreal. As well as letting Oasis be an early example of streamed-gaming - where even the lightest laptops can play.
-                        </p>
+                        In doing so, we developed a custom game engine for Oasis. Built using three, react and next - all open-source javascript libraries - we freed ourselves from the closed source monopolies Unity and Unreal. As well as letting Oasis be an early example of streamed-gaming - where even the lightest laptops can play.
+                      </p>
                     </div>
                   </div>
                 </InfoSection>
+
+              </div>
+              <div style={studioBackground}>
+
+                <InfoSection>
+                  <div style={mainStyle}>
+
+                    <div style={textStyle}>
+                      <h1
+                        style={{
+                          fontSize: "2rem",
+                          fontWeight: "bold",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        Hi, - The Studio
+                      </h1>
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        I left my job last year and founded Silicon Soul studios because of my love of stories.                      </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        I wanted to get my own hands dirty.
+                        <br />
+                        To build awesome settings, write rich characters and develop great narratives.
+                        <br />
+                        To craft living, breathing worlds.
+                      </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        Oasis is our first production at the studio.
+                        <br />
+                        And although it is ready to play - this is just the start.
+                      </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        I’d love it if you decided to help guide Oasis’ development.
+                      </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        If you have an idea, or just want to say hi, pop me a message on either Discord or Instagram.
+                      </p>
+                      <br />
+
+                      <div style={{ display: 'flex', justifyContent: 'center', gap: '6rem', marginBottom: '2rem' }}>
+                        <a href="https://discord.com" target="_blank" rel="noopener noreferrer">
+                          <img
+                            src="discord-2-128.ico"
+                            alt="Discord Icon"
+                            style={{
+                              maxWidth: '50px',
+                              height: 'auto',
+                              borderRadius: '10px',
+                              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                            }}
+                          />
+                        </a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                          <img
+                            src="instagram-128.ico"
+                            alt="Instagram Icon"
+                            style={{
+                              maxWidth: '50px',
+                              height: 'auto',
+                              borderRadius: '10px',
+                              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                            }}
+                          />
+                        </a>
+                      </div>
+
+
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        Yours
+                        <br />
+                        Saros - lead dev at Silicon Soul
+                      </p>
+                      <br />
+                      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1rem', marginTop: '2rem' }}>
+                        <img
+                          src="silicon_soul_logo.png"
+                          alt="Silicon Soul Logo"
+                          style={{
+                            maxWidth: '150px',
+                            height: 'auto',
+                            borderRadius: '10px',
+                            boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                          }}
+                        />
+
+                      </div>
+                      <div
+                        style={{
+                          fontSize: "1rem",
+                          color: "#fff",
+                          opacity: 0.7,
+                          textAlign: 'center',
+                        }}
+                      >
+                        Brought to you by{" "}
+                        <a
+                          href="https://siliconsoul.xyz/info"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Silicon Soul
+                        </a>{" "}
+                        studios.
+                      </div>
+                    </div>
+                  </div>
+                </InfoSection>
+
               </div>
             </>
           )}
