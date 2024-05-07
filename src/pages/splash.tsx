@@ -152,15 +152,8 @@ export const SplashPage: React.FunctionComponent<{
   }, []);
 
   useEffect(() => {
-    const updateHeight = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    };
-
-    window.addEventListener("resize", updateHeight);
-    updateHeight(); // Set the initial height
-
-    return () => window.removeEventListener("resize", updateHeight);
+    const vh = window.innerHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }, []);
 
   // Video thumbnail with similar styling and interaction as the image
