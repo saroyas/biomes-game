@@ -43,7 +43,7 @@ export const FailedRequirements: React.FunctionComponent<{
         <footer className="dialog-button-group">
           <DialogButton type="primary" onClick={handleOpenDiscord}>
             <img
-              src={discordIcon}
+              src="discord-2-128.ico"
               alt="Discord Icon"
               style={{ width: "16px", height: "16px", marginRight: "8px" }}
             />
@@ -51,7 +51,7 @@ export const FailedRequirements: React.FunctionComponent<{
           </DialogButton>
           <DialogButton type="primary" onClick={handleOpenInstagram}>
             <img
-              src={instagramIcon}
+              src="instagram-128.ico"
               alt="Instagram Icon"
               style={{ width: "16px", height: "16px", marginRight: "8px" }}
             />
