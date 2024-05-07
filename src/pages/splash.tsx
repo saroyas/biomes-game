@@ -626,14 +626,14 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
+                        We wanted to give a beautiful canvas for you build within -
+                        and we’ve pushed technical boundaries in the voxel
+                        genre’s aesthetic to do that.
+                        <br />
                         Our game engine captures the glow of soft light; from
                         the gentle rustling of tree leaves to the delicate
                         translucence of water bodies - we indulged in the
                         details.
-                        <br />
-                        We wanted give a beautiful canvas for you build within -
-                        and we’ve pushed technical boundaries in the voxel
-                        genre’s aesthetic to do that.
                       </p>
                       <br />
                       <p
@@ -642,10 +642,10 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        In doing so, we developed a custom game engine for
+                        In doing so, we developed a custom engine for
                         Oasis. Built using three, react and next - all
-                        open-source javascript libraries - we freed ourselves
-                        from the closed source monopolies Unity and Unreal. As
+                        open-source javascript libraries. We freed ourselves
+                        from the closed source monopolies Unity and Unreal; as
                         well as letting Oasis be an early example of
                         streamed-gaming - where even the lightest laptops can
                         play.
@@ -665,7 +665,7 @@ export const SplashPage: React.FunctionComponent<{
                           marginBottom: "1rem",
                         }}
                       >
-                        Hi, - The Studio
+                        Hi, - from the Studio
                       </h1>
                       <p
                         style={{
@@ -688,7 +688,7 @@ export const SplashPage: React.FunctionComponent<{
                         To build awesome settings, write rich characters and
                         develop great narratives.
                         <br />
-                        To craft living, breathing worlds.
+                        I wanted to craft living, breathing worlds.
                       </p>
                       <br />
                       <p
@@ -789,7 +789,7 @@ export const SplashPage: React.FunctionComponent<{
                           src="silicon_soul_logo.png"
                           alt="Silicon Soul Logo"
                           style={{
-                            maxWidth: "150px",
+                            maxWidth: "100px",
                             height: "auto",
                             borderRadius: "10px",
                             boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
