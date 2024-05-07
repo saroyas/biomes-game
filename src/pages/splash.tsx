@@ -118,7 +118,7 @@ const Section = ({
   children: React.ReactNode;
   style?: React.CSSProperties;
 }) => (
-  <div style={{ minHeight: "calc(var(--vh, 1vh) * 100)", ...style }}>
+  <div style={{ minHeight: "100vh", ...style }}>
     {children}
   </div>
 );
@@ -149,11 +149,6 @@ export const SplashPage: React.FunctionComponent<{
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  useEffect(() => {
-    const vh = window.innerHeight * 0.01;
-    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }, []);
 
   // Video thumbnail with similar styling and interaction as the image
