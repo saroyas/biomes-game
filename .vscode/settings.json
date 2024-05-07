@@ -9,16 +9,24 @@
       "source.fixAll.stylelint": "explicit"
     }
   },
-  "[glsl]": { "editor.defaultFormatter": "raczzalan.webgl-glsl-editor" },
-  "[fs]": { "editor.defaultFormatter": "raczzalan.webgl-glsl-editor" },
-  "[vs]": { "editor.defaultFormatter": "raczzalan.webgl-glsl-editor" },
+  "[glsl]": {
+    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+  },
+  "[fs]": {
+    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+  },
+  "[vs]": {
+    "editor.defaultFormatter": "raczzalan.webgl-glsl-editor"
+  },
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit"
     }
   },
-  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "[python]": {
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
@@ -34,7 +42,7 @@
     }
   },
   "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "vscode.typescript-language-features",
     "editor.codeActionsOnSave": {
       "source.organizeImports": "explicit",
       "source.fixAll.eslint": "explicit"
@@ -47,7 +55,6 @@
   "[noformat]": {
     "editor.formatOnSave": false
   },
-
   // Note that the clang-tidy extension is relative to ${workspaceFolder}.
   "clang-tidy.buildPath": "voxeloo/build",
   "cmake.buildDirectory": "${workspaceFolder}/voxeloo/build",
@@ -60,7 +67,6 @@
     "VOXELOO_ENABLE_TESTS": "ON"
   },
   "cmake.sourceDirectory": "${workspaceFolder}/voxeloo",
-
   "css.validate": false,
   "editor.formatOnSave": true,
   "eslint.enable": true,
@@ -114,7 +120,9 @@
   "files.trimTrailingWhitespace": true,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "prettier.configPath": ".prettierrc.js",
-  "python.formatting.blackArgs": ["--line-length=80"],
+  "python.formatting.blackArgs": [
+    "--line-length=80"
+  ],
   "python.formatting.provider": "none",
   "typescript.preferences.importModuleSpecifier": "non-relative",
   "typescript.tsdk": "node_modules/typescript/lib",
@@ -126,10 +134,17 @@
   ],
   "webgl-glsl-editor.format.placeSpaceAfterKeywords": true,
   "rust-analyzer.inlayHints.maxLength": 20,
-  "Lua.diagnostics.globals": ["cmsgpack", "ARGV", "redis", "KEYS"],
+  "Lua.diagnostics.globals": [
+    "cmsgpack",
+    "ARGV",
+    "redis",
+    "KEYS"
+  ],
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.tsserver.maxTsServerMemory": 8192,
-  "githubPullRequests.ignoredPullRequestBranches": ["main"],
+  "githubPullRequests.ignoredPullRequestBranches": [
+    "main"
+  ],
   "mochaExplorer.files": "src/server/**/*.test.ts",
   "mochaExplorer.require": [
     "ts-node/register",

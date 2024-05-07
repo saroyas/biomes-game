@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginRelatedController } from "@/client/components/static_site/LoginRelatedController";
 import { LoginRelatedControllerContext } from "@/client/components/static_site/LoginRelatedControllerContext";
 import { safeDetermineEmployeeUserId } from "@/server/shared/bootstrap/sync";
 import Head from "next/head";
 import { motion } from 'framer-motion';
+import { stubFalse } from "lodash";
 
 
 const DynamicBackgroundVideo = ({ src }: { src: string }) => {
@@ -121,6 +122,14 @@ const Section = ({
   style?: React.CSSProperties;
 }) => <div style={{ minHeight: "100vh", ...style }}>{children}</div>;
 
+const InfoSection = ({
+  children,
+  style,
+}: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}) => <div style={{ ...style }}>{children}</div>;
+
 export const SplashPage: React.FunctionComponent<{
   defaultUsernameOrId?: string;
   onLogin?: () => unknown;
@@ -130,6 +139,16 @@ export const SplashPage: React.FunctionComponent<{
   const handleVideoOpen = () => setShowVideo(true);
   const handleVideoClose = () => setShowVideo(false);
   const [hoverStyle, setHoverStyle] = useState({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   // Video thumbnail with similar styling and interaction as the image
   const videoThumbnailStyle = {
@@ -149,6 +168,82 @@ export const SplashPage: React.FunctionComponent<{
     display: "flex",
     justifyContent: "center", // Horizontally center the thumbnail
     alignItems: "center", // Vertically center the thumbnail
+  };
+  // Styles
+  const mainStyle = {
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row", // Adjust layout based on screen size
+    alignItems: "center",
+    justifyContent: "center",
+    maxWidth: "1200px",
+    margin: "auto",
+    paddingTop: "20vh",
+    padding: "20px", // Adds space around contents
+
+    width: "100vw", // Ensures the width is always equal to the viewport width
+  };
+
+  const mainBackgroundStyle = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vw", // Ensures the width is always equal to the viewport width
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("background2_landscape.png")`, // Adds a dark overlay
+    backgroundSize: "cover", // Ensures the gradient and the image cover the full area
+    backgroundPosition: "center center", // Centers the gradient and the image
+    backgroundRepeat: "no-repeat", // Ensures there's no repetition
+  };
+
+  const muckyMonstersBackground = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vw", // Ensures the width is always equal to the viewport width
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("background_mucky_world.png")`, // Adds a dark overlay
+    backgroundSize: "cover, cover, cover", // Ensures both the gradient and the image cover the full area
+    backgroundPosition: "center, center, center", // Centers both the gradient and the image
+    backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
+  };
+
+  const collectiveBackground = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vw", // Ensures the width is always equal to the viewport width
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("background_collective.png")`, // Adds a dark overlay
+    backgroundSize: "cover, cover, cover", // Ensures both the gradient and the image cover the full area
+    backgroundPosition: "center, center, center", // Centers both the gradient and the image
+    backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
+  };
+
+
+
+
+  const gameEngineBackground = {
+    display: "flex",
+    flexDirection: "column",
+    width: "100vw", // Ensures the width is always equal to the viewport width
+    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("background_game_engine.png")`, // Adds a dark overlay
+    backgroundSize: "cover, cover, cover", // Ensures both the gradient and the image cover the full area
+    backgroundPosition: "center, center, center", // Centers both the gradient and the image
+    backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
+  };
+
+  const textStyle = {
+    textAlign: "left",
+    maxWidth: isMobile ? "100%" : "600px",
+    padding: isMobile ? "20px" : "20px", // Adds space between the text and video on mobile
+    color: "#FFFFFF", // Ensures text color is white for better contrast
+    textShadow: "2px 2px 8px rgba(0, 0, 0, 0.8)", // Adds a dark shadow for contrast
+  };
+
+
+  const videoStyle = {
+    maxWidth: "500px",
+    width: "100%",
+    cursor: "pointer",
+    borderRadius: "45px",
+    objectFit: "cover",
+    transform: "scale(1.05)", // Example transformation on hover
+    transition: "transform 0.3s ease",
+    padding: "20px", // Adds space between the text and video on mobile
   };
 
   return (
@@ -288,6 +383,204 @@ export const SplashPage: React.FunctionComponent<{
                   </>
                 )}
               </Section>
+
+              <div style={mainBackgroundStyle}>
+                <InfoSection>
+                  <div style={mainStyle}>
+                    <div style={textStyle}>
+                      <h1
+                        style={{
+                          fontSize: "5rem",
+                          fontWeight: "bold",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        A Cosy MMO
+                      </h1>
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
+                        In Oasis, we wanted the serenity of Minecraft and
+                        Stardew Valley while also having the feeling of a
+                        living, breathing world like World of Warcraft.
+                      </p>
+                    </div>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      style={videoStyle}
+                      onClick={handleVideoOpen}
+                      onMouseEnter={() =>
+                        setHoverStyle({ transform: "scale(1.10)" })
+                      } // Example hover effect
+                      onMouseLeave={() =>
+                        setHoverStyle({ transform: "scale(1.05)" })
+                      } // Return to normal on mouse leave
+                    >
+                      <source src="trailer.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </InfoSection>
+                <InfoSection>
+
+                  <div style={mainStyle}>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      style={videoStyle}
+                      onClick={handleVideoOpen}
+                      onMouseEnter={() =>
+                        setHoverStyle({ transform: "scale(1.10)" })
+                      } // Example hover effect
+                      onMouseLeave={() =>
+                        setHoverStyle({ transform: "scale(1.05)" })
+                      } // Return to normal on mouse leave
+                    >
+                      <source src="trailer.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+
+                    <div style={textStyle}>
+
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
+                        - Build, farm, forge and design your home
+                        <br />
+                        - Form guilds (teams), trade resources, fight bosses
+                        <br />
+                        - Go on quests to defeat the mucky monsters
+                        <br />
+                      </p>
+                    </div>
+                  </div>
+                </InfoSection>
+                </div>
+                <div style={muckyMonstersBackground}>
+                <InfoSection>
+                  <div style={mainStyle}>
+                    <div style={textStyle}>
+                      <h1
+                        style={{
+                          fontSize: "2rem",
+                          fontWeight: "bold",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        The Mucky Monsters
+                      </h1>
+
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
+                        You wake up in a giant open world invaded by cute mushy monsters.
+                        <br />
+                        But don’t be fooled. These cute mushes have ravaged almost everything - covering the world with a strange purple muck.
+                        <br />
+                        What’s more, they bite!
+                      </p>
+                    </div>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      style={videoStyle}
+                      onClick={handleVideoOpen}
+                      onMouseEnter={() =>
+                        setHoverStyle({ transform: "scale(1.10)" })
+                      } // Example hover effect
+                      onMouseLeave={() =>
+                        setHoverStyle({ transform: "scale(1.05)" })
+                      } // Return to normal on mouse leave
+                    >
+                      <source src="trailer.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </InfoSection>
+                </div>
+                <div style={collectiveBackground}>
+                <InfoSection>
+                  <div style={mainStyle}>
+                    <div style={textStyle}>
+                      <h1
+                        style={{
+                          fontSize: "2rem",
+                          fontWeight: "bold",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        The Collective
+                      </h1>
+
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
+                        The Collective - a straggling bunch of survivors - has managed to save a few neighbourhoods.
+                        <br />
+                        But they need need your help. There’s so much to rebuild and those purple monsters are still quite the mystery.
+                      </p>
+                    </div>
+                    <video
+                      autoPlay
+                      muted
+                      loop
+                      style={videoStyle}
+                      onClick={handleVideoOpen}
+                      onMouseEnter={() =>
+                        setHoverStyle({ transform: "scale(1.10)" })
+                      } // Example hover effect
+                      onMouseLeave={() =>
+                        setHoverStyle({ transform: "scale(1.05)" })
+                      } // Return to normal on mouse leave
+                    >
+                      <source src="trailer.mp4" type="video/mp4" />
+                      Your browser does not support the video tag.
+                    </video>
+                  </div>
+                </InfoSection>
+                </div>
+                <div style={gameEngineBackground}>
+
+                <InfoSection>
+                  <div style={mainStyle}>
+                    <div style={textStyle}>
+                    <h1
+                        style={{
+                          fontSize: "2rem",
+                          fontWeight: "bold",
+                          marginBottom: "1rem",
+                        }}
+                      >
+                        Art, Creativity and The Game Engine
+                      </h1>
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        The voxel art style comes from our love of virtual sandcastles. We wanted building to be a central game mechanic. But we haven’t just hashed together your typical 3D lego blocks.                      <br />
+                      </p>
+                      <br/>
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        Our game engine captures the glow of soft light; from the gentle rustling of tree leaves to the delicate translucence of water bodies - we indulged in the details.
+
+                        We wanted give a beautiful canvas for you build within - and we’ve pushed technical boundaries in the voxel genre’s aesthetic to do that.
+                        </p>
+                        <br/>
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        In doing so, we developed a custom game engine for Oasis. Built using three, react and next - all open-source javascript libraries - we freed ourselves from the constraints imposed by the closed source engines, Unity and Unreal. As well as letting Oasis be an early example of streamed-gaming - where even the lightest laptops can play.
+                        </p>
+                    </div>
+                  </div>
+                </InfoSection>
+              </div>
             </>
           )}
         </LoginRelatedControllerContext.Consumer>
