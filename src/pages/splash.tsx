@@ -258,6 +258,43 @@ export const SplashPage: React.FunctionComponent<{
     padding: "20px", // Adds space between the text and video on mobile
   };
 
+    // CSS keyframes animation for the floating effect
+    const floatingIconAnimation = `
+    @keyframes float {
+      0% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+      100% {
+        transform: translateY(0);
+      }
+    }
+  `;
+
+  // Inject the animation into the document head
+  useEffect(() => {
+    const style = document.createElement('style');
+    style.innerHTML = floatingIconAnimation;
+    document.head.appendChild(style);
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
+  // Floating scroll icon style
+  const scrollIconStyle = {
+    width: "40px",
+    height: "40px",
+    animation: "float 2s ease-in-out infinite",
+    position: "absolute",
+    bottom: "20px",
+    left: "50%",
+    transform: "translateX(-50%)",
+    cursor: "pointer",
+  };
+
   return (
     <div
       style={{
@@ -389,6 +426,14 @@ export const SplashPage: React.FunctionComponent<{
                             </a>{" "}
                             studios.
                           </div>
+                          <img
+                            src="scroll_icon.png"
+                            alt="Scroll Icon"
+                            style={scrollIconStyle}
+                            z-index={30}
+                          />
+
+
                         </div>
                       </div>
                     </main>
