@@ -287,7 +287,6 @@ const scrollIconStyle = {
   position: "absolute",
   bottom: "20px",
   left: "calc(50% - 20px)", // Adjust for icon's own width to be dead center
-
   cursor: "pointer",
   zIndex: 30 // Make sure it's above other content
 };
