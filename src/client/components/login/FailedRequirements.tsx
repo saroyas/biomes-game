@@ -9,29 +9,53 @@ export const FailedRequirements: React.FunctionComponent<{
   onOkay: () => unknown;
   onWaitlist: () => unknown;
   onTryAnyway: () => unknown;
-}> = ({ onOkay, onWaitlist, onTryAnyway }) => {
+}> = ({ onOkay, onTryAnyway }) => {
+  const handleOpenDiscord = () => {
+    window.open(
+      "https://discord.com/invite/your-discord-link",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
+  const handleOpenInstagram = () => {
+    window.open(
+      "https://www.instagram.com/your-instagram-profile",
+      "_blank",
+      "noopener,noreferrer"
+    );
+  };
+
   return (
     <div className="biomes-box dialog">
       <div className="title-bar">
         <div className="invisible">
           <MiniPhoneCloseItem />
         </div>
-        <div className="title">Unsupported Device</div>
+        <div className="title">We&apos;re not on Mobile yet</div>
         <div className="">
           <MiniPhoneMoreItem onClick={() => onTryAnyway()} />
         </div>
       </div>
       <div className="dialog-contents text-center">
-        <p>Sorry, your device is not yet supported.</p>
         <p>Try Oasis on Desktop!</p>
+        <p>Just visit www.oasis-realm.com</p>
         <footer className="dialog-button-group">
-          <DialogButton
-            type="primary"
-            onClick={() => {
-              onWaitlist();
-            }}
-          >
-            Join Waitlist
+          <DialogButton type="primary" onClick={handleOpenDiscord}>
+            <img
+              src={discordIcon}
+              alt="Discord Icon"
+              style={{ width: "16px", height: "16px", marginRight: "8px" }}
+            />
+            Join Discord
+          </DialogButton>
+          <DialogButton type="primary" onClick={handleOpenInstagram}>
+            <img
+              src={instagramIcon}
+              alt="Instagram Icon"
+              style={{ width: "16px", height: "16px", marginRight: "8px" }}
+            />
+            Join Instagram
           </DialogButton>
           <DialogButton
             onClick={() => {
