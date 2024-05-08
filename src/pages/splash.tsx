@@ -449,7 +449,7 @@ export const SplashPage: React.FunctionComponent<{
                 </InfoSection>
                 <InfoSection>
                   <div style={mainStyle}>
-                    <img style={videoStyle} src="gameplay.gif" />
+                    <img style={videoStyle} src="swimming.png" />
 
                     <div style={textStyle}>
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
