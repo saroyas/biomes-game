@@ -117,11 +117,7 @@ const Section = ({
 }: {
   children: React.ReactNode;
   style?: React.CSSProperties;
-}) => (
-  <div style={{ minHeight: "100vh", ...style }}>
-    {children}
-  </div>
-);
+}) => <div style={{ minHeight: "100vh", ...style }}>{children}</div>;
 
 const InfoSection = ({
   children,
@@ -253,8 +249,8 @@ export const SplashPage: React.FunctionComponent<{
     padding: "20px", // Adds space between the text and video on mobile
   };
 
-    // CSS keyframes animation for the floating effect
-    const floatingIconAnimation = `
+  // CSS keyframes animation for the floating effect
+  const floatingIconAnimation = `
     @keyframes float {
       0% {
         transform: translateY(0);
@@ -270,7 +266,7 @@ export const SplashPage: React.FunctionComponent<{
 
   // Inject the animation into the document head
   useEffect(() => {
-    const style = document.createElement('style');
+    const style = document.createElement("style");
     style.innerHTML = floatingIconAnimation;
     document.head.appendChild(style);
     return () => {
@@ -279,17 +275,17 @@ export const SplashPage: React.FunctionComponent<{
   }, []);
 
   // Floating scroll icon style
-// Floating scroll icon style
-const scrollIconStyle = {
-  width: "40px",
-  height: "40px",
-  animation: "float 2s ease-in-out infinite",
-  position: "absolute",
-  bottom: "20px",
-  left: "calc(50% - 20px)", // Adjust for icon's own width to be dead center
-  cursor: "pointer",
-  zIndex: 30 // Make sure it's above other content
-};
+  // Floating scroll icon style
+  const scrollIconStyle = {
+    width: "40px",
+    height: "40px",
+    animation: "float 2s ease-in-out infinite",
+    position: "absolute",
+    bottom: "20px",
+    left: "calc(50% - 20px)", // Adjust for icon's own width to be dead center
+    cursor: "pointer",
+    zIndex: 30, // Make sure it's above other content
+  };
 
   return (
     <div
@@ -377,20 +373,15 @@ const scrollIconStyle = {
                             and wonder.
                           </p>
                           <div style={thumbnailContainerStyle}>
-                            <video
-                              autoPlay
-                              muted
-                              loop
+                            <img
                               style={videoThumbnailStyle}
+                              src="trailer.png"
                               onClick={handleVideoOpen}
                               onMouseEnter={() =>
                                 setHoverStyle({ transform: "scale(1.05)" })
                               } // Slightly scale up on hover
                               onMouseLeave={() => setHoverStyle({})} // Return to normal on mouse leave
-                            >
-                              <source src="trailer.mp4" type="video/mp4" />
-                              Your browser does not support the video tag.
-                            </video>
+                            />
                           </div>
                           <div
                             style={{
@@ -427,8 +418,6 @@ const scrollIconStyle = {
                             alt="Scroll Icon"
                             style={scrollIconStyle}
                           />
-
-
                         </div>
                       </div>
                     </main>
@@ -455,42 +444,12 @@ const scrollIconStyle = {
                         living, breathing world like World of Warcraft.
                       </p>
                     </div>
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      style={videoStyle}
-                      onClick={handleVideoOpen}
-                      onMouseEnter={() =>
-                        setHoverStyle({ transform: "scale(1.10)" })
-                      } // Example hover effect
-                      onMouseLeave={() =>
-                        setHoverStyle({ transform: "scale(1.05)" })
-                      } // Return to normal on mouse leave
-                    >
-                      <source src="trailer.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <img style={videoStyle} src="cosymmo.png" />
                   </div>
                 </InfoSection>
                 <InfoSection>
                   <div style={mainStyle}>
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      style={videoStyle}
-                      onClick={handleVideoOpen}
-                      onMouseEnter={() =>
-                        setHoverStyle({ transform: "scale(1.10)" })
-                      } // Example hover effect
-                      onMouseLeave={() =>
-                        setHoverStyle({ transform: "scale(1.05)" })
-                      } // Return to normal on mouse leave
-                    >
-                      <source src="trailer.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <img style={videoStyle} src="gameplay.gif" />
 
                     <div style={textStyle}>
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
@@ -530,22 +489,7 @@ const scrollIconStyle = {
                         What’s more, they bite!
                       </p>
                     </div>
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      style={videoStyle}
-                      onClick={handleVideoOpen}
-                      onMouseEnter={() =>
-                        setHoverStyle({ transform: "scale(1.10)" })
-                      } // Example hover effect
-                      onMouseLeave={() =>
-                        setHoverStyle({ transform: "scale(1.05)" })
-                      } // Return to normal on mouse leave
-                    >
-                      <source src="trailer.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <img style={videoStyle} src="muckymonsters.png" />
                   </div>
                 </InfoSection>
               </div>
@@ -571,22 +515,7 @@ const scrollIconStyle = {
                         and those purple monsters are still quite the mystery.
                       </p>
                     </div>
-                    <video
-                      autoPlay
-                      muted
-                      loop
-                      style={videoStyle}
-                      onClick={handleVideoOpen}
-                      onMouseEnter={() =>
-                        setHoverStyle({ transform: "scale(1.10)" })
-                      } // Example hover effect
-                      onMouseLeave={() =>
-                        setHoverStyle({ transform: "scale(1.05)" })
-                      } // Return to normal on mouse leave
-                    >
-                      <source src="trailer.mp4" type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
+                    <img style={videoStyle} src="collective.png" />
                   </div>
                 </InfoSection>
               </div>
@@ -621,9 +550,9 @@ const scrollIconStyle = {
                           lineHeight: "1.5",
                         }}
                       >
-                        We wanted to give a beautiful canvas for you build within -
-                        and we’ve pushed technical boundaries in the voxel
-                        genre’s aesthetic to do that.
+                        We wanted to give a beautiful canvas for you build
+                        within - and we’ve pushed technical boundaries in the
+                        voxel genre’s aesthetic to do that.
                         <br />
                         Our game engine captures the glow of soft light; from
                         the gentle rustling of tree leaves to the delicate
@@ -637,13 +566,12 @@ const scrollIconStyle = {
                           lineHeight: "1.5",
                         }}
                       >
-                        In doing so, we developed a custom engine for
-                        Oasis. Built using three, react and next - all
-                        open-source javascript libraries. We freed ourselves
-                        from the closed source monopolies Unity and Unreal; as
-                        well as letting Oasis be an early example of
-                        streamed-gaming - where even the lightest laptops can
-                        play.
+                        In doing so, we developed a custom engine for Oasis.
+                        Built using three, react and next - all open-source
+                        javascript libraries. We freed ourselves from the closed
+                        source monopolies Unity and Unreal; as well as letting
+                        Oasis be an early example of streamed-gaming - where
+                        even the lightest laptops can play.
                       </p>
                     </div>
                   </div>
@@ -682,8 +610,7 @@ const scrollIconStyle = {
                         <br />
                         To build awesome settings, write rich characters and
                         develop great narratives.
-                        <br />
-                        I wanted to craft living, breathing worlds.
+                        <br />I wanted to craft living, breathing worlds.
                       </p>
                       <br />
                       <p
@@ -733,7 +660,7 @@ const scrollIconStyle = {
                           rel="noopener noreferrer"
                         >
                           <img
-                            src="discord-2-128.ico"
+                            src="discord_logo.png"
                             alt="Discord Icon"
                             style={{
                               maxWidth: "50px",
@@ -749,7 +676,7 @@ const scrollIconStyle = {
                           rel="noopener noreferrer"
                         >
                           <img
-                            src="instagram-128.ico"
+                            src="insta_logo.png"
                             alt="Instagram Icon"
                             style={{
                               maxWidth: "50px",
