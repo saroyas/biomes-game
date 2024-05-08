@@ -453,11 +453,13 @@ export const SplashPage: React.FunctionComponent<{
 
                     <div style={textStyle}>
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
-                        - Build, farm, forge and design your home
-                        <br />
-                        - Form guilds (teams), trade resources, fight bosses
-                        <br />
-                        - Go on quests to defeat the mucky monsters
+                        - <strong>Build</strong>, <strong>farm</strong>,{" "}
+                        <strong>forage</strong>, and design your home
+                        <br />- Form <strong>guilds</strong> (teams), trade{" "}
+                        <strong>resources</strong>, fight{" "}
+                        <strong>bosses</strong>
+                        <br />- Go on <strong>quests</strong> to defeat the{" "}
+                        <strong>mucky monsters</strong>
                         <br />
                       </p>
                     </div>
@@ -481,12 +483,16 @@ export const SplashPage: React.FunctionComponent<{
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
                         You wake up in a giant open world invaded by cute mushy
                         monsters.
-                        <br />
+                      </p>
+                      <br />
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
                         But don’t be fooled. These cute mushes have ravaged
                         almost everything - covering the world with a strange
                         purple muck.
-                        <br />
-                        What’s more, they bite!
+                      </p>
+                      <br />
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
+                        <strong>What’s more, they bite!</strong>
                       </p>
                     </div>
                     <img style={videoStyle} src="muckymonsters.png" />
@@ -510,7 +516,9 @@ export const SplashPage: React.FunctionComponent<{
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
                         The Collective - a straggling bunch of survivors - has
                         managed to save a few neighbourhoods.
-                        <br />
+                      </p>
+                      <br />
+                      <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
                         But they need need your help. There’s so much to rebuild
                         and those purple monsters are still quite the mystery.
                       </p>
@@ -540,7 +548,16 @@ export const SplashPage: React.FunctionComponent<{
                       >
                         The voxel art style comes from our love of virtual
                         sandcastles. We wanted building to be a central game
-                        mechanic. But we haven’t just hashed together your
+                        mechanic.
+                        </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        But we haven’t just hashed together your
                         typical 3D lego blocks. <br />
                       </p>
                       <br />
@@ -550,12 +567,11 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        We wanted to give a beautiful canvas for you build
-                        within - and we’ve pushed technical boundaries in the
-                        voxel genre’s aesthetic to do that.
+                        To give you a beautiful canvas - we pushed technical boundaries in the
+                        voxel genre’s aesthetic.
                         <br />
-                        Our game engine captures the glow of soft light; from
-                        the gentle rustling of tree leaves to the delicate
+                        Our game engine captures the glow of soft light;
+                        the rustling of tree leaves; the
                         translucence of water bodies - we indulged in the
                         details.
                       </p>
@@ -566,7 +582,7 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        In doing so, we developed a custom engine for Oasis.
+                        To do this, we developed a custom engine for Oasis.
                         Built using three, react and next - all open-source
                         javascript libraries. We freed ourselves from the closed
                         source monopolies Unity and Unreal; as well as letting
@@ -596,8 +612,7 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        I left my job last year and founded Silicon Soul studios
-                        because of my love of stories.{" "}
+                        I left my job last year and founded Silicon Soul studios.
                       </p>
                       <br />
                       <p
@@ -606,11 +621,7 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        I wanted to get my own hands dirty.
-                        <br />
-                        To build awesome settings, write rich characters and
-                        develop great narratives.
-                        <br />I wanted to craft living, breathing worlds.
+                        Although we're still a one-man studio (with occasional help from friends) - this is our first production.
                       </p>
                       <br />
                       <p
@@ -619,11 +630,9 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        Oasis is our first production at the studio.
-                        <br />
-                        And although it is ready to play - this is just the
-                        start.
+                        Oasis has been a joy to work on, and I wanted to make it <strong>free</strong>.
                       </p>
+
                       <br />
                       <p
                         style={{
@@ -631,18 +640,41 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        I’d love it if you decided to help guide Oasis’
-                        development.
+                        If you do love the studio's work, and want to support us, consider joining our Patreon:
                       </p>
                       <br />
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          gap: "6rem",
+                          marginBottom: "2rem",
+                        }}
+                      >
+                        <a
+                          href="https://instagram.com"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          <img
+                            src="patreon_logo.png"
+                            alt="Patreon Icon"
+                            style={{
+                              maxWidth: "60px",
+                              height: "auto",
+                              borderRadius: "10px",
+                            }}
+                          />
+                        </a>
+                      </div>
                       <p
                         style={{
                           fontSize: "2rem",
                           lineHeight: "1.5",
                         }}
                       >
-                        If you have an idea, or just want to say hi, pop me a
-                        message on either Discord or Instagram.
+                        And if you have an idea, or just want to say hi, pop me a
+                        message on either Discord or Instagram - these often make my day!
                       </p>
                       <br />
 
@@ -666,7 +698,6 @@ export const SplashPage: React.FunctionComponent<{
                               maxWidth: "50px",
                               height: "auto",
                               borderRadius: "10px",
-                              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
                             }}
                           />
                         </a>
@@ -682,7 +713,6 @@ export const SplashPage: React.FunctionComponent<{
                               maxWidth: "50px",
                               height: "auto",
                               borderRadius: "10px",
-                              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
                             }}
                           />
                         </a>
@@ -694,9 +724,9 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        Yours
+                        Yours,
                         <br />
-                        Saros - lead dev at Silicon Soul
+                        Saros - dev at Silicon Soul
                       </p>
                       <br />
                       <div
