@@ -45,7 +45,7 @@ export const FailedRequirements: React.FunctionComponent<{
             <img
               src="discord-2-128.ico"
               alt="Discord Icon"
-              style={{ width: "16px", height: "16px", marginRight: "8px" }}
+              style={{ width: "8px", height: "8px", marginRight: "8px" }}
             />
             Join Discord
           </DialogButton>
@@ -53,7 +53,7 @@ export const FailedRequirements: React.FunctionComponent<{
             <img
               src="instagram-128.ico"
               alt="Instagram Icon"
-              style={{ width: "16px", height: "16px", marginRight: "8px" }}
+              style={{ width: "8px", height: "8px", marginRight: "8px" }}
             />
             Join Instagram
           </DialogButton>
