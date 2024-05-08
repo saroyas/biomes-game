@@ -33,7 +33,7 @@ export const FailedRequirements: React.FunctionComponent<{
           <MiniPhoneCloseItem />
         </div>
         <div className="title">We&apos;re not on Mobile yet</div>
-        <div className="">
+        <div>
           <MiniPhoneMoreItem onClick={() => onTryAnyway()} />
         </div>
       </div>
@@ -42,28 +42,38 @@ export const FailedRequirements: React.FunctionComponent<{
         <p>Just visit www.oasis-realm.com</p>
         <footer className="dialog-button-group">
           <DialogButton type="primary" onClick={handleOpenDiscord}>
-            <img
-              src="discord-2-128.ico"
-              alt="Discord Icon"
-              style={{ width: "8px", height: "8px", marginRight: "8px" }}
-            />
-            Join Discord
+            <div style={{ display: "inline-flex", alignItems: "center" }}>
+              <img
+                src="discord_logo.png"
+                alt="Discord Icon"
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  marginRight: "8px",
+                  display: "inline-block",
+                  verticalAlign: "middle",
+                }}
+              />
+              Join Discord
+            </div>
           </DialogButton>
           <DialogButton type="primary" onClick={handleOpenInstagram}>
-            <img
-              src="instagram-128.ico"
-              alt="Instagram Icon"
-              style={{ width: "8px", height: "8px", marginRight: "8px" }}
-            />
-            Join Instagram
+            <div style={{ display: "inline-flex", alignItems: "center" }}>
+              <img
+                src="insta_logo.png"
+                alt="Instagram Icon"
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  marginRight: "8px",
+                  display: "inline-block",
+                  verticalAlign: "middle",
+                }}
+              />
+              Join Instagram
+            </div>
           </DialogButton>
-          <DialogButton
-            onClick={() => {
-              onOkay();
-            }}
-          >
-            Cancel
-          </DialogButton>
+          <DialogButton onClick={onOkay}>Cancel</DialogButton>
         </footer>
       </div>
     </div>
