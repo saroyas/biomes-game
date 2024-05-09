@@ -43,33 +43,11 @@ export const FailedRequirements: React.FunctionComponent<{
         <footer className="dialog-button-group">
           <DialogButton type="primary" onClick={handleOpenDiscord}>
             <div style={{ display: "inline-flex", alignItems: "center" }}>
-              <img
-                src="discord_logo.png"
-                alt="Discord Icon"
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  marginRight: "8px",
-                  display: "inline-block",
-                  verticalAlign: "middle",
-                }}
-              />
               Join Discord
             </div>
           </DialogButton>
           <DialogButton type="primary" onClick={handleOpenInstagram}>
             <div style={{ display: "inline-flex", alignItems: "center" }}>
-              <img
-                src="insta_logo.png"
-                alt="Instagram Icon"
-                style={{
-                  width: "16px",
-                  height: "16px",
-                  marginRight: "8px",
-                  display: "inline-block",
-                  verticalAlign: "middle",
-                }}
-              />
               Join Instagram
             </div>
           </DialogButton>
