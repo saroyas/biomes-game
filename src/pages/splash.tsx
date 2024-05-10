@@ -200,16 +200,6 @@ export const SplashPage: React.FunctionComponent<{
     backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
   };
 
-  const collectiveBackground = {
-    display: "flex",
-    flexDirection: "column",
-    width: "100vw", // Ensures the width is always equal to the viewport width
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("background_collective.png")`, // Adds a dark overlay
-    backgroundSize: "cover, cover, cover", // Ensures both the gradient and the image cover the full area
-    backgroundPosition: "center, center, center", // Centers both the gradient and the image
-    backgroundRepeat: "no-repeat, no-repeat, no-repeat", // Ensures there's no repetition
-  };
-
   const gameEngineBackground = {
     display: "flex",
     flexDirection: "column",
@@ -498,8 +488,6 @@ export const SplashPage: React.FunctionComponent<{
                     <img style={videoStyle} src="muckymonsters.png" />
                   </div>
                 </InfoSection>
-              </div>
-              <div style={collectiveBackground}>
                 <InfoSection>
                   <div style={mainStyle}>
                     <div style={textStyle}>
@@ -549,16 +537,6 @@ export const SplashPage: React.FunctionComponent<{
                         The voxel art style comes from our love of virtual
                         sandcastles. We wanted building to be a central game
                         mechanic.
-                        </p>
-                      <br />
-                      <p
-                        style={{
-                          fontSize: "2rem",
-                          lineHeight: "1.5",
-                        }}
-                      >
-                        But we haven’t just hashed together your
-                        typical 3D lego blocks. <br />
                       </p>
                       <br />
                       <p
@@ -567,13 +545,22 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        To give you a beautiful canvas - we pushed technical boundaries in the
-                        voxel genre’s aesthetic.
+                        But we haven’t just hashed together your typical 3D lego
+                        blocks. <br />
+                      </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        To give you a beautiful canvas - we pushed technical
+                        boundaries in the voxel genre’s aesthetic.
                         <br />
-                        Our game engine captures the glow of soft light;
-                        the rustling of tree leaves; the
-                        translucence of water bodies - we indulged in the
-                        details.
+                        Our game engine captures the glow of soft light; the
+                        rustling of tree leaves; the translucence of water
+                        bodies - we indulged in the details.
                       </p>
                       <br />
                       <p
@@ -612,7 +599,8 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        I left my job last year and founded Silicon Soul studios.
+                        I left my job last year and founded Silicon Soul
+                        studios.
                       </p>
                       <br />
                       <p
@@ -621,7 +609,8 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        Although we're still a one-man studio (with occasional help from friends) - this is our first production.
+                        Although we're still a one-man studio (with occasional
+                        help from friends) - this is our first production.
                       </p>
                       <br />
                       <p
@@ -630,7 +619,8 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        Oasis has been a joy to work on, and I wanted to make it <strong>free</strong>.
+                        Oasis has been a joy to work on, and I wanted to make it{" "}
+                        <strong>free</strong>.
                       </p>
 
                       <br />
@@ -640,7 +630,8 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        If you do love the studio's work, and want to support us, consider joining our Patreon:
+                        If you do love the studio's work, and want to support
+                        us, consider joining our Patreon:
                       </p>
                       <br />
                       <div
@@ -673,8 +664,9 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        And if you have an idea, or just want to say hi, pop me a
-                        message on either Discord or Instagram - these often make my day!
+                        And if you have an idea, or just want to say hi, pop me
+                        a message on either Discord or Instagram - these often
+                        make my day!
                       </p>
                       <br />
 
