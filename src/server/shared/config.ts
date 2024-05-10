@@ -42,15 +42,15 @@ export const DEFAULT_CONFIG_LOOKUP_PATHS: LookupPath[] = [
 const PLAYER_START_POSITIONS: Readonly<Array<ReadonlyOrientedPoint>> = [
   [
     [490, 69, -144],
-    [0.057, 3.779],
+    [0.057, 2.779],
   ],
   [
     [485, 69, -143],
-    [-0.011, 3.207],
+    [-0.011, 2.207],
   ],
   [
     [470, 80, -142],
-    [-0.351, 1.755],
+    [-0.351, 3.255],
   ],
 ];
 
