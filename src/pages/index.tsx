@@ -13,7 +13,7 @@ export interface BiomesHeadTagProps {
 export const BiomesHeadTag: React.FunctionComponent<BiomesHeadTagProps> = (
   props
 ) => {
-  const desc = props.description ?? "Oasis - A new world";
+  const desc = props.description ?? "Oasis - A cosy world";
 
   const title = props.refinedTitle ? `${props.refinedTitle} | Oasis` : "Oasis";
 

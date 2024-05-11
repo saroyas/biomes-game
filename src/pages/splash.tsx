@@ -290,7 +290,7 @@ export const SplashPage: React.FunctionComponent<{
       <Head>
         <meta name="theme-color" content="#1C0D28" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Oasis — A new world</title>
+        <title>Oasis — A cosy world</title>
       </Head>
       <VideoModal
         isOpen={showVideo}
