@@ -184,7 +184,9 @@ export const SplashPage: React.FunctionComponent<{
     display: "flex",
     flexDirection: "column",
     width: "100vw", // Ensures the width is always equal to the viewport width
-    backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("background2_landscape.png")`, // Adds a dark overlay
+    backgroundImage: isMobile
+      ? `linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0)), linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("background2_landscape.png")`
+      : `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("background2_landscape.png")`,
     backgroundSize: "cover", // Ensures the gradient and the image cover the full area
     backgroundPosition: "center center", // Centers the gradient and the image
     backgroundRepeat: "no-repeat", // Ensures there's no repetition
