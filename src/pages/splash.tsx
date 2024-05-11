@@ -621,7 +621,7 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        Oasis has been a joy to work on, and I wanted to make it{" "}
+                        Oasis is a joy to work on, and I’m proud to make it{" "}
                         <strong>free</strong>.
                       </p>
 
@@ -632,8 +632,17 @@ export const SplashPage: React.FunctionComponent<{
                           lineHeight: "1.5",
                         }}
                       >
-                        If you do love the studio's work, and want to support
-                        us, consider joining our Patreon:
+                        That’s free free. No in-game transactions. No adverts.
+                      </p>
+                      <br />
+                      <p
+                        style={{
+                          fontSize: "2rem",
+                          lineHeight: "1.5",
+                        }}
+                      >
+                        If you do find joy in Oasis, and want to support us,
+                        consider joining our Patreon:
                       </p>
                       <br />
                       <div
