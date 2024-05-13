@@ -654,7 +654,7 @@ export const SplashPage: React.FunctionComponent<{
                         }}
                       >
                         <a
-                          href="https://instagram.com"
+                          href="https://www.patreon.com/OasisRealm"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -690,7 +690,7 @@ export const SplashPage: React.FunctionComponent<{
                         }}
                       >
                         <a
-                          href="https://discord.com"
+                          href="https://discord.com/invite/suttC9A6yJ"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -705,7 +705,7 @@ export const SplashPage: React.FunctionComponent<{
                           />
                         </a>
                         <a
-                          href="https://instagram.com"
+                          href="https://www.instagram.com/oasisrealm"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -740,16 +740,23 @@ export const SplashPage: React.FunctionComponent<{
                           marginTop: "2rem",
                         }}
                       >
-                        <img
-                          src="silicon_soul_logo.png"
-                          alt="Silicon Soul Logo"
-                          style={{
-                            maxWidth: "100px",
-                            height: "auto",
-                            borderRadius: "10px",
-                            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
-                          }}
-                        />
+                        <a
+                          href="https://siliconsoul.xyz/info"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ display: "inline-block" }}
+                        >
+                          <img
+                            src="silicon_soul_logo.png"
+                            alt="Silicon Soul Logo"
+                            style={{
+                              maxWidth: "100px",
+                              height: "auto",
+                              borderRadius: "10px",
+                              boxShadow: "0 2px 10px rgba(0, 0, 0, 0.2)",
+                            }}
+                          />
+                        </a>
                       </div>
                       <div
                         style={{
