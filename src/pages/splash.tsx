@@ -281,7 +281,7 @@ export const SplashPage: React.FunctionComponent<{
 
   return (
     <div
-      style={{
+      style={{x
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh", // Ensure the container takes at least the full height of the viewport
@@ -294,7 +294,7 @@ export const SplashPage: React.FunctionComponent<{
       </Head>
       <VideoModal
         isOpen={showVideo}
-        videoUrl="https://www.youtube.com/embed/LeqS7HhrIZs?si=3JL15x3QCwBCD-pw&autoplay=1"
+        videoUrl="https://www.youtube.com/embed/7U6e4JOL94c?si=tnfBEZIqeY3VR-Ci&autoplay=1"
         onClose={handleVideoClose}
       />
 
@@ -593,7 +593,7 @@ export const SplashPage: React.FunctionComponent<{
                           marginBottom: "1rem",
                         }}
                       >
-                        Hi, - from the Studio
+                        Passion, Money and The Community
                       </h1>
                       <p
                         style={{
