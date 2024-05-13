@@ -12,7 +12,7 @@ export const FailedRequirements: React.FunctionComponent<{
 }> = ({ onOkay, onTryAnyway }) => {
   const handleOpenDiscord = () => {
     window.open(
-      "https://discord.com/invite/your-discord-link",
+      "https://discord.com/invite/suttC9A6yJ",
       "_blank",
       "noopener,noreferrer"
     );
@@ -20,7 +20,7 @@ export const FailedRequirements: React.FunctionComponent<{
 
   const handleOpenInstagram = () => {
     window.open(
-      "https://www.instagram.com/your-instagram-profile",
+      "https://www.instagram.com/oasisrealm",
       "_blank",
       "noopener,noreferrer"
     );
