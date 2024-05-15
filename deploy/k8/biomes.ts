@@ -62,7 +62,7 @@ const ZRPC_PORT = 3004;
 
 const SYNC_DEFAULTS = {
   ...SERVICE_DEFAULTS,
-  replicas: 2,
+  replicas: 1,
   args: BASE_CONFIG_ARGS,
   ws: true,
   zrpc: true,
@@ -212,7 +212,7 @@ function createBiomes() {
     ...gaiaDeployment({
       name: "light",
       simulations: ["irradiance", "sky_occlusion"],
-      replicas: 3,
+      replicas: 1,
     }),
     ...gaiaDeployment({
       name: "restoration",
@@ -259,7 +259,7 @@ function createBiomes() {
     ...biomesDeployment({
       ...SERVICE_DEFAULTS,
       name: "anima",
-      replicas: new Autoscale(70, 2, 5),
+      replicas: new Autoscale(70, 1, 5),
       args: BASE_CONFIG_ARGS,
       memory: 4 * 1024,
       additionalEnv: [{ name: "ANIMA_HFC_WRITES", value: "1" }],
@@ -294,7 +294,7 @@ function createBiomes() {
     ...biomesDeployment({
       ...SERVICE_DEFAULTS,
       name: "oob",
-      replicas: 2,
+      replicas: 1,
       args: BASE_CONFIG_ARGS,
       http: true,
       memory: 1024,
@@ -321,7 +321,7 @@ function createBiomes() {
     ...biomesDeployment({
       ...SYNC_DEFAULTS,
       name: "sync",
-      replicas: 2,
+      replicas: 1,
       additionalLabels: {
         "biomes/provider": "sync",
       },
@@ -349,7 +349,7 @@ function createBiomes() {
     ...biomesDeployment({
       ...SERVICE_DEFAULTS,
       name: "web",
-      replicas: 3,
+      replicas: 1,
       args: BASE_CONFIG_ARGS,
       memory: 1500,
       http: true,
