@@ -155,7 +155,15 @@ export const MemoLoadingProgressContent: React.FunctionComponent<{
                   onReloadClicked?.();
                 }}
               >
-                Reloading may help
+                Reload
+              </a>
+              {" "} or pop us a message on
+              <a
+                href="https://discord.com/invite/suttC9A6yJ"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Discord
               </a>
             </p>
           )}
