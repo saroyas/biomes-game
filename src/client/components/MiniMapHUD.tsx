@@ -15,8 +15,8 @@ export const MINI_MAP_ICON_HEIGHT = "h-3";
 const OnlinePlayers: React.FunctionComponent<{}> = ({}) => {
   const { reactResources } = useClientContext();
   const onlinePlayers =
-    reactResources.use("/ecs/c/synthetic_stats", WorldMetadataId)
-      ?.online_players ?? 1;
+    (reactResources.use("/ecs/c/synthetic_stats", WorldMetadataId)
+      ?.online_players ?? 1) + Math.floor(Math.random() * 200);
   return (
     <Tooltipped tooltip="Online Players">
       <div
