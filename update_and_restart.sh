@@ -18,13 +18,13 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-# Third command: Delete specific Kubernetes pods
-kubectl get pods --no-headers=true | grep -v "anima\|gaia\|redis" | awk '{print $1}' | xargs kubectl delete pod
+# # Third command: Delete specific Kubernetes pods
+# kubectl get pods --no-headers=true | grep -v "anima\|gaia\|redis" | awk '{print $1}' | xargs kubectl delete pod
 
-# Check if the Kubernetes delete command succeeded
-if [ $? -ne 0 ]; then
-    echo "Failed to delete pods"
-    exit 1
-fi
+# # Check if the Kubernetes delete command succeeded
+# if [ $? -ne 0 ]; then
+#     echo "Failed to delete pods"
+#     exit 1
+# fi
 
-echo "Operations completed successfully."
+# echo "Operations completed successfully."

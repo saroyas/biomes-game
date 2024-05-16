@@ -281,7 +281,7 @@ export const SplashPage: React.FunctionComponent<{
 
   return (
     <div
-      style={{x
+      style={{
         display: "flex",
         flexDirection: "column",
         minHeight: "100vh", // Ensure the container takes at least the full height of the viewport
