@@ -445,7 +445,10 @@ export const SplashPage: React.FunctionComponent<{
 
                     <div style={textStyle}>
                       <p style={{ fontSize: "2rem", lineHeight: "1.5" }}>
-                        - <strong>Build</strong>, <strong>farm</strong>,{" "}
+                        - Get <strong>territory</strong> and design a{" "}
+                        <strong>custom NPC Character</strong> after completing{" "}
+                        core quest
+                        <br />- <strong>Build</strong>,{" "}
                         <strong>forage</strong>, and design your home
                         <br />- Form <strong>guilds</strong> (teams), trade{" "}
                         <strong>resources</strong>, fight{" "}
