@@ -190,8 +190,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1.5'
+              memory: 400Mi
+              cpu: 20m
         - name: nginx
           image: nginx:stable
           args: []
@@ -497,8 +497,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 1024Mi
-              cpu: '0.5'
+              memory: 400Mi
+              cpu: 20m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -651,8 +651,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 2048Mi
-              cpu: '1'
+              memory: 500Mi
+              cpu: 50m
 ---
 apiVersion: v1
 kind: Service
@@ -837,8 +837,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 1024Mi
-              cpu: '1'
+              memory: 400Mi
+              cpu: 40m
 ---
 apiVersion: v1
 kind: Service
@@ -1025,8 +1025,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1'
+              memory: 3500Mi
+              cpu: 40m
 ---
 apiVersion: apps/v1
 kind: StatefulSet
@@ -1179,8 +1179,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1'
+              memory: 500Mi
+              cpu: 20m
 ---
 apiVersion: v1
 kind: Service
@@ -1367,8 +1367,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1.5'
+              memory: 3000Mi
+              cpu: 20m
 ---
 apiVersion: v1
 kind: Service
@@ -1555,8 +1555,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 512Mi
-              cpu: '0.5'
+              memory: 300Mi
+              cpu: 40m
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -1737,7 +1737,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: 1022m
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -1915,7 +1915,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: 50m
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -2272,7 +2272,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: 1127m
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -2449,7 +2449,7 @@ spec:
           resources:
             requests:
               memory: 6144Mi
-              cpu: '1.5'
+              cpu: 60m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2602,8 +2602,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 10240Mi
-              cpu: '1'
+              memory: 2800Mi
+              cpu: 160m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2748,8 +2748,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1'
+              memory: 3200Mi
+              cpu: 40m
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -2902,8 +2902,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1'
+              memory: 3500Mi
+              cpu: 50m
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
@@ -3064,8 +3064,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '1'
+              memory: 4700Mi
+              cpu: 1500m
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
@@ -3259,8 +3259,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 4096Mi
-              cpu: '0.5'
+              memory: 4600Mi
+              cpu: 1200m
 ---
 apiVersion: v1
 kind: Service
@@ -3442,8 +3442,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 1024Mi
-              cpu: '1'
+              memory: 400Mi
+              cpu: 100m
         - name: nginx
           image: nginx:stable
           args: []
@@ -3662,8 +3662,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 2048Mi
-              cpu: '2'
+              memory: 700Mi
+              cpu: 50m
 ---
 apiVersion: v1
 kind: Service
@@ -3857,8 +3857,8 @@ spec:
             timeoutSeconds: 1
           resources:
             requests:
-              memory: 2048Mi
-              cpu: '2'
+              memory: 700Mi
+              cpu: 60m
 ---
 apiVersion: v1
 kind: Service
@@ -3905,7 +3905,7 @@ metadata:
   namespace: default
   name: web
 spec:
-  replicas: 1
+  replicas: 2
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -4049,7 +4049,7 @@ spec:
           resources:
             requests:
               memory: 1500Mi
-              cpu: '1'
+              cpu: '3'
         - name: nginx
           image: nginx:stable
           args: []
