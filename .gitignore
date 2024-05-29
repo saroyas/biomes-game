@@ -72,7 +72,7 @@ gha-creds*
 
 # Rust generated language server support file.
 rust-project.json
-
+shard_dump_dir
 # Bazel-generated TypeScript dependencies.
 src/gen
 # The merge base with origin/main that we last generated ts dependencies for.
