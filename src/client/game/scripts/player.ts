@@ -1291,7 +1291,7 @@ export class PlayerScript implements Script {
       return;
     }
 
-    const tweaks = this.resources.get("/tweaks");
+    // const tweaks = this.resources.get("/tweaks");
 
     // Update the player's local state.
     this.resources.update("/sim/player", this.userId, (player) => {
@@ -1305,7 +1305,7 @@ export class PlayerScript implements Script {
 
       // Update the player's position only if all nearby shards are loaded.
       this.doWarpConsolidation(player);
-      if (tweaks.permitVoidMovement || allPlayerShardsLoaded(this.resources)) {
+      if (true || allPlayerShardsLoaded(this.resources)) {
         this.maybeReportOutOfVoid();
         this.doPhysics(dt, player, !this.motionLocked());
       } else {
