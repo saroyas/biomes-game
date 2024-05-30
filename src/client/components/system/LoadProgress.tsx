@@ -157,7 +157,7 @@ export const MemoLoadingProgressContent: React.FunctionComponent<{
               >
                 Reload
               </a>
-              {" "} or pop us a message on
+              {" "} or pop us a message on {" "}
               <a
                 href="https://discord.com/invite/suttC9A6yJ"
                 target="_blank"
