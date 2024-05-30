@@ -163,6 +163,10 @@ export class PlayerScript implements Script {
   private pickupThrottle = new TimeWindow<BiomesId>(PICKUP_ATTEMPT_DELAY_MS);
   private inflightPickUps = new Set<BiomesId>();
 
+  // safe warp locations for when in void
+  private SAFE_WARP_LOCATION: ReadonlyVec3 = [490, 69, -144]; // Adjust to your safe location
+  private SAFE_WARP_ORIENTATION: ReadonlyVec2 = [0, 0];
+
   // A throttle to prevent sending
   private moveThrottle = new StateThrottle(
     {
@@ -1002,7 +1006,23 @@ export class PlayerScript implements Script {
       }
       this.hadReportedInVoid = true;
       this.makeVoidReport("Player is stuck in void");
+
+      // Warp player to a safe location if stuck in void
+      this.warpPlayerToSafeLocation();
     }, 1000);
+  }
+
+  private warpPlayerToSafeLocation() {
+    this.resources.update("/sim/player", this.userId, (player) => {
+      beginOrUpdateWarpEffect(this.resources, () => {
+        player.position = [...this.SAFE_WARP_LOCATION];
+        player.orientation = [...this.SAFE_WARP_ORIENTATION];
+        this.onWarp(player);
+        finishWarpEffect(this.resources);
+      });
+    });
+
+    // Optionally update player's health or other stats here if necessary
   }
 
   private setPositionResources(ecsPlayer: Player) {
