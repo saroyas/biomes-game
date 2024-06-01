@@ -159,7 +159,7 @@ export const MemoLoadingProgressContent: React.FunctionComponent<{
               >
                 Respawn
               </a>
-              or pop us a message on{" "}
+              {" "}or pop us a message on{" "}
               <a
                 href="https://discord.com/invite/suttC9A6yJ"
                 target="_blank"
@@ -236,10 +236,23 @@ export const LoadingProgress: React.FunctionComponent<{
         showDetails={showDetails}
         onReloadClicked={() => {
           setReloadClicked(true);
-          void respawn(clientContext, {
-            kind: "starter_location",
-          });
+          (async () => {
+            try {
+              if (clientContext) {
+                await respawn(clientContext, {
+                  kind: "starter_location",
+                });
+              }
+              if (typeof window !== "undefined") {
+                window.location.reload();
+              }
+            } catch (error) {
+              console.error("Error during reload and respawn:", error);
+            }
+          })();
         }}
+
+
         tip={randomTip}
         onToggleDetails={() => setShowDetails((show) => !show)}
       />
