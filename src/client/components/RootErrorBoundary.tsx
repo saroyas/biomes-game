@@ -14,7 +14,8 @@ import { addSink, log, removeSink } from "@/shared/logging";
 import { messageFromError } from "@/shared/util/helpers";
 import type { ErrorInfo, PropsWithChildren } from "react";
 import React from "react";
-
+import { respawn } from "@/client/game/util/warping";
+import { useClientContext } from "@/client/components/contexts/ClientContextReactContext";
 interface ErrorState {
   hasError: true;
   error: unknown;
@@ -220,19 +221,22 @@ const RefreshButton: React.FunctionComponent<{
   busy: boolean;
   setBusy: () => void;
 }> = ({ type, busy, setBusy }) => {
+  const clientContext = useClientContext();
+
   return (
     <DialogButton
       type={type}
       disabled={busy}
-      onClick={() => {
+      onClick={async () => {
         setBusy();
-        if (typeof window !== "undefined") {
-          window.location.reload();
+        if (clientContext) {
+          await respawn(clientContext, {
+            kind: "starter_location",
+          });
         }
       }}
     >
-      {" "}
-      Refresh
+      Respawn
     </DialogButton>
   );
 };
