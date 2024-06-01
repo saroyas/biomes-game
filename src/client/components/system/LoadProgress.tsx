@@ -1,12 +1,14 @@
-import type { LoadProgress } from "@/client/game/load_progress";
+import { choose } from "@/shared/util/helpers";
 import { progressSummary } from "@/client/game/load_progress";
+import type { LoadProgress } from "@/client/game/load_progress";
 import { reportClientError } from "@/client/util/request_helpers";
 import LoadingContentPreview from "@/pages/new-loading";
-import { choose } from "@/shared/util/helpers";
 import * as _ from "lodash";
 import { entriesIn } from "lodash";
 import type { ReactNode } from "react";
 import React, { useEffect, useMemo, useState } from "react";
+import { useClientContext } from "@/client/components/contexts/ClientContextReactContext";
+import { respawn } from "@/client/game/util/warping";
 
 function progressDetails(loadProgress: LoadProgress): string[] {
   if (!loadProgress.startedLoading) {
@@ -155,9 +157,9 @@ export const MemoLoadingProgressContent: React.FunctionComponent<{
                   onReloadClicked?.();
                 }}
               >
-                Reload
+                Respawn
               </a>
-              {" "} or pop us a message on {" "}
+              or pop us a message on{" "}
               <a
                 href="https://discord.com/invite/suttC9A6yJ"
                 target="_blank"
@@ -185,6 +187,7 @@ export const LoadingProgress: React.FunctionComponent<{
   const staleProgress = loadStaleChecks(progress);
   const currentlyStale = _.isEqual(staleProgress, progress);
   const randomTip = useMemo(() => choose(tips, tipSeed * tips.length), []);
+  const clientContext = useClientContext();
 
   let summary = progressSummary(progress);
   let loadingProblems = currentlyStale || summary === "problems_connecting";
@@ -233,9 +236,9 @@ export const LoadingProgress: React.FunctionComponent<{
         showDetails={showDetails}
         onReloadClicked={() => {
           setReloadClicked(true);
-          if (typeof window !== "undefined") {
-            window.location.reload();
-          }
+          void respawn(clientContext, {
+            kind: "starter_location",
+          });
         }}
         tip={randomTip}
         onToggleDetails={() => setShowDetails((show) => !show)}
